@@ -1,0 +1,301 @@
+# @prefix : <https://cyberterrain.org/ns/stone#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stone: <https://cyberterrain.org/ns/stone#> .
+# @base <https://cyberterrain.org/ns/stone#> .
+
+<https://cyberterrain.org/ns/stone#> rdf:type owl:Ontology ;
+                                      owl:imports <https://cyberterrain.org/ns/vocabularies#> ;
+                                      owl:imports <https://cyberterrain.org/ns/datatype-properties#> ;
+                                      owl:imports <https://cyberterrain.org/ns/object-properties#> .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://cyberterrain.org/ns/stone#ArtifactObject
+stone:ArtifactObject rdf:type owl:Class ;
+                     rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#AttackPattern
+stone:AttackPattern rdf:type owl:Class ;
+                    rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#AutonomousSystemObject
+stone:AutonomousSystemObject rdf:type owl:Class ;
+                             rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#Campaign
+stone:Campaign rdf:type owl:Class ;
+               rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#CourseOfAction
+stone:CourseOfAction rdf:type owl:Class ;
+                     rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#DirectoryObject
+stone:DirectoryObject rdf:type owl:Class ;
+                      rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#DomainNameObject
+stone:DomainNameObject rdf:type owl:Class ;
+                       rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#EmailAddressObject
+stone:EmailAddressObject rdf:type owl:Class ;
+                         rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#EmailMessageObject
+stone:EmailMessageObject rdf:type owl:Class ;
+                         rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#ExtensionDefinitionObject
+stone:ExtensionDefinitionObject rdf:type owl:Class ;
+                                rdfs:subClassOf stone:StixMetaObject .
+
+
+###  https://cyberterrain.org/ns/stone#FileObject
+stone:FileObject rdf:type owl:Class ;
+                 rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#Grouping
+stone:Grouping rdf:type owl:Class ;
+               rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#IPv4AddressObject
+stone:IPv4AddressObject rdf:type owl:Class ;
+                        rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#IPv6AddressObject
+stone:IPv6AddressObject rdf:type owl:Class ;
+                        rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#Identity
+stone:Identity rdf:type owl:Class ;
+               rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#Indicator
+stone:Indicator rdf:type owl:Class ;
+                rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#Infrastructure
+stone:Infrastructure rdf:type owl:Class ;
+                     rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#IntrusionSet
+stone:IntrusionSet rdf:type owl:Class ;
+                   rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#LanguageContentObject
+stone:LanguageContentObject rdf:type owl:Class ;
+                            rdfs:subClassOf stone:StixMetaObject .
+
+
+###  https://cyberterrain.org/ns/stone#Location
+stone:Location rdf:type owl:Class ;
+               rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#MACAddressObject
+stone:MACAddressObject rdf:type owl:Class ;
+                       rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#Malware
+stone:Malware rdf:type owl:Class ;
+              rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#MalwareAnalysis
+stone:MalwareAnalysis rdf:type owl:Class ;
+                      rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#MarkingDefinitionObject
+stone:MarkingDefinitionObject rdf:type owl:Class ;
+                              rdfs:subClassOf stone:StixMetaObject .
+
+
+###  https://cyberterrain.org/ns/stone#MutexObject
+stone:MutexObject rdf:type owl:Class ;
+                  rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#NetworkTrafficObject
+stone:NetworkTrafficObject rdf:type owl:Class ;
+                           rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#Note
+stone:Note rdf:type owl:Class ;
+           rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#ObservedData
+stone:ObservedData rdf:type owl:Class ;
+                   rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#Opinion
+stone:Opinion rdf:type owl:Class ;
+              rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#ProcessObject
+stone:ProcessObject rdf:type owl:Class ;
+                    rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#Relationship
+stone:Relationship rdf:type owl:Class ;
+                   rdfs:subClassOf stone:StixRelationshipObject .
+
+
+###  https://cyberterrain.org/ns/stone#Report
+stone:Report rdf:type owl:Class ;
+             rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#Sighting
+stone:Sighting rdf:type owl:Class ;
+               rdfs:subClassOf stone:StixRelationshipObject .
+
+
+###  https://cyberterrain.org/ns/stone#SoftwareObject
+stone:SoftwareObject rdf:type owl:Class ;
+                     rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#StixBundle
+stone:StixBundle rdf:type owl:Class ;
+                 rdfs:subClassOf stone:StixObject .
+
+
+###  https://cyberterrain.org/ns/stone#StixCoreObject
+stone:StixCoreObject rdf:type owl:Class ;
+                     rdfs:subClassOf stone:StixObject .
+
+
+###  https://cyberterrain.org/ns/stone#StixCyberobservableObject
+stone:StixCyberobservableObject rdf:type owl:Class ;
+                                rdfs:subClassOf stone:StixCoreObject .
+
+
+###  https://cyberterrain.org/ns/stone#StixDomainObject
+stone:StixDomainObject rdf:type owl:Class ;
+                       rdfs:subClassOf stone:StixCoreObject .
+
+
+###  https://cyberterrain.org/ns/stone#StixMetaObject
+stone:StixMetaObject rdf:type owl:Class ;
+                     rdfs:subClassOf stone:StixObject .
+
+
+###  https://cyberterrain.org/ns/stone#StixObject
+stone:StixObject rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#StixRelationshipObject
+stone:StixRelationshipObject rdf:type owl:Class ;
+                             rdfs:subClassOf stone:StixCoreObject .
+
+
+###  https://cyberterrain.org/ns/stone#ThreatActor
+stone:ThreatActor rdf:type owl:Class ;
+                  rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#Tool
+stone:Tool rdf:type owl:Class ;
+           rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#URLObject
+stone:URLObject rdf:type owl:Class ;
+                rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#UserAccountObject
+stone:UserAccountObject rdf:type owl:Class ;
+                        rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#Vulnerability
+stone:Vulnerability rdf:type owl:Class ;
+                    rdfs:subClassOf stone:StixDomainObject .
+
+
+###  https://cyberterrain.org/ns/stone#WindowsRegistryKetObject
+stone:WindowsRegistryKetObject rdf:type owl:Class ;
+                               rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+###  https://cyberterrain.org/ns/stone#X509CertificateObject
+stone:X509CertificateObject rdf:type owl:Class ;
+                            rdfs:subClassOf stone:StixCyberobservableObject .
+
+
+
+#################################################################
+#    Sub-Object Classes
+#    These structured value types appear as objects of properties
+#    but are not STIX objects in their own right.
+#################################################################
+
+###  https://cyberterrain.org/ns/stone#ExternalReference
+stone:ExternalReference rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#KillChainPhase
+stone:KillChainPhase rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#GranularMarking
+stone:GranularMarking rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#HashEntry
+stone:HashEntry rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#EmailMimePart
+stone:EmailMimePart rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#WindowsRegistryValue
+stone:WindowsRegistryValue rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#X509V3Extensions
+stone:X509V3Extensions rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#WindowsPeSection
+stone:WindowsPeSection rdf:type owl:Class .
+
+
+###  https://cyberterrain.org/ns/stone#AlternateDataStream
+stone:AlternateDataStream rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

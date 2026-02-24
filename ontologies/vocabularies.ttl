@@ -1,4 +1,4 @@
-@prefix : <https://cyberterrain.org/ns/vocabularies#> .
+# @prefix : <https://cyberterrain.org/ns/vocabularies#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -6,7 +6,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix stone: <https://cyberterrain.org/ns/stone#> .
 @prefix stonex: <https://cyberterrain.org/ns/stonex#> .
-@base <https://cyberterrain.org/ns/vocabularies#> .
+# @base <https://cyberterrain.org/ns/vocabularies#> .
 
 <https://cyberterrain.org/ns/vocabularies#> rdf:type owl:Ontology .
 
@@ -411,12 +411,12 @@ stonex:_c rdf:type owl:NamedIndividual ,
 
 
 ###  https://cyberterrain.org/ns/stonex#_c++
-stonex:_c\+\+ rdf:type owl:NamedIndividual ,
+stonex:_c-plus-plus rdf:type owl:NamedIndividual ,
                        stone:ImplementationLanguageVocabulary .
 
 
 ###  https://cyberterrain.org/ns/stonex#_c#
-stonex:_c\# rdf:type owl:NamedIndividual ,
+stonex:_c-sharp rdf:type owl:NamedIndividual ,
                      stone:ImplementationLanguageVocabulary .
 
 
