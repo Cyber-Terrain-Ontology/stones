@@ -14,7 +14,6 @@
                                                   <https://cyberterrain.org/ns/object-properties#> ,
                                                   <https://cyberterrain.org/ns/vocabularies#> .
 
-
 #################################################################
 #    Classes
 #################################################################
