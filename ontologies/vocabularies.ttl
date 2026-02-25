@@ -4,11 +4,13 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stone: <https://cyberterrain.org/ns/stone#> .
 @prefix stonex: <https://cyberterrain.org/ns/stonex#> .
 # @base <https://cyberterrain.org/ns/vocabularies#> .
 
-<https://cyberterrain.org/ns/vocabularies#> rdf:type owl:Ontology .
+<https://cyberterrain.org/ns/vocabularies#> rdf:type owl:Ontology ;
+    owl:imports <http://www.w3.org/2004/02/skos/core> .
 
 
 #################################################################
@@ -32,7 +34,14 @@ stone:AttackResourceLevelVocabulary rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stone#EncryptionAlgorithmEnumeration
 stone:EncryptionAlgorithmEnumeration rdf:type owl:Class ;
-                                     rdfs:subClassOf stone:Enumeration .
+                                     rdfs:subClassOf stone:Enumeration ;
+                                     owl:equivalentClass [
+                                         owl:oneOf (
+                                             stonex:_AES-256-GCM
+                                             stonex:_ChaCha20-Poly1305
+                                             stonex:_mime-type-indicated
+                                         ) ;
+                                     ] .
 
 
 ###  https://cyberterrain.org/ns/stone#Enumeration
@@ -42,7 +51,16 @@ stone:Enumeration rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stone#ExtensionTypesEnumeration
 stone:ExtensionTypesEnumeration rdf:type owl:Class ;
-                                rdfs:subClassOf stone:Enumeration .
+                                rdfs:subClassOf stone:Enumeration ;
+                                owl:equivalentClass [
+                                    owl:oneOf (
+                                        stonex:_new-sco
+                                        stonex:_new-sdo
+                                        stonex:_new-sro
+                                        stonex:_property-extension
+                                        stonex:_toplevel-property-extension
+                                    ) ;
+                                ] .
 
 
 ###  https://cyberterrain.org/ns/stone#GroupingContextVocabulary
@@ -97,12 +115,33 @@ stone:MalwareTypeVocabulary rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stone#NetworkSocketAddressFamilyEnumeration
 stone:NetworkSocketAddressFamilyEnumeration rdf:type owl:Class ;
-                                            rdfs:subClassOf stone:Enumeration .
+                                            rdfs:subClassOf stone:Enumeration ;
+                                            owl:equivalentClass [
+                                                owl:oneOf (
+                                                    stonex:_AF_APPLETALK
+                                                    stonex:_AF_BTH
+                                                    stonex:_AF_INET
+                                                    stonex:_AF_INET6
+                                                    stonex:_AF_IPX
+                                                    stonex:_AF_IRDA
+                                                    stonex:_AF_NETBIOS
+                                                    stonex:_AF_UNSPEC
+                                                ) ;
+                                            ] .
 
 
 ###  https://cyberterrain.org/ns/stone#NetworkSocketTypeEnumeration
 stone:NetworkSocketTypeEnumeration rdf:type owl:Class ;
-                                   rdfs:subClassOf stone:Enumeration .
+                                   rdfs:subClassOf stone:Enumeration ;
+                                   owl:equivalentClass [
+                                       owl:oneOf (
+                                           stonex:_SOCK_DGRAM
+                                           stonex:_SOCK_RAW
+                                           stonex:_SOCK_RDM
+                                           stonex:_SOCK_SEQPACKET
+                                           stonex:_SOCK_STREAM
+                                       ) ;
+                                   ] .
 
 
 ###  https://cyberterrain.org/ns/stone#OpenVocabulary
@@ -112,7 +151,16 @@ stone:OpenVocabulary rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stone#OpinionEnumeration
 stone:OpinionEnumeration rdf:type owl:Class ;
-                         rdfs:subClassOf stone:Enumeration .
+                         rdfs:subClassOf stone:Enumeration ;
+                         owl:equivalentClass [
+                             owl:oneOf (
+                                 stonex:_strongly-disagree
+                                 stonex:_disagree
+                                 stonex:_neutral
+                                 stonex:_agree
+                                 stonex:_strongly-agree
+                             ) ;
+                         ] .
 
 
 ###  https://cyberterrain.org/ns/stone#PatternTypeVocabulary
@@ -161,7 +209,15 @@ stone:Vocabulary rdf:type owl:Class .
 
 ###  https://cyberterrain.org/ns/stone#WindowsIntegrityLevelEnumeration
 stone:WindowsIntegrityLevelEnumeration rdf:type owl:Class ;
-                                       rdfs:subClassOf stone:Enumeration .
+                                       rdfs:subClassOf stone:Enumeration ;
+                                       owl:equivalentClass [
+                                           owl:oneOf (
+                                               stonex:_low
+                                               stonex:_medium
+                                               stonex:_high
+                                               stonex:_system
+                                           ) ;
+                                       ] .
 
 
 ###  https://cyberterrain.org/ns/stone#WindowsPEBinaryVocabulary
@@ -171,22 +227,68 @@ stone:WindowsPEBinaryVocabulary rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stone#WindowsRegistryDatatypeEnumeration
 stone:WindowsRegistryDatatypeEnumeration rdf:type owl:Class ;
-                                         rdfs:subClassOf stone:Enumeration .
+                                         rdfs:subClassOf stone:Enumeration ;
+                                         owl:equivalentClass [
+                                             owl:oneOf (
+                                                 stonex:_REG_BINARY
+                                                 stonex:_REG_DWORD
+                                                 stonex:_REG_DWORD_BIG_ENDIAN
+                                                 stonex:_REG_DWORD_LITTLE_ENDIAN
+                                                 stonex:_REG_EXPAND_SZ
+                                                 stonex:_REG_FULL_RESOURCE_DESCRIPTION
+                                                 stonex:_REG_INVALID_TYPE
+                                                 stonex:_REG_LINK
+                                                 stonex:_REG_MULTI_SZ
+                                                 stonex:_REG_NONE
+                                                 stonex:_REG_QWORD
+                                                 stonex:_REG_RESOURCE_LIST
+                                                 stonex:_REG_RESOURCE_REQUIREMENTS_LIST
+                                                 stonex:_REG_SZ
+                                             ) ;
+                                         ] .
 
 
 ###  https://cyberterrain.org/ns/stone#WindowsServiceStartTypeEnumeration
 stone:WindowsServiceStartTypeEnumeration rdf:type owl:Class ;
-                                         rdfs:subClassOf stone:Enumeration .
+                                         rdfs:subClassOf stone:Enumeration ;
+                                         owl:equivalentClass [
+                                             owl:oneOf (
+                                                 stonex:_SERVICE_AUTO_START
+                                                 stonex:_SERVICE_BOOT_START
+                                                 stonex:_SERVICE_DEMAND_START
+                                                 stonex:_SERVICE_DISABLED
+                                                 stonex:_SERVICE_SYSTEM_ALERT
+                                             ) ;
+                                         ] .
 
 
 ###  https://cyberterrain.org/ns/stone#WindowsServiceStatusEnumeration
 stone:WindowsServiceStatusEnumeration rdf:type owl:Class ;
-                                      rdfs:subClassOf stone:Enumeration .
+                                      rdfs:subClassOf stone:Enumeration ;
+                                      owl:equivalentClass [
+                                          owl:oneOf (
+                                              stonex:_SERVICE_CONTINUE_PENDING
+                                              stonex:_SERVICE_PAUSE_PENDING
+                                              stonex:_SERVICE_PAUSED
+                                              stonex:_SERVICE_RUNNING
+                                              stonex:_SERVICE_START_PENDING
+                                              stonex:_SERVICE_STOP_PENDING
+                                              stonex:_SERVICE_STOPPED
+                                          ) ;
+                                      ] .
 
 
 ###  https://cyberterrain.org/ns/stone#WindowsServiceTypeEnumeration
 stone:WindowsServiceTypeEnumeration rdf:type owl:Class ;
-                                    rdfs:subClassOf stone:Enumeration .
+                                    rdfs:subClassOf stone:Enumeration ;
+                                    owl:equivalentClass [
+                                        owl:oneOf (
+                                            stonex:_SERVICE_FILE_SYSTEM_DRIVER
+                                            stonex:_SERVICE_KERNEL_DRIVER
+                                            stonex:_SERVICE_WIN32_OWN_PROCESS
+                                            stonex:_SERVICE_WIN32_SHARE_PROCESS
+                                        ) ;
+                                    ] .
 
 
 #################################################################
@@ -195,1518 +297,1820 @@ stone:WindowsServiceTypeEnumeration rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stonex#_accidental
 stonex:_accidental rdf:type owl:NamedIndividual ,
-                            stone:AttackMotivationVocabulary .
+                            stone:AttackMotivationVocabulary ;
+                   skos:notation "accidental"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_accesses-remote-machines
 stonex:_accesses-remote-machines rdf:type owl:NamedIndividual ,
-                                          stone:MalwareCapabilitesVocabulary .
+                                          stone:MalwareCapabilitesVocabulary ;
+                                 skos:notation "accesses-remote-machines"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_activist
 stonex:_activist rdf:type owl:NamedIndividual ,
-                          stone:ThreatActorTypeVocabulary .
+                          stone:ThreatActorTypeVocabulary ;
+                 skos:notation "activist"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_adware
 stonex:_adware rdf:type owl:NamedIndividual ,
-                        stone:MalwareTypeVocabulary .
+                        stone:MalwareTypeVocabulary ;
+               skos:notation "adware"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_advanced
 stonex:_advanced rdf:type owl:NamedIndividual ,
-                          stone:ThreatActorSophisticationVocabulary .
+                          stone:ThreatActorSophisticationVocabulary ;
+                 skos:notation "advanced"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AES-256-GCM
 stonex:_AES-256-GCM rdf:type owl:NamedIndividual ,
-                             stone:EncryptionAlgorithmEnumeration .
+                             stone:EncryptionAlgorithmEnumeration ;
+                    skos:notation "AES-256-GCM"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_APPLETALK
 stonex:_AF_APPLETALK rdf:type owl:NamedIndividual ,
-                              stone:NetworkSocketAddressFamilyEnumeration .
+                              stone:NetworkSocketAddressFamilyEnumeration ;
+                     skos:notation "AF_APPLETALK"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_BTH
 stonex:_AF_BTH rdf:type owl:NamedIndividual ,
-                        stone:NetworkSocketAddressFamilyEnumeration .
+                        stone:NetworkSocketAddressFamilyEnumeration ;
+               skos:notation "AF_BTH"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_INET
 stonex:_AF_INET rdf:type owl:NamedIndividual ,
-                         stone:NetworkSocketAddressFamilyEnumeration .
+                         stone:NetworkSocketAddressFamilyEnumeration ;
+                skos:notation "AF_INET"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_INET6
 stonex:_AF_INET6 rdf:type owl:NamedIndividual ,
-                          stone:NetworkSocketAddressFamilyEnumeration .
+                          stone:NetworkSocketAddressFamilyEnumeration ;
+                 skos:notation "AF_INET6"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_IPX
 stonex:_AF_IPX rdf:type owl:NamedIndividual ,
-                        stone:NetworkSocketAddressFamilyEnumeration .
+                        stone:NetworkSocketAddressFamilyEnumeration ;
+               skos:notation "AF_IPX"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_IRDA
 stonex:_AF_IRDA rdf:type owl:NamedIndividual ,
-                         stone:NetworkSocketAddressFamilyEnumeration .
+                         stone:NetworkSocketAddressFamilyEnumeration ;
+                skos:notation "AF_IRDA"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_NETBIOS
 stonex:_AF_NETBIOS rdf:type owl:NamedIndividual ,
-                            stone:NetworkSocketAddressFamilyEnumeration .
+                            stone:NetworkSocketAddressFamilyEnumeration ;
+                   skos:notation "AF_NETBIOS"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_AF_UNSPEC
 stonex:_AF_UNSPEC rdf:type owl:NamedIndividual ,
-                           stone:NetworkSocketAddressFamilyEnumeration .
+                           stone:NetworkSocketAddressFamilyEnumeration ;
+                  skos:notation "AF_UNSPEC"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_africa
 stonex:_africa rdf:type owl:NamedIndividual ,
-                        stone:RegionVocabulary .
+                        stone:RegionVocabulary ;
+               skos:notation "africa"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_aerospace
 stonex:_aerospace rdf:type owl:NamedIndividual ,
-                           stone:IndustrySectorVocabulary .
+                           stone:IndustrySectorVocabulary ;
+                  skos:notation "aerospace"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_agent
 stonex:_agent rdf:type owl:NamedIndividual ,
-                       stone:ThreatActorRoleVocabulary .
+                       stone:ThreatActorRoleVocabulary ;
+              skos:notation "agent"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_agriculture
 stonex:_agriculture rdf:type owl:NamedIndividual ,
-                             stone:IndustrySectorVocabulary .
+                             stone:IndustrySectorVocabulary ;
+                    skos:notation "agriculture"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_agree
 stonex:_agree rdf:type owl:NamedIndividual ,
-                       stone:OpinionEnumeration .
+                       stone:OpinionEnumeration ;
+              skos:notation "agree"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_alpha
 stonex:_alpha rdf:type owl:NamedIndividual ,
-                       stone:ProcessorArchitectureVocabulary .
+                       stone:ProcessorArchitectureVocabulary ;
+              skos:notation "alpha"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_amplification
 stonex:_amplification rdf:type owl:NamedIndividual ,
-                               stone:InfrastuctureTypeVocabulary .
+                               stone:InfrastuctureTypeVocabulary ;
+                      skos:notation "amplification"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anomalous-activity
 stonex:_anomalous-activity rdf:type owl:NamedIndividual ,
-                                    stone:IndicatorTypeVocabulary .
+                                    stone:IndicatorTypeVocabulary ;
+                           skos:notation "anomalous-activity"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anonymization
 stonex:_anonymization rdf:type owl:NamedIndividual ,
                                stone:IndicatorTypeVocabulary ,
-                               stone:InfrastuctureTypeVocabulary .
+                               stone:InfrastuctureTypeVocabulary ;
+                      skos:notation "anonymization"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anti-debugging
 stonex:_anti-debugging rdf:type owl:NamedIndividual ,
-                                stone:MalwareCapabilitesVocabulary .
+                                stone:MalwareCapabilitesVocabulary ;
+                       skos:notation "anti-debugging"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anti-disassembly
 stonex:_anti-disassembly rdf:type owl:NamedIndividual ,
-                                  stone:MalwareCapabilitesVocabulary .
+                                  stone:MalwareCapabilitesVocabulary ;
+                         skos:notation "anti-disassembly"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anti-emulation
 stonex:_anti-emulation rdf:type owl:NamedIndividual ,
-                                stone:MalwareCapabilitesVocabulary .
+                                stone:MalwareCapabilitesVocabulary ;
+                       skos:notation "anti-emulation"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anti-memory-forensics
 stonex:_anti-memory-forensics rdf:type owl:NamedIndividual ,
-                                       stone:MalwareCapabilitesVocabulary .
+                                       stone:MalwareCapabilitesVocabulary ;
+                              skos:notation "anti-memory-forensics"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anti-sandbox
 stonex:_anti-sandbox rdf:type owl:NamedIndividual ,
-                              stone:MalwareCapabilitesVocabulary .
+                              stone:MalwareCapabilitesVocabulary ;
+                     skos:notation "anti-sandbox"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_anti-vm
 stonex:_anti-vm rdf:type owl:NamedIndividual ,
-                         stone:MalwareCapabilitesVocabulary .
+                         stone:MalwareCapabilitesVocabulary ;
+                skos:notation "anti-vm"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_applescript
 stonex:_applescript rdf:type owl:NamedIndividual ,
-                             stone:ImplementationLanguageVocabulary .
+                             stone:ImplementationLanguageVocabulary ;
+                    skos:notation "applescript"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_arm
 stonex:_arm rdf:type owl:NamedIndividual ,
-                     stone:ProcessorArchitectureVocabulary .
+                     stone:ProcessorArchitectureVocabulary ;
+            skos:notation "arm"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_asia
 stonex:_asia rdf:type owl:NamedIndividual ,
-                      stone:RegionVocabulary .
+                      stone:RegionVocabulary ;
+             skos:notation "asia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_attack-pattern
 stonex:_attack-pattern rdf:type owl:NamedIndividual ,
-                                stone:ReportTypeVocabulary .
+                                stone:ReportTypeVocabulary ;
+                       skos:notation "attack-pattern"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_attribution
 stonex:_attribution rdf:type owl:NamedIndividual ,
-                             stone:IndicatorTypeVocabulary .
+                             stone:IndicatorTypeVocabulary ;
+                    skos:notation "attribution"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_australia-new-zealand
 stonex:_australia-new-zealand rdf:type owl:NamedIndividual ,
-                                       stone:RegionVocabulary .
+                                       stone:RegionVocabulary ;
+                              skos:notation "australia-new-zealand"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_automotive
 stonex:_automotive rdf:type owl:NamedIndividual ,
-                            stone:IndustrySectorVocabulary .
+                            stone:IndustrySectorVocabulary ;
+                   skos:notation "automotive"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_backdoor
 stonex:_backdoor rdf:type owl:NamedIndividual ,
-                          stone:MalwareTypeVocabulary .
+                          stone:MalwareTypeVocabulary ;
+                 skos:notation "backdoor"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_bash
 stonex:_bash rdf:type owl:NamedIndividual ,
-                      stone:ImplementationLanguageVocabulary .
+                      stone:ImplementationLanguageVocabulary ;
+             skos:notation "bash"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_benign
 stonex:_benign rdf:type owl:NamedIndividual ,
                         stone:IndicatorTypeVocabulary ,
-                        stone:MalwareResultVocabulary .
+                        stone:MalwareResultVocabulary ;
+               skos:notation "benign"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_bot
 stonex:_bot rdf:type owl:NamedIndividual ,
-                     stone:MalwareTypeVocabulary .
+                     stone:MalwareTypeVocabulary ;
+            skos:notation "bot"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_bootkit
 stonex:_bootkit rdf:type owl:NamedIndividual ,
-                         stone:MalwareTypeVocabulary .
+                         stone:MalwareTypeVocabulary ;
+                skos:notation "bootkit"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_botnet
 stonex:_botnet rdf:type owl:NamedIndividual ,
-                        stone:InfrastuctureTypeVocabulary .
+                        stone:InfrastuctureTypeVocabulary ;
+               skos:notation "botnet"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_c
 stonex:_c rdf:type owl:NamedIndividual ,
-                   stone:ImplementationLanguageVocabulary .
+                   stone:ImplementationLanguageVocabulary ;
+          skos:notation "c"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_c++
 stonex:_c-plus-plus rdf:type owl:NamedIndividual ,
-                       stone:ImplementationLanguageVocabulary .
+                       stone:ImplementationLanguageVocabulary ;
+                    skos:notation "c++"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_c#
 stonex:_c-sharp rdf:type owl:NamedIndividual ,
-                     stone:ImplementationLanguageVocabulary .
+                     stone:ImplementationLanguageVocabulary ;
+                skos:notation "c#"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_campaign
 stonex:_campaign rdf:type owl:NamedIndividual ,
-                          stone:ReportTypeVocabulary .
+                          stone:ReportTypeVocabulary ;
+                 skos:notation "campaign"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_captures-input-peripherals
 stonex:_captures-input-peripherals rdf:type owl:NamedIndividual ,
-                                            stone:MalwareCapabilitesVocabulary .
+                                            stone:MalwareCapabilitesVocabulary ;
+                                   skos:notation "captures-input-peripherals"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_captures-output-peripherals
 stonex:_captures-output-peripherals rdf:type owl:NamedIndividual ,
-                                             stone:MalwareCapabilitesVocabulary .
+                                             stone:MalwareCapabilitesVocabulary ;
+                                    skos:notation "captures-output-peripherals"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_captures-system-state-data
 stonex:_captures-system-state-data rdf:type owl:NamedIndividual ,
-                                            stone:MalwareCapabilitesVocabulary .
+                                            stone:MalwareCapabilitesVocabulary ;
+                                   skos:notation "captures-system-state-data"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_caribbean
 stonex:_caribbean rdf:type owl:NamedIndividual ,
-                           stone:RegionVocabulary .
+                           stone:RegionVocabulary ;
+                  skos:notation "caribbean"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_central-america
 stonex:_central-america rdf:type owl:NamedIndividual ,
-                                 stone:RegionVocabulary .
+                                 stone:RegionVocabulary ;
+                        skos:notation "central-america"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_central-asia
 stonex:_central-asia rdf:type owl:NamedIndividual ,
-                              stone:RegionVocabulary .
+                              stone:RegionVocabulary ;
+                     skos:notation "central-asia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_ChaCha20-Poly1305
 stonex:_ChaCha20-Poly1305 rdf:type owl:NamedIndividual ,
-                                   stone:EncryptionAlgorithmEnumeration .
+                                   stone:EncryptionAlgorithmEnumeration ;
+                          skos:notation "ChaCha20-Poly1305"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_chemical
 stonex:_chemical rdf:type owl:NamedIndividual ,
-                          stone:IndustrySectorVocabulary .
+                          stone:IndustrySectorVocabulary ;
+                 skos:notation "chemical"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_class
 stonex:_class rdf:type owl:NamedIndividual ,
-                       stone:IdentityClassVocabulary .
+                       stone:IdentityClassVocabulary ;
+              skos:notation "class"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_cleans-traces-of-infection
 stonex:_cleans-traces-of-infection rdf:type owl:NamedIndividual ,
-                                            stone:MalwareCapabilitesVocabulary .
+                                            stone:MalwareCapabilitesVocabulary ;
+                                   skos:notation "cleans-traces-of-infection"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_club
 stonex:_club rdf:type owl:NamedIndividual ,
-                      stone:AttackResourceLevelVocabulary .
+                      stone:AttackResourceLevelVocabulary ;
+             skos:notation "club"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_coercion
 stonex:_coercion rdf:type owl:NamedIndividual ,
-                          stone:AttackMotivationVocabulary .
+                          stone:AttackMotivationVocabulary ;
+                 skos:notation "coercion"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_command-and-control
 stonex:_command-and-control rdf:type owl:NamedIndividual ,
-                                     stone:InfrastuctureTypeVocabulary .
+                                     stone:InfrastuctureTypeVocabulary ;
+                            skos:notation "command-and-control"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_commercial
 stonex:_commercial rdf:type owl:NamedIndividual ,
-                            stone:IndustrySectorVocabulary .
+                            stone:IndustrySectorVocabulary ;
+                   skos:notation "commercial"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_commits-fraud
 stonex:_commits-fraud rdf:type owl:NamedIndividual ,
-                               stone:MalwareCapabilitesVocabulary .
+                               stone:MalwareCapabilitesVocabulary ;
+                      skos:notation "commits-fraud"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_communications
 stonex:_communications rdf:type owl:NamedIndividual ,
-                                stone:IndustrySectorVocabulary .
+                                stone:IndustrySectorVocabulary ;
+                       skos:notation "communications"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_competitor
 stonex:_competitor rdf:type owl:NamedIndividual ,
-                            stone:ThreatActorTypeVocabulary .
+                            stone:ThreatActorTypeVocabulary ;
+                   skos:notation "competitor"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_compromised
 stonex:_compromised rdf:type owl:NamedIndividual ,
-                             stone:IndicatorTypeVocabulary .
+                             stone:IndicatorTypeVocabulary ;
+                    skos:notation "compromised"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_compromises-data-availability
 stonex:_compromises-data-availability rdf:type owl:NamedIndividual ,
-                                               stone:MalwareCapabilitesVocabulary .
+                                               stone:MalwareCapabilitesVocabulary ;
+                                      skos:notation "compromises-data-availability"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_compromises-data-integrity
 stonex:_compromises-data-integrity rdf:type owl:NamedIndividual ,
-                                            stone:MalwareCapabilitesVocabulary .
+                                            stone:MalwareCapabilitesVocabulary ;
+                                   skos:notation "compromises-data-integrity"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_compromises-system-availability
 stonex:_compromises-system-availability rdf:type owl:NamedIndividual ,
-                                                 stone:MalwareCapabilitesVocabulary .
+                                                 stone:MalwareCapabilitesVocabulary ;
+                                        skos:notation "compromises-system-availability"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_construction
 stonex:_construction rdf:type owl:NamedIndividual ,
-                              stone:IndustrySectorVocabulary .
+                              stone:IndustrySectorVocabulary ;
+                     skos:notation "construction"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_contest
 stonex:_contest rdf:type owl:NamedIndividual ,
-                         stone:AttackResourceLevelVocabulary .
+                         stone:AttackResourceLevelVocabulary ;
+                skos:notation "contest"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_controls-local-machine
 stonex:_controls-local-machine rdf:type owl:NamedIndividual ,
-                                        stone:MalwareCapabilitesVocabulary .
+                                        stone:MalwareCapabilitesVocabulary ;
+                               skos:notation "controls-local-machine"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_credential-exploitation
 stonex:_credential-exploitation rdf:type owl:NamedIndividual ,
-                                         stone:ToolTypeVocabulary .
+                                         stone:ToolTypeVocabulary ;
+                                skos:notation "credential-exploitation"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_crime-syndicate
 stonex:_crime-syndicate rdf:type owl:NamedIndividual ,
-                                 stone:ThreatActorTypeVocabulary .
+                                 stone:ThreatActorTypeVocabulary ;
+                        skos:notation "crime-syndicate"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_criminal
 stonex:_criminal rdf:type owl:NamedIndividual ,
-                          stone:ThreatActorTypeVocabulary .
+                          stone:ThreatActorTypeVocabulary ;
+                 skos:notation "criminal"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_dams
 stonex:_dams rdf:type owl:NamedIndividual ,
-                      stone:IndustrySectorVocabulary .
+                      stone:IndustrySectorVocabulary ;
+             skos:notation "dams"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_ddos
 stonex:_ddos rdf:type owl:NamedIndividual ,
-                      stone:MalwareTypeVocabulary .
+                      stone:MalwareTypeVocabulary ;
+             skos:notation "ddos"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_defense
 stonex:_defense rdf:type owl:NamedIndividual ,
-                         stone:IndustrySectorVocabulary .
+                         stone:IndustrySectorVocabulary ;
+                skos:notation "defense"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_degrades-security-software
 stonex:_degrades-security-software rdf:type owl:NamedIndividual ,
-                                            stone:MalwareCapabilitesVocabulary .
+                                            stone:MalwareCapabilitesVocabulary ;
+                                   skos:notation "degrades-security-software"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_degrades-system-updates
 stonex:_degrades-system-updates rdf:type owl:NamedIndividual ,
-                                         stone:MalwareCapabilitesVocabulary .
+                                         stone:MalwareCapabilitesVocabulary ;
+                                skos:notation "degrades-system-updates"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_denial-of-service
 stonex:_denial-of-service rdf:type owl:NamedIndividual ,
-                                   stone:ToolTypeVocabulary .
+                                   stone:ToolTypeVocabulary ;
+                          skos:notation "denial-of-service"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_determines-c2-server
 stonex:_determines-c2-server rdf:type owl:NamedIndividual ,
-                                      stone:MalwareCapabilitesVocabulary .
+                                      stone:MalwareCapabilitesVocabulary ;
+                             skos:notation "determines-c2-server"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_director
 stonex:_director rdf:type owl:NamedIndividual ,
-                          stone:ThreatActorRoleVocabulary .
+                          stone:ThreatActorRoleVocabulary ;
+                 skos:notation "director"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_disagree
 stonex:_disagree rdf:type owl:NamedIndividual ,
-                          stone:OpinionEnumeration .
+                          stone:OpinionEnumeration ;
+                 skos:notation "disagree"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_dll
 stonex:_dll rdf:type owl:NamedIndividual ,
-                     stone:WindowsPEBinaryVocabulary .
+                     stone:WindowsPEBinaryVocabulary ;
+            skos:notation "dll"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_dominance
 stonex:_dominance rdf:type owl:NamedIndividual ,
-                           stone:AttackMotivationVocabulary .
+                           stone:AttackMotivationVocabulary ;
+                  skos:notation "dominance"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_downloader
 stonex:_downloader rdf:type owl:NamedIndividual ,
-                            stone:MalwareTypeVocabulary .
+                            stone:MalwareTypeVocabulary ;
+                   skos:notation "downloader"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_dropper
 stonex:_dropper rdf:type owl:NamedIndividual ,
-                         stone:MalwareTypeVocabulary .
+                         stone:MalwareTypeVocabulary ;
+                skos:notation "dropper"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_eastern-africa
 stonex:_eastern-africa rdf:type owl:NamedIndividual ,
-                                stone:RegionVocabulary .
+                                stone:RegionVocabulary ;
+                       skos:notation "eastern-africa"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_eastern-asia
 stonex:_eastern-asia rdf:type owl:NamedIndividual ,
-                              stone:RegionVocabulary .
+                              stone:RegionVocabulary ;
+                     skos:notation "eastern-asia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_eastern-europe
 stonex:_eastern-europe rdf:type owl:NamedIndividual ,
-                                stone:RegionVocabulary .
+                                stone:RegionVocabulary ;
+                       skos:notation "eastern-europe"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_education
 stonex:_education rdf:type owl:NamedIndividual ,
-                           stone:IndustrySectorVocabulary .
+                           stone:IndustrySectorVocabulary ;
+                  skos:notation "education"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_emails-spam
 stonex:_emails-spam rdf:type owl:NamedIndividual ,
-                             stone:MalwareCapabilitesVocabulary .
+                             stone:MalwareCapabilitesVocabulary ;
+                    skos:notation "emails-spam"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_emergency-services
 stonex:_emergency-services rdf:type owl:NamedIndividual ,
-                                    stone:IndustrySectorVocabulary .
+                                    stone:IndustrySectorVocabulary ;
+                           skos:notation "emergency-services"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_energy
 stonex:_energy rdf:type owl:NamedIndividual ,
-                        stone:IndustrySectorVocabulary .
+                        stone:IndustrySectorVocabulary ;
+               skos:notation "energy"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_engineering
 stonex:_engineering rdf:type owl:NamedIndividual ,
-                             stone:IndustrySectorVocabulary .
+                             stone:IndustrySectorVocabulary ;
+                    skos:notation "engineering"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_entertainment
 stonex:_entertainment rdf:type owl:NamedIndividual ,
-                               stone:IndustrySectorVocabulary .
+                               stone:IndustrySectorVocabulary ;
+                      skos:notation "entertainment"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_escalates-privileges
 stonex:_escalates-privileges rdf:type owl:NamedIndividual ,
-                                      stone:MalwareCapabilitesVocabulary .
+                                      stone:MalwareCapabilitesVocabulary ;
+                             skos:notation "escalates-privileges"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_europe
 stonex:_europe rdf:type owl:NamedIndividual ,
-                        stone:RegionVocabulary .
+                        stone:RegionVocabulary ;
+               skos:notation "europe"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_evades-av
 stonex:_evades-av rdf:type owl:NamedIndividual ,
-                           stone:MalwareCapabilitesVocabulary .
+                           stone:MalwareCapabilitesVocabulary ;
+                  skos:notation "evades-av"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_exe
 stonex:_exe rdf:type owl:NamedIndividual ,
-                     stone:WindowsPEBinaryVocabulary .
+                     stone:WindowsPEBinaryVocabulary ;
+            skos:notation "exe"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_exfiltrates-data
 stonex:_exfiltrates-data rdf:type owl:NamedIndividual ,
-                                  stone:MalwareCapabilitesVocabulary .
+                                  stone:MalwareCapabilitesVocabulary ;
+                         skos:notation "exfiltrates-data"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_exfiltration
 stonex:_exfiltration rdf:type owl:NamedIndividual ,
-                              stone:InfrastuctureTypeVocabulary .
+                              stone:InfrastuctureTypeVocabulary ;
+                     skos:notation "exfiltration"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_expert
 stonex:_expert rdf:type owl:NamedIndividual ,
-                        stone:ThreatActorSophisticationVocabulary .
+                        stone:ThreatActorSophisticationVocabulary ;
+               skos:notation "expert"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_exploit-kit
 stonex:_exploit-kit rdf:type owl:NamedIndividual ,
-                             stone:MalwareTypeVocabulary .
+                             stone:MalwareTypeVocabulary ;
+                    skos:notation "exploit-kit"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_exploitation
 stonex:_exploitation rdf:type owl:NamedIndividual ,
-                              stone:ToolTypeVocabulary .
+                              stone:ToolTypeVocabulary ;
+                     skos:notation "exploitation"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_facebook
 stonex:_facebook rdf:type owl:NamedIndividual ,
-                          stone:AccountTypeVocabulary .
+                          stone:AccountTypeVocabulary ;
+                 skos:notation "facebook"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_financial-services
 stonex:_financial-services rdf:type owl:NamedIndividual ,
-                                    stone:IndustrySectorVocabulary .
+                                    stone:IndustrySectorVocabulary ;
+                           skos:notation "financial-services"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_fingerprints-host
 stonex:_fingerprints-host rdf:type owl:NamedIndividual ,
-                                   stone:MalwareCapabilitesVocabulary .
+                                   stone:MalwareCapabilitesVocabulary ;
+                          skos:notation "fingerprints-host"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_firewall
 stonex:_firewall rdf:type owl:NamedIndividual ,
-                          stone:InfrastuctureTypeVocabulary .
+                          stone:InfrastuctureTypeVocabulary ;
+                 skos:notation "firewall"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_go
 stonex:_go rdf:type owl:NamedIndividual ,
-                    stone:ImplementationLanguageVocabulary .
+                    stone:ImplementationLanguageVocabulary ;
+           skos:notation "go"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_government
 stonex:_government rdf:type owl:NamedIndividual ,
                             stone:AttackResourceLevelVocabulary ,
-                            stone:IndustrySectorVocabulary .
+                            stone:IndustrySectorVocabulary ;
+                   skos:notation "government"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_government-local
 stonex:_government-local rdf:type owl:NamedIndividual ,
-                                  stone:IndustrySectorVocabulary .
+                                  stone:IndustrySectorVocabulary ;
+                         skos:notation "government-local"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_government-national
 stonex:_government-national rdf:type owl:NamedIndividual ,
-                                     stone:IndustrySectorVocabulary .
+                                     stone:IndustrySectorVocabulary ;
+                            skos:notation "government-national"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_government-public-services
 stonex:_government-public-services rdf:type owl:NamedIndividual ,
-                                            stone:IndustrySectorVocabulary .
+                                            stone:IndustrySectorVocabulary ;
+                                   skos:notation "government-public-services"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_government-regional
 stonex:_government-regional rdf:type owl:NamedIndividual ,
-                                     stone:IndustrySectorVocabulary .
+                                     stone:IndustrySectorVocabulary ;
+                            skos:notation "government-regional"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_group
 stonex:_group rdf:type owl:NamedIndividual ,
-                       stone:IdentityClassVocabulary .
+                       stone:IdentityClassVocabulary ;
+              skos:notation "group"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_hacker
 stonex:_hacker rdf:type owl:NamedIndividual ,
-                        stone:ThreatActorTypeVocabulary .
+                        stone:ThreatActorTypeVocabulary ;
+               skos:notation "hacker"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_healthcare
 stonex:_healthcare rdf:type owl:NamedIndividual ,
-                            stone:IndustrySectorVocabulary .
+                            stone:IndustrySectorVocabulary ;
+                   skos:notation "healthcare"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_hides-artifacts
 stonex:_hides-artifacts rdf:type owl:NamedIndividual ,
-                                 stone:MalwareCapabilitesVocabulary .
+                                 stone:MalwareCapabilitesVocabulary ;
+                        skos:notation "hides-artifacts"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_hides-executing-code
 stonex:_hides-executing-code rdf:type owl:NamedIndividual ,
-                                      stone:MalwareCapabilitesVocabulary .
+                                      stone:MalwareCapabilitesVocabulary ;
+                             skos:notation "hides-executing-code"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_high
 stonex:_high rdf:type owl:NamedIndividual ,
-                      stone:WindowsIntegrityLevelEnumeration .
+                      stone:WindowsIntegrityLevelEnumeration ;
+             skos:notation "high"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_hospitality-leisure
 stonex:_hospitality-leisure rdf:type owl:NamedIndividual ,
-                                     stone:IndustrySectorVocabulary .
+                                     stone:IndustrySectorVocabulary ;
+                            skos:notation "hospitality-leisure"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_hosting-malware
 stonex:_hosting-malware rdf:type owl:NamedIndividual ,
-                                 stone:InfrastuctureTypeVocabulary .
+                                 stone:InfrastuctureTypeVocabulary ;
+                        skos:notation "hosting-malware"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_hosting-target-lists
 stonex:_hosting-target-lists rdf:type owl:NamedIndividual ,
-                                      stone:InfrastuctureTypeVocabulary .
+                                      stone:InfrastuctureTypeVocabulary ;
+                             skos:notation "hosting-target-lists"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_ia-64
 stonex:_ia-64 rdf:type owl:NamedIndividual ,
-                       stone:ProcessorArchitectureVocabulary .
+                       stone:ProcessorArchitectureVocabulary ;
+              skos:notation "ia-64"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_identity
 stonex:_identity rdf:type owl:NamedIndividual ,
-                          stone:ReportTypeVocabulary .
+                          stone:ReportTypeVocabulary ;
+                 skos:notation "identity"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_ideology
 stonex:_ideology rdf:type owl:NamedIndividual ,
-                          stone:AttackMotivationVocabulary .
+                          stone:AttackMotivationVocabulary ;
+                 skos:notation "ideology"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_indicator
 stonex:_indicator rdf:type owl:NamedIndividual ,
-                           stone:ReportTypeVocabulary .
+                           stone:ReportTypeVocabulary ;
+                  skos:notation "indicator"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_individual
 stonex:_individual rdf:type owl:NamedIndividual ,
                             stone:AttackResourceLevelVocabulary ,
-                            stone:IdentityClassVocabulary .
+                            stone:IdentityClassVocabulary ;
+                   skos:notation "individual"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_infects-files
 stonex:_infects-files rdf:type owl:NamedIndividual ,
-                               stone:MalwareCapabilitesVocabulary .
+                               stone:MalwareCapabilitesVocabulary ;
+                      skos:notation "infects-files"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_infects-remote-machines
 stonex:_infects-remote-machines rdf:type owl:NamedIndividual ,
-                                         stone:MalwareCapabilitesVocabulary .
+                                         stone:MalwareCapabilitesVocabulary ;
+                                skos:notation "infects-remote-machines"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_information-gathering
 stonex:_information-gathering rdf:type owl:NamedIndividual ,
-                                       stone:ToolTypeVocabulary .
+                                       stone:ToolTypeVocabulary ;
+                              skos:notation "information-gathering"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_infrastructure
 stonex:_infrastructure rdf:type owl:NamedIndividual ,
-                                stone:IndustrySectorVocabulary .
+                                stone:IndustrySectorVocabulary ;
+                       skos:notation "infrastructure"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_infrastructure-architect
 stonex:_infrastructure-architect rdf:type owl:NamedIndividual ,
-                                          stone:ThreatActorRoleVocabulary .
+                                          stone:ThreatActorRoleVocabulary ;
+                                 skos:notation "infrastructure-architect"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_infrastructure-operator
 stonex:_infrastructure-operator rdf:type owl:NamedIndividual ,
-                                         stone:ThreatActorRoleVocabulary .
+                                         stone:ThreatActorRoleVocabulary ;
+                                skos:notation "infrastructure-operator"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_innovator
 stonex:_innovator rdf:type owl:NamedIndividual ,
-                           stone:ThreatActorSophisticationVocabulary .
+                           stone:ThreatActorSophisticationVocabulary ;
+                  skos:notation "innovator"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_insider-accidental
 stonex:_insider-accidental rdf:type owl:NamedIndividual ,
-                                    stone:ThreatActorTypeVocabulary .
+                                    stone:ThreatActorTypeVocabulary ;
+                           skos:notation "insider-accidental"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_insider-disgruntled
 stonex:_insider-disgruntled rdf:type owl:NamedIndividual ,
-                                     stone:ThreatActorTypeVocabulary .
+                                     stone:ThreatActorTypeVocabulary ;
+                            skos:notation "insider-disgruntled"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_installs-other-components
 stonex:_installs-other-components rdf:type owl:NamedIndividual ,
-                                           stone:MalwareCapabilitesVocabulary .
+                                           stone:MalwareCapabilitesVocabulary ;
+                                  skos:notation "installs-other-components"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_insurance
 stonex:_insurance rdf:type owl:NamedIndividual ,
-                           stone:IndustrySectorVocabulary .
+                           stone:IndustrySectorVocabulary ;
+                  skos:notation "insurance"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_intermediate
 stonex:_intermediate rdf:type owl:NamedIndividual ,
-                              stone:ThreatActorSophisticationVocabulary .
+                              stone:ThreatActorSophisticationVocabulary ;
+                     skos:notation "intermediate"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_intrusion-set
 stonex:_intrusion-set rdf:type owl:NamedIndividual ,
-                               stone:ReportTypeVocabulary .
+                               stone:ReportTypeVocabulary ;
+                      skos:notation "intrusion-set"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_java
 stonex:_java rdf:type owl:NamedIndividual ,
-                      stone:ImplementationLanguageVocabulary .
+                      stone:ImplementationLanguageVocabulary ;
+             skos:notation "java"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_javascript
 stonex:_javascript rdf:type owl:NamedIndividual ,
-                            stone:ImplementationLanguageVocabulary .
+                            stone:ImplementationLanguageVocabulary ;
+                   skos:notation "javascript"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_keylogger
 stonex:_keylogger rdf:type owl:NamedIndividual ,
-                           stone:MalwareTypeVocabulary .
+                           stone:MalwareTypeVocabulary ;
+                  skos:notation "keylogger"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_latin-america-caribbean
 stonex:_latin-america-caribbean rdf:type owl:NamedIndividual ,
-                                         stone:RegionVocabulary .
+                                         stone:RegionVocabulary ;
+                                skos:notation "latin-america-caribbean"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_ldap
 stonex:_ldap rdf:type owl:NamedIndividual ,
-                      stone:AccountTypeVocabulary .
+                      stone:AccountTypeVocabulary ;
+             skos:notation "ldap"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_low
 stonex:_low rdf:type owl:NamedIndividual ,
-                     stone:WindowsIntegrityLevelEnumeration .
+                     stone:WindowsIntegrityLevelEnumeration ;
+            skos:notation "low"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_lua
 stonex:_lua rdf:type owl:NamedIndividual ,
-                     stone:ImplementationLanguageVocabulary .
+                     stone:ImplementationLanguageVocabulary ;
+            skos:notation "lua"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_malicious
 stonex:_malicious rdf:type owl:NamedIndividual ,
-                           stone:MalwareResultVocabulary .
+                           stone:MalwareResultVocabulary ;
+                  skos:notation "malicious"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_malicious-activity
 stonex:_malicious-activity rdf:type owl:NamedIndividual ,
-                                    stone:IndicatorTypeVocabulary .
+                                    stone:IndicatorTypeVocabulary ;
+                           skos:notation "malicious-activity"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_malware
 stonex:_malware rdf:type owl:NamedIndividual ,
-                         stone:ReportTypeVocabulary .
+                         stone:ReportTypeVocabulary ;
+                skos:notation "malware"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_malware-analysis
 stonex:_malware-analysis rdf:type owl:NamedIndividual ,
-                                  stone:GroupingContextVocabulary .
+                                  stone:GroupingContextVocabulary ;
+                         skos:notation "malware-analysis"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_malware-author
 stonex:_malware-author rdf:type owl:NamedIndividual ,
-                                stone:ThreatActorRoleVocabulary .
+                                stone:ThreatActorRoleVocabulary ;
+                       skos:notation "malware-author"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_manufacturing
 stonex:_manufacturing rdf:type owl:NamedIndividual ,
-                               stone:IndustrySectorVocabulary .
+                               stone:IndustrySectorVocabulary ;
+                      skos:notation "manufacturing"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_MD5
 stonex:_MD5 rdf:type owl:NamedIndividual ,
-                     stone:HashingAlgorithmVocabulary .
+                     stone:HashingAlgorithmVocabulary ;
+            skos:notation "MD5"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_MD6
 stonex:_MD6 rdf:type owl:NamedIndividual ,
-                     stone:HashingAlgorithmVocabulary .
+                     stone:HashingAlgorithmVocabulary ;
+            skos:notation "MD6"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_medium
 stonex:_medium rdf:type owl:NamedIndividual ,
-                        stone:WindowsIntegrityLevelEnumeration .
+                        stone:WindowsIntegrityLevelEnumeration ;
+               skos:notation "medium"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_melanesia
 stonex:_melanesia rdf:type owl:NamedIndividual ,
-                           stone:RegionVocabulary .
+                           stone:RegionVocabulary ;
+                  skos:notation "melanesia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_micronesia
 stonex:_micronesia rdf:type owl:NamedIndividual ,
-                            stone:RegionVocabulary .
+                            stone:RegionVocabulary ;
+                   skos:notation "micronesia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_middle-africa
 stonex:_middle-africa rdf:type owl:NamedIndividual ,
-                               stone:RegionVocabulary .
+                               stone:RegionVocabulary ;
+                      skos:notation "middle-africa"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_mime-type-indicated
 stonex:_mime-type-indicated rdf:type owl:NamedIndividual ,
-                                     stone:EncryptionAlgorithmEnumeration .
+                                     stone:EncryptionAlgorithmEnumeration ;
+                            skos:notation "mime-type-indicated"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_minimal
 stonex:_minimal rdf:type owl:NamedIndividual ,
-                         stone:ThreatActorSophisticationVocabulary .
+                         stone:ThreatActorSophisticationVocabulary ;
+                skos:notation "minimal"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_mining
 stonex:_mining rdf:type owl:NamedIndividual ,
-                        stone:IndustrySectorVocabulary .
+                        stone:IndustrySectorVocabulary ;
+               skos:notation "mining"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_mips
 stonex:_mips rdf:type owl:NamedIndividual ,
-                      stone:ProcessorArchitectureVocabulary .
+                      stone:ProcessorArchitectureVocabulary ;
+             skos:notation "mips"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_mips-le
 stonex:_mips-le rdf:type owl:NamedIndividual ,
-                         stone:ProcessorArchitectureVocabulary .
+                         stone:ProcessorArchitectureVocabulary ;
+                skos:notation "mips-le"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_nation-state
 stonex:_nation-state rdf:type owl:NamedIndividual ,
-                              stone:ThreatActorTypeVocabulary .
+                              stone:ThreatActorTypeVocabulary ;
+                     skos:notation "nation-state"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_network-capture
 stonex:_network-capture rdf:type owl:NamedIndividual ,
-                                 stone:ToolTypeVocabulary .
+                                 stone:ToolTypeVocabulary ;
+                        skos:notation "network-capture"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_neutral
 stonex:_neutral rdf:type owl:NamedIndividual ,
-                         stone:OpinionEnumeration .
+                         stone:OpinionEnumeration ;
+                skos:notation "neutral"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_new-sco
 stonex:_new-sco rdf:type owl:NamedIndividual ,
-                         stone:ExtensionTypesEnumeration .
+                         stone:ExtensionTypesEnumeration ;
+                skos:notation "new-sco"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_new-sdo
 stonex:_new-sdo rdf:type owl:NamedIndividual ,
-                         stone:ExtensionTypesEnumeration .
+                         stone:ExtensionTypesEnumeration ;
+                skos:notation "new-sdo"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_new-sro
 stonex:_new-sro rdf:type owl:NamedIndividual ,
-                         stone:ExtensionTypesEnumeration .
+                         stone:ExtensionTypesEnumeration ;
+                skos:notation "new-sro"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_nis
 stonex:_nis rdf:type owl:NamedIndividual ,
-                     stone:AccountTypeVocabulary .
+                     stone:AccountTypeVocabulary ;
+            skos:notation "nis"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_none
 stonex:_none rdf:type owl:NamedIndividual ,
-                      stone:ThreatActorSophisticationVocabulary .
+                      stone:ThreatActorSophisticationVocabulary ;
+             skos:notation "none"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_non-profit
 stonex:_non-profit rdf:type owl:NamedIndividual ,
-                            stone:IndustrySectorVocabulary .
+                            stone:IndustrySectorVocabulary ;
+                   skos:notation "non-profit"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_northern-africa
 stonex:_northern-africa rdf:type owl:NamedIndividual ,
-                                 stone:RegionVocabulary .
+                                 stone:RegionVocabulary ;
+                        skos:notation "northern-africa"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_northern-america
 stonex:_northern-america rdf:type owl:NamedIndividual ,
-                                  stone:RegionVocabulary .
+                                  stone:RegionVocabulary ;
+                         skos:notation "northern-america"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_northern-europe
 stonex:_northern-europe rdf:type owl:NamedIndividual ,
-                                 stone:RegionVocabulary .
+                                 stone:RegionVocabulary ;
+                        skos:notation "northern-europe"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_notoriety
 stonex:_notoriety rdf:type owl:NamedIndividual ,
-                           stone:AttackMotivationVocabulary .
+                           stone:AttackMotivationVocabulary ;
+                  skos:notation "notoriety"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_nuclear
 stonex:_nuclear rdf:type owl:NamedIndividual ,
-                         stone:IndustrySectorVocabulary .
+                         stone:IndustrySectorVocabulary ;
+                skos:notation "nuclear"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_objective-c
 stonex:_objective-c rdf:type owl:NamedIndividual ,
-                             stone:ImplementationLanguageVocabulary .
+                             stone:ImplementationLanguageVocabulary ;
+                    skos:notation "objective-c"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_observed-data
 stonex:_observed-data rdf:type owl:NamedIndividual ,
-                               stone:ReportTypeVocabulary .
+                               stone:ReportTypeVocabulary ;
+                      skos:notation "observed-data"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_oceania
 stonex:_oceania rdf:type owl:NamedIndividual ,
-                         stone:RegionVocabulary .
+                         stone:RegionVocabulary ;
+                skos:notation "oceania"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_openid
 stonex:_openid rdf:type owl:NamedIndividual ,
-                        stone:AccountTypeVocabulary .
+                        stone:AccountTypeVocabulary ;
+               skos:notation "openid"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_organization
 stonex:_organization rdf:type owl:NamedIndividual ,
                               stone:AttackResourceLevelVocabulary ,
-                              stone:IdentityClassVocabulary .
+                              stone:IdentityClassVocabulary ;
+                     skos:notation "organization"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_organizational-gain
 stonex:_organizational-gain rdf:type owl:NamedIndividual ,
-                                     stone:AttackMotivationVocabulary .
+                                     stone:AttackMotivationVocabulary ;
+                            skos:notation "organizational-gain"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_pcre
 stonex:_pcre rdf:type owl:NamedIndividual ,
-                      stone:PatternTypeVocabulary .
+                      stone:PatternTypeVocabulary ;
+             skos:notation "pcre"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_perl
 stonex:_perl rdf:type owl:NamedIndividual ,
-                      stone:ImplementationLanguageVocabulary .
+                      stone:ImplementationLanguageVocabulary ;
+             skos:notation "perl"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_persists-after-system-reboot
 stonex:_persists-after-system-reboot rdf:type owl:NamedIndividual ,
-                                              stone:MalwareCapabilitesVocabulary .
+                                              stone:MalwareCapabilitesVocabulary ;
+                                     skos:notation "persists-after-system-reboot"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_personal-gain
 stonex:_personal-gain rdf:type owl:NamedIndividual ,
-                               stone:AttackMotivationVocabulary .
+                               stone:AttackMotivationVocabulary ;
+                      skos:notation "personal-gain"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_personal-satisfaction
 stonex:_personal-satisfaction rdf:type owl:NamedIndividual ,
-                                       stone:AttackMotivationVocabulary .
+                                       stone:AttackMotivationVocabulary ;
+                              skos:notation "personal-satisfaction"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_pharmaceuticals
 stonex:_pharmaceuticals rdf:type owl:NamedIndividual ,
-                                 stone:IndustrySectorVocabulary .
+                                 stone:IndustrySectorVocabulary ;
+                        skos:notation "pharmaceuticals"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_phishing
 stonex:_phishing rdf:type owl:NamedIndividual ,
-                          stone:InfrastuctureTypeVocabulary .
+                          stone:InfrastuctureTypeVocabulary ;
+                 skos:notation "phishing"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_php
 stonex:_php rdf:type owl:NamedIndividual ,
-                     stone:ImplementationLanguageVocabulary .
+                     stone:ImplementationLanguageVocabulary ;
+            skos:notation "php"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_polynesia
 stonex:_polynesia rdf:type owl:NamedIndividual ,
-                           stone:RegionVocabulary .
+                           stone:RegionVocabulary ;
+                  skos:notation "polynesia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_powerpc
 stonex:_powerpc rdf:type owl:NamedIndividual ,
-                         stone:ProcessorArchitectureVocabulary .
+                         stone:ProcessorArchitectureVocabulary ;
+                skos:notation "powerpc"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_powershell
 stonex:_powershell rdf:type owl:NamedIndividual ,
-                            stone:ImplementationLanguageVocabulary .
+                            stone:ImplementationLanguageVocabulary ;
+                   skos:notation "powershell"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_prevents-artifact-access
 stonex:_prevents-artifact-access rdf:type owl:NamedIndividual ,
-                                          stone:MalwareCapabilitesVocabulary .
+                                          stone:MalwareCapabilitesVocabulary ;
+                                 skos:notation "prevents-artifact-access"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_prevents-artifact-deletion
 stonex:_prevents-artifact-deletion rdf:type owl:NamedIndividual ,
-                                            stone:MalwareCapabilitesVocabulary .
+                                            stone:MalwareCapabilitesVocabulary ;
+                                   skos:notation "prevents-artifact-deletion"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_probes-network-environment
 stonex:_probes-network-environment rdf:type owl:NamedIndividual ,
-                                            stone:MalwareCapabilitesVocabulary .
+                                            stone:MalwareCapabilitesVocabulary ;
+                                   skos:notation "probes-network-environment"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_property-extension
 stonex:_property-extension rdf:type owl:NamedIndividual ,
-                                    stone:ExtensionTypesEnumeration .
+                                    stone:ExtensionTypesEnumeration ;
+                           skos:notation "property-extension"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_python
 stonex:_python rdf:type owl:NamedIndividual ,
-                        stone:ImplementationLanguageVocabulary .
+                        stone:ImplementationLanguageVocabulary ;
+               skos:notation "python"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_radius
 stonex:_radius rdf:type owl:NamedIndividual ,
-                        stone:AccountTypeVocabulary .
+                        stone:AccountTypeVocabulary ;
+               skos:notation "radius"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_ransomware
 stonex:_ransomware rdf:type owl:NamedIndividual ,
-                            stone:MalwareTypeVocabulary .
+                            stone:MalwareTypeVocabulary ;
+                   skos:notation "ransomware"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_reconnaissance
 stonex:_reconnaissance rdf:type owl:NamedIndividual ,
-                                stone:InfrastuctureTypeVocabulary .
+                                stone:InfrastuctureTypeVocabulary ;
+                       skos:notation "reconnaissance"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_BINARY
 stonex:_REG_BINARY rdf:type owl:NamedIndividual ,
-                            stone:WindowsRegistryDatatypeEnumeration .
+                            stone:WindowsRegistryDatatypeEnumeration ;
+                   skos:notation "REG_BINARY"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_DWORD
 stonex:_REG_DWORD rdf:type owl:NamedIndividual ,
-                           stone:WindowsRegistryDatatypeEnumeration .
+                           stone:WindowsRegistryDatatypeEnumeration ;
+                  skos:notation "REG_DWORD"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_DWORD_BIG_ENDIAN
 stonex:_REG_DWORD_BIG_ENDIAN rdf:type owl:NamedIndividual ,
-                                      stone:WindowsRegistryDatatypeEnumeration .
+                                      stone:WindowsRegistryDatatypeEnumeration ;
+                             skos:notation "REG_DWORD_BIG_ENDIAN"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_DWORD_LITTLE_ENDIAN
 stonex:_REG_DWORD_LITTLE_ENDIAN rdf:type owl:NamedIndividual ,
-                                         stone:WindowsRegistryDatatypeEnumeration .
+                                         stone:WindowsRegistryDatatypeEnumeration ;
+                                skos:notation "REG_DWORD_LITTLE_ENDIAN"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_EXPAND_SZ
 stonex:_REG_EXPAND_SZ rdf:type owl:NamedIndividual ,
-                               stone:WindowsRegistryDatatypeEnumeration .
+                               stone:WindowsRegistryDatatypeEnumeration ;
+                      skos:notation "REG_EXPAND_SZ"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_FULL_RESOURCE_DESCRIPTION
 stonex:_REG_FULL_RESOURCE_DESCRIPTION rdf:type owl:NamedIndividual ,
-                                               stone:WindowsRegistryDatatypeEnumeration .
+                                               stone:WindowsRegistryDatatypeEnumeration ;
+                                      skos:notation "REG_FULL_RESOURCE_DESCRIPTION"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_INVALID_TYPE
 stonex:_REG_INVALID_TYPE rdf:type owl:NamedIndividual ,
-                                  stone:WindowsRegistryDatatypeEnumeration .
+                                  stone:WindowsRegistryDatatypeEnumeration ;
+                         skos:notation "REG_INVALID_TYPE"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_LINK
 stonex:_REG_LINK rdf:type owl:NamedIndividual ,
-                          stone:WindowsRegistryDatatypeEnumeration .
+                          stone:WindowsRegistryDatatypeEnumeration ;
+                 skos:notation "REG_LINK"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_MULTI_SZ
 stonex:_REG_MULTI_SZ rdf:type owl:NamedIndividual ,
-                              stone:WindowsRegistryDatatypeEnumeration .
+                              stone:WindowsRegistryDatatypeEnumeration ;
+                     skos:notation "REG_MULTI_SZ"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_NONE
 stonex:_REG_NONE rdf:type owl:NamedIndividual ,
-                          stone:WindowsRegistryDatatypeEnumeration .
+                          stone:WindowsRegistryDatatypeEnumeration ;
+                 skos:notation "REG_NONE"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_QWORD
 stonex:_REG_QWORD rdf:type owl:NamedIndividual ,
-                           stone:WindowsRegistryDatatypeEnumeration .
+                           stone:WindowsRegistryDatatypeEnumeration ;
+                  skos:notation "REG_QWORD"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_RESOURCE_LIST
 stonex:_REG_RESOURCE_LIST rdf:type owl:NamedIndividual ,
-                                   stone:WindowsRegistryDatatypeEnumeration .
+                                   stone:WindowsRegistryDatatypeEnumeration ;
+                          skos:notation "REG_RESOURCE_LIST"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_RESOURCE_REQUIREMENTS_LIST
 stonex:_REG_RESOURCE_REQUIREMENTS_LIST rdf:type owl:NamedIndividual ,
-                                                stone:WindowsRegistryDatatypeEnumeration .
+                                                stone:WindowsRegistryDatatypeEnumeration ;
+                                       skos:notation "REG_RESOURCE_REQUIREMENTS_LIST"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_REG_SZ
 stonex:_REG_SZ rdf:type owl:NamedIndividual ,
-                        stone:WindowsRegistryDatatypeEnumeration .
+                        stone:WindowsRegistryDatatypeEnumeration ;
+               skos:notation "REG_SZ"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_remote-access
 stonex:_remote-access rdf:type owl:NamedIndividual ,
-                               stone:ToolTypeVocabulary .
+                               stone:ToolTypeVocabulary ;
+                      skos:notation "remote-access"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_remote-access-trojan
 stonex:_remote-access-trojan rdf:type owl:NamedIndividual ,
-                                      stone:MalwareTypeVocabulary .
+                                      stone:MalwareTypeVocabulary ;
+                             skos:notation "remote-access-trojan"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_resource-exploitation
 stonex:_resource-exploitation rdf:type owl:NamedIndividual ,
-                                       stone:MalwareTypeVocabulary .
+                                       stone:MalwareTypeVocabulary ;
+                              skos:notation "resource-exploitation"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_retail
 stonex:_retail rdf:type owl:NamedIndividual ,
-                        stone:IndustrySectorVocabulary .
+                        stone:IndustrySectorVocabulary ;
+               skos:notation "retail"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_revenge
 stonex:_revenge rdf:type owl:NamedIndividual ,
-                         stone:AttackMotivationVocabulary .
+                         stone:AttackMotivationVocabulary ;
+                skos:notation "revenge"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_RIPEMD-160
 stonex:_RIPEMD-160 rdf:type owl:NamedIndividual ,
-                            stone:HashingAlgorithmVocabulary .
+                            stone:HashingAlgorithmVocabulary ;
+                   skos:notation "RIPEMD-160"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_rogue-security-software
 stonex:_rogue-security-software rdf:type owl:NamedIndividual ,
-                                         stone:MalwareTypeVocabulary .
+                                         stone:MalwareTypeVocabulary ;
+                                skos:notation "rogue-security-software"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_rootkit
 stonex:_rootkit rdf:type owl:NamedIndividual ,
-                         stone:MalwareTypeVocabulary .
+                         stone:MalwareTypeVocabulary ;
+                skos:notation "rootkit"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_routers-switches
 stonex:_routers-switches rdf:type owl:NamedIndividual ,
-                                  stone:InfrastuctureTypeVocabulary .
+                                  stone:InfrastuctureTypeVocabulary ;
+                         skos:notation "routers-switches"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_ruby
 stonex:_ruby rdf:type owl:NamedIndividual ,
-                      stone:ImplementationLanguageVocabulary .
+                      stone:ImplementationLanguageVocabulary ;
+             skos:notation "ruby"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_scala
 stonex:_scala rdf:type owl:NamedIndividual ,
-                       stone:ImplementationLanguageVocabulary .
+                       stone:ImplementationLanguageVocabulary ;
+              skos:notation "scala"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_screen-capture
 stonex:_screen-capture rdf:type owl:NamedIndividual ,
-                                stone:MalwareTypeVocabulary .
+                                stone:MalwareTypeVocabulary ;
+                       skos:notation "screen-capture"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_self-modifies
 stonex:_self-modifies rdf:type owl:NamedIndividual ,
-                               stone:MalwareCapabilitesVocabulary .
+                               stone:MalwareCapabilitesVocabulary ;
+                      skos:notation "self-modifies"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_sensationalist
 stonex:_sensationalist rdf:type owl:NamedIndividual ,
-                                stone:ThreatActorTypeVocabulary .
+                                stone:ThreatActorTypeVocabulary ;
+                       skos:notation "sensationalist"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_AUTO_START
 stonex:_SERVICE_AUTO_START rdf:type owl:NamedIndividual ,
-                                    stone:WindowsServiceStartTypeEnumeration .
+                                    stone:WindowsServiceStartTypeEnumeration ;
+                           skos:notation "SERVICE_AUTO_START"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_BOOT_START
 stonex:_SERVICE_BOOT_START rdf:type owl:NamedIndividual ,
-                                    stone:WindowsServiceStartTypeEnumeration .
+                                    stone:WindowsServiceStartTypeEnumeration ;
+                           skos:notation "SERVICE_BOOT_START"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_CONTINUE_PENDING
 stonex:_SERVICE_CONTINUE_PENDING rdf:type owl:NamedIndividual ,
-                                          stone:WindowsServiceStatusEnumeration .
+                                          stone:WindowsServiceStatusEnumeration ;
+                                 skos:notation "SERVICE_CONTINUE_PENDING"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_DEMAND_START
 stonex:_SERVICE_DEMAND_START rdf:type owl:NamedIndividual ,
-                                      stone:WindowsServiceStartTypeEnumeration .
+                                      stone:WindowsServiceStartTypeEnumeration ;
+                             skos:notation "SERVICE_DEMAND_START"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_DISABLED
 stonex:_SERVICE_DISABLED rdf:type owl:NamedIndividual ,
-                                  stone:WindowsServiceStartTypeEnumeration .
+                                  stone:WindowsServiceStartTypeEnumeration ;
+                         skos:notation "SERVICE_DISABLED"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_FILE_SYSTEM_DRIVER
 stonex:_SERVICE_FILE_SYSTEM_DRIVER rdf:type owl:NamedIndividual ,
-                                            stone:WindowsServiceTypeEnumeration .
+                                            stone:WindowsServiceTypeEnumeration ;
+                                   skos:notation "SERVICE_FILE_SYSTEM_DRIVER"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_KERNEL_DRIVER
 stonex:_SERVICE_KERNEL_DRIVER rdf:type owl:NamedIndividual ,
-                                       stone:WindowsServiceTypeEnumeration .
+                                       stone:WindowsServiceTypeEnumeration ;
+                              skos:notation "SERVICE_KERNEL_DRIVER"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_PAUSE_PENDING
 stonex:_SERVICE_PAUSE_PENDING rdf:type owl:NamedIndividual ,
-                                       stone:WindowsServiceStatusEnumeration .
+                                       stone:WindowsServiceStatusEnumeration ;
+                              skos:notation "SERVICE_PAUSE_PENDING"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_PAUSED
 stonex:_SERVICE_PAUSED rdf:type owl:NamedIndividual ,
-                                stone:WindowsServiceStatusEnumeration .
+                                stone:WindowsServiceStatusEnumeration ;
+                       skos:notation "SERVICE_PAUSED"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_RUNNING
 stonex:_SERVICE_RUNNING rdf:type owl:NamedIndividual ,
-                                 stone:WindowsServiceStatusEnumeration .
+                                 stone:WindowsServiceStatusEnumeration ;
+                        skos:notation "SERVICE_RUNNING"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_START_PENDING
 stonex:_SERVICE_START_PENDING rdf:type owl:NamedIndividual ,
-                                       stone:WindowsServiceStatusEnumeration .
+                                       stone:WindowsServiceStatusEnumeration ;
+                              skos:notation "SERVICE_START_PENDING"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_STOP_PENDING
 stonex:_SERVICE_STOP_PENDING rdf:type owl:NamedIndividual ,
-                                      stone:WindowsServiceStatusEnumeration .
+                                      stone:WindowsServiceStatusEnumeration ;
+                             skos:notation "SERVICE_STOP_PENDING"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_STOPPED
 stonex:_SERVICE_STOPPED rdf:type owl:NamedIndividual ,
-                                 stone:WindowsServiceStatusEnumeration .
+                                 stone:WindowsServiceStatusEnumeration ;
+                        skos:notation "SERVICE_STOPPED"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_SYSTEM_ALERT
 stonex:_SERVICE_SYSTEM_ALERT rdf:type owl:NamedIndividual ,
-                                      stone:WindowsServiceStartTypeEnumeration .
+                                      stone:WindowsServiceStartTypeEnumeration ;
+                             skos:notation "SERVICE_SYSTEM_ALERT"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_WIN32_OWN_PROCESS
 stonex:_SERVICE_WIN32_OWN_PROCESS rdf:type owl:NamedIndividual ,
-                                           stone:WindowsServiceTypeEnumeration .
+                                           stone:WindowsServiceTypeEnumeration ;
+                                  skos:notation "SERVICE_WIN32_OWN_PROCESS"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SERVICE_WIN32_SHARE_PROCESS
 stonex:_SERVICE_WIN32_SHARE_PROCESS rdf:type owl:NamedIndividual ,
-                                             stone:WindowsServiceTypeEnumeration .
+                                             stone:WindowsServiceTypeEnumeration ;
+                                    skos:notation "SERVICE_WIN32_SHARE_PROCESS"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA-1
 stonex:_SHA-1 rdf:type owl:NamedIndividual ,
-                       stone:HashingAlgorithmVocabulary .
+                       stone:HashingAlgorithmVocabulary ;
+              skos:notation "SHA-1"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA-224
 stonex:_SHA-224 rdf:type owl:NamedIndividual ,
-                         stone:HashingAlgorithmVocabulary .
+                         stone:HashingAlgorithmVocabulary ;
+                skos:notation "SHA-224"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA-256
 stonex:_SHA-256 rdf:type owl:NamedIndividual ,
-                         stone:HashingAlgorithmVocabulary .
+                         stone:HashingAlgorithmVocabulary ;
+                skos:notation "SHA-256"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA-384
 stonex:_SHA-384 rdf:type owl:NamedIndividual ,
-                         stone:HashingAlgorithmVocabulary .
+                         stone:HashingAlgorithmVocabulary ;
+                skos:notation "SHA-384"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA-512
 stonex:_SHA-512 rdf:type owl:NamedIndividual ,
-                         stone:HashingAlgorithmVocabulary .
+                         stone:HashingAlgorithmVocabulary ;
+                skos:notation "SHA-512"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA3-224
 stonex:_SHA3-224 rdf:type owl:NamedIndividual ,
-                          stone:HashingAlgorithmVocabulary .
+                          stone:HashingAlgorithmVocabulary ;
+                 skos:notation "SHA3-224"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA3-256
 stonex:_SHA3-256 rdf:type owl:NamedIndividual ,
-                          stone:HashingAlgorithmVocabulary .
+                          stone:HashingAlgorithmVocabulary ;
+                 skos:notation "SHA3-256"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA3-384
 stonex:_SHA3-384 rdf:type owl:NamedIndividual ,
-                          stone:HashingAlgorithmVocabulary .
+                          stone:HashingAlgorithmVocabulary ;
+                 skos:notation "SHA3-384"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SHA3-512
 stonex:_SHA3-512 rdf:type owl:NamedIndividual ,
-                          stone:HashingAlgorithmVocabulary .
+                          stone:HashingAlgorithmVocabulary ;
+                 skos:notation "SHA3-512"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_sigma
 stonex:_sigma rdf:type owl:NamedIndividual ,
-                       stone:PatternTypeVocabulary .
+                       stone:PatternTypeVocabulary ;
+              skos:notation "sigma"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_skype
 stonex:_skype rdf:type owl:NamedIndividual ,
-                       stone:AccountTypeVocabulary .
+                       stone:AccountTypeVocabulary ;
+              skos:notation "skype"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_snort
 stonex:_snort rdf:type owl:NamedIndividual ,
-                       stone:PatternTypeVocabulary .
+                       stone:PatternTypeVocabulary ;
+              skos:notation "snort"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SOCK_DGRAM
 stonex:_SOCK_DGRAM rdf:type owl:NamedIndividual ,
-                            stone:NetworkSocketTypeEnumeration .
+                            stone:NetworkSocketTypeEnumeration ;
+                   skos:notation "SOCK_DGRAM"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SOCK_RAW
 stonex:_SOCK_RAW rdf:type owl:NamedIndividual ,
-                          stone:NetworkSocketTypeEnumeration .
+                          stone:NetworkSocketTypeEnumeration ;
+                 skos:notation "SOCK_RAW"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SOCK_RDM
 stonex:_SOCK_RDM rdf:type owl:NamedIndividual ,
-                          stone:NetworkSocketTypeEnumeration .
+                          stone:NetworkSocketTypeEnumeration ;
+                 skos:notation "SOCK_RDM"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SOCK_SEQPACKET
 stonex:_SOCK_SEQPACKET rdf:type owl:NamedIndividual ,
-                                stone:NetworkSocketTypeEnumeration .
+                                stone:NetworkSocketTypeEnumeration ;
+                       skos:notation "SOCK_SEQPACKET"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SOCK_STREAM
 stonex:_SOCK_STREAM rdf:type owl:NamedIndividual ,
-                             stone:NetworkSocketTypeEnumeration .
+                             stone:NetworkSocketTypeEnumeration ;
+                    skos:notation "SOCK_STREAM"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_south-america
 stonex:_south-america rdf:type owl:NamedIndividual ,
-                               stone:RegionVocabulary .
+                               stone:RegionVocabulary ;
+                      skos:notation "south-america"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_south-eastern-asia
 stonex:_south-eastern-asia rdf:type owl:NamedIndividual ,
-                                    stone:RegionVocabulary .
+                                    stone:RegionVocabulary ;
+                           skos:notation "south-eastern-asia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_southern-africa
 stonex:_southern-africa rdf:type owl:NamedIndividual ,
-                                 stone:RegionVocabulary .
+                                 stone:RegionVocabulary ;
+                        skos:notation "southern-africa"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_southern-asia
 stonex:_southern-asia rdf:type owl:NamedIndividual ,
-                               stone:RegionVocabulary .
+                               stone:RegionVocabulary ;
+                      skos:notation "southern-asia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_southern-europe
 stonex:_southern-europe rdf:type owl:NamedIndividual ,
-                                 stone:RegionVocabulary .
+                                 stone:RegionVocabulary ;
+                        skos:notation "southern-europe"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_sparc
 stonex:_sparc rdf:type owl:NamedIndividual ,
-                       stone:ProcessorArchitectureVocabulary .
+                       stone:ProcessorArchitectureVocabulary ;
+              skos:notation "sparc"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_sponsor
 stonex:_sponsor rdf:type owl:NamedIndividual ,
-                         stone:ThreatActorRoleVocabulary .
+                         stone:ThreatActorRoleVocabulary ;
+                skos:notation "sponsor"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_spy
 stonex:_spy rdf:type owl:NamedIndividual ,
-                     stone:ThreatActorTypeVocabulary .
+                     stone:ThreatActorTypeVocabulary ;
+            skos:notation "spy"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_spyware
 stonex:_spyware rdf:type owl:NamedIndividual ,
-                         stone:MalwareTypeVocabulary .
+                         stone:MalwareTypeVocabulary ;
+                skos:notation "spyware"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_SSDEEP
 stonex:_SSDEEP rdf:type owl:NamedIndividual ,
-                        stone:HashingAlgorithmVocabulary .
+                        stone:HashingAlgorithmVocabulary ;
+               skos:notation "SSDEEP"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_staging
 stonex:_staging rdf:type owl:NamedIndividual ,
-                         stone:InfrastuctureTypeVocabulary .
+                         stone:InfrastuctureTypeVocabulary ;
+                skos:notation "staging"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_steals-authentication-credentials
 stonex:_steals-authentication-credentials rdf:type owl:NamedIndividual ,
-                                                   stone:MalwareCapabilitesVocabulary .
+                                                   stone:MalwareCapabilitesVocabulary ;
+                                          skos:notation "steals-authentication-credentials"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_stix
 stonex:_stix rdf:type owl:NamedIndividual ,
-                      stone:PatternTypeVocabulary .
+                      stone:PatternTypeVocabulary ;
+             skos:notation "stix"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_strategic
 stonex:_strategic rdf:type owl:NamedIndividual ,
-                           stone:ThreatActorSophisticationVocabulary .
+                           stone:ThreatActorSophisticationVocabulary ;
+                  skos:notation "strategic"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_strongly-agree
 stonex:_strongly-agree rdf:type owl:NamedIndividual ,
-                                stone:OpinionEnumeration .
+                                stone:OpinionEnumeration ;
+                       skos:notation "strongly-agree"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_strongly-disagree
 stonex:_strongly-disagree rdf:type owl:NamedIndividual ,
-                                   stone:OpinionEnumeration .
+                                   stone:OpinionEnumeration ;
+                          skos:notation "strongly-disagree"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_suricata
 stonex:_suricata rdf:type owl:NamedIndividual ,
-                          stone:PatternTypeVocabulary .
+                          stone:PatternTypeVocabulary ;
+                 skos:notation "suricata"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_suspicious
 stonex:_suspicious rdf:type owl:NamedIndividual ,
-                            stone:MalwareResultVocabulary .
+                            stone:MalwareResultVocabulary ;
+                   skos:notation "suspicious"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_suspicious-activity
 stonex:_suspicious-activity rdf:type owl:NamedIndividual ,
-                                     stone:GroupingContextVocabulary .
+                                     stone:GroupingContextVocabulary ;
+                            skos:notation "suspicious-activity"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_swift
 stonex:_swift rdf:type owl:NamedIndividual ,
-                       stone:ImplementationLanguageVocabulary .
+                       stone:ImplementationLanguageVocabulary ;
+              skos:notation "swift"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_sys
 stonex:_sys rdf:type owl:NamedIndividual ,
-                     stone:WindowsPEBinaryVocabulary .
+                     stone:WindowsPEBinaryVocabulary ;
+            skos:notation "sys"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_system
 stonex:_system rdf:type owl:NamedIndividual ,
                         stone:IdentityClassVocabulary ,
-                        stone:WindowsIntegrityLevelEnumeration .
+                        stone:WindowsIntegrityLevelEnumeration ;
+               skos:notation "system"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_tacacs
 stonex:_tacacs rdf:type owl:NamedIndividual ,
-                        stone:AccountTypeVocabulary .
+                        stone:AccountTypeVocabulary ;
+               skos:notation "tacacs"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_team
 stonex:_team rdf:type owl:NamedIndividual ,
-                      stone:AttackResourceLevelVocabulary .
+                      stone:AttackResourceLevelVocabulary ;
+             skos:notation "team"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_technology
 stonex:_technology rdf:type owl:NamedIndividual ,
-                            stone:IndustrySectorVocabulary .
+                            stone:IndustrySectorVocabulary ;
+                   skos:notation "technology"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_telecommunications
 stonex:_telecommunications rdf:type owl:NamedIndividual ,
-                                    stone:IndustrySectorVocabulary .
+                                    stone:IndustrySectorVocabulary ;
+                           skos:notation "telecommunications"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_terrorist
 stonex:_terrorist rdf:type owl:NamedIndividual ,
-                           stone:ThreatActorTypeVocabulary .
+                           stone:ThreatActorTypeVocabulary ;
+                  skos:notation "terrorist"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_threat-actor
 stonex:_threat-actor rdf:type owl:NamedIndividual ,
-                              stone:ReportTypeVocabulary .
+                              stone:ReportTypeVocabulary ;
+                     skos:notation "threat-actor"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_threat-report
 stonex:_threat-report rdf:type owl:NamedIndividual ,
-                               stone:ReportTypeVocabulary .
+                               stone:ReportTypeVocabulary ;
+                      skos:notation "threat-report"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_TLSH
 stonex:_TLSH rdf:type owl:NamedIndividual ,
-                      stone:HashingAlgorithmVocabulary .
+                      stone:HashingAlgorithmVocabulary ;
+             skos:notation "TLSH"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_tool
 stonex:_tool rdf:type owl:NamedIndividual ,
-                      stone:ReportTypeVocabulary .
+                      stone:ReportTypeVocabulary ;
+             skos:notation "tool"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_toplevel-property-extension
 stonex:_toplevel-property-extension rdf:type owl:NamedIndividual ,
-                                             stone:ExtensionTypesEnumeration .
+                                             stone:ExtensionTypesEnumeration ;
+                                    skos:notation "toplevel-property-extension"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_transportation
 stonex:_transportation rdf:type owl:NamedIndividual ,
-                                stone:IndustrySectorVocabulary .
+                                stone:IndustrySectorVocabulary ;
+                       skos:notation "transportation"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_trojan
 stonex:_trojan rdf:type owl:NamedIndividual ,
-                        stone:MalwareTypeVocabulary .
+                        stone:MalwareTypeVocabulary ;
+               skos:notation "trojan"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_twitter
 stonex:_twitter rdf:type owl:NamedIndividual ,
-                         stone:AccountTypeVocabulary .
+                         stone:AccountTypeVocabulary ;
+                skos:notation "twitter"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_typescript
 stonex:_typescript rdf:type owl:NamedIndividual ,
-                            stone:ImplementationLanguageVocabulary .
+                            stone:ImplementationLanguageVocabulary ;
+                   skos:notation "typescript"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_unix
 stonex:_unix rdf:type owl:NamedIndividual ,
-                      stone:AccountTypeVocabulary .
+                      stone:AccountTypeVocabulary ;
+             skos:notation "unix"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_unknown
@@ -1716,118 +2120,141 @@ stonex:_unknown rdf:type owl:NamedIndividual ,
                          stone:MalwareResultVocabulary ,
                          stone:MalwareTypeVocabulary ,
                          stone:ThreatActorTypeVocabulary ,
-                         stone:ToolTypeVocabulary .
+                         stone:ToolTypeVocabulary ;
+                skos:notation "unknown"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_unpredictable
 stonex:_unpredictable rdf:type owl:NamedIndividual ,
-                               stone:AttackMotivationVocabulary .
+                               stone:AttackMotivationVocabulary ;
+                      skos:notation "unpredictable"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_unspecified
 stonex:_unspecified rdf:type owl:NamedIndividual ,
-                             stone:GroupingContextVocabulary .
+                             stone:GroupingContextVocabulary ;
+                    skos:notation "unspecified"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_utilities
 stonex:_utilities rdf:type owl:NamedIndividual ,
-                           stone:IndustrySectorVocabulary .
+                           stone:IndustrySectorVocabulary ;
+                  skos:notation "utilities"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_violates-system-operational-integrity
 stonex:_violates-system-operational-integrity rdf:type owl:NamedIndividual ,
-                                                       stone:MalwareCapabilitesVocabulary .
+                                                       stone:MalwareCapabilitesVocabulary ;
+                                              skos:notation "violates-system-operational-integrity"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_virus
 stonex:_virus rdf:type owl:NamedIndividual ,
-                       stone:MalwareTypeVocabulary .
+                       stone:MalwareTypeVocabulary ;
+              skos:notation "virus"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_visual-basic
 stonex:_visual-basic rdf:type owl:NamedIndividual ,
-                              stone:ImplementationLanguageVocabulary .
+                              stone:ImplementationLanguageVocabulary ;
+                     skos:notation "visual-basic"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_vulnerability
 stonex:_vulnerability rdf:type owl:NamedIndividual ,
-                               stone:ReportTypeVocabulary .
+                               stone:ReportTypeVocabulary ;
+                      skos:notation "vulnerability"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_vulnerability-scanning
 stonex:_vulnerability-scanning rdf:type owl:NamedIndividual ,
-                                        stone:ToolTypeVocabulary .
+                                        stone:ToolTypeVocabulary ;
+                               skos:notation "vulnerability-scanning"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_water
 stonex:_water rdf:type owl:NamedIndividual ,
-                       stone:IndustrySectorVocabulary .
+                       stone:IndustrySectorVocabulary ;
+              skos:notation "water"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_webshell
 stonex:_webshell rdf:type owl:NamedIndividual ,
-                          stone:MalwareTypeVocabulary .
+                          stone:MalwareTypeVocabulary ;
+                 skos:notation "webshell"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_western-africa
 stonex:_western-africa rdf:type owl:NamedIndividual ,
-                                stone:RegionVocabulary .
+                                stone:RegionVocabulary ;
+                       skos:notation "western-africa"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_western-asia
 stonex:_western-asia rdf:type owl:NamedIndividual ,
-                              stone:RegionVocabulary .
+                              stone:RegionVocabulary ;
+                     skos:notation "western-asia"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_western-europe
 stonex:_western-europe rdf:type owl:NamedIndividual ,
-                                stone:RegionVocabulary .
+                                stone:RegionVocabulary ;
+                       skos:notation "western-europe"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_windows-domain
 stonex:_windows-domain rdf:type owl:NamedIndividual ,
-                                stone:AccountTypeVocabulary .
+                                stone:AccountTypeVocabulary ;
+                       skos:notation "windows-domain"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_windows-local
 stonex:_windows-local rdf:type owl:NamedIndividual ,
-                               stone:AccountTypeVocabulary .
+                               stone:AccountTypeVocabulary ;
+                      skos:notation "windows-local"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_wiper
 stonex:_wiper rdf:type owl:NamedIndividual ,
-                       stone:MalwareTypeVocabulary .
+                       stone:MalwareTypeVocabulary ;
+              skos:notation "wiper"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_workstation
 stonex:_workstation rdf:type owl:NamedIndividual ,
-                             stone:InfrastuctureTypeVocabulary .
+                             stone:InfrastuctureTypeVocabulary ;
+                    skos:notation "workstation"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_worm
 stonex:_worm rdf:type owl:NamedIndividual ,
-                      stone:MalwareTypeVocabulary .
+                      stone:MalwareTypeVocabulary ;
+             skos:notation "worm"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_x86
 stonex:_x86 rdf:type owl:NamedIndividual ,
-                     stone:ProcessorArchitectureVocabulary .
+                     stone:ProcessorArchitectureVocabulary ;
+            skos:notation "x86"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_x86-32
 stonex:_x86-32 rdf:type owl:NamedIndividual ,
-                        stone:ImplementationLanguageVocabulary .
+                        stone:ImplementationLanguageVocabulary ;
+               skos:notation "x86-32"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_x86-64
 stonex:_x86-64 rdf:type owl:NamedIndividual ,
                         stone:ImplementationLanguageVocabulary ,
-                        stone:ProcessorArchitectureVocabulary .
+                        stone:ProcessorArchitectureVocabulary ;
+               skos:notation "x86-64"^^xsd:string .
 
 
 ###  https://cyberterrain.org/ns/stonex#_yara
 stonex:_yara rdf:type owl:NamedIndividual ,
-                      stone:PatternTypeVocabulary .
+                      stone:PatternTypeVocabulary ;
+             skos:notation "yara"^^xsd:string .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
