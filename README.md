@@ -1,4 +1,6 @@
-# Semantic Threat Ontology &amp; Enrichment (STONE)
+
+![STONES Badge](docs/resources/images/stones-badge-sub.png)
+# STIX ONtology Expression System (STONES)
 
 The STONE project includes a complete and robust ontological representation of the OASIS STIX 2.1 Standard. It transforms a complex, JSON‑based cyber‑threat intelligence language into a formally precise, interoperable, and semantically consistent knowledge model.
 
