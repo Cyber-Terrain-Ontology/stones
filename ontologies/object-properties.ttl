@@ -4,7 +4,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix stone: <https://cyberterrain.org/ns/stone#> .
+@prefix stones: <https://cyberterrain.org/ns/stones#> .
 
 <https://cyberterrain.org/ns/object-properties#> rdf:type owl:Ontology ;
     rdfs:comment "STIX 2.1 object properties for the STONE ontology. Identifier-typed STIX properties become ObjectProperties linking directly to named individuals by IRI. Vocabulary and enumeration references link to the individuals defined in vocabularies.ttl." .
@@ -14,826 +14,913 @@
 #    Common Reference Properties — all / most STIX Objects
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#createdByRef
-stone:createdByRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#createdByRef
+stones:createdByRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the Identity SDO that created this STIX object." ;
     rdfs:comment "(STIX: created_by_ref)" ;
-    rdfs:range stone:Identity .
+    rdfs:range stones:Identity .
 
 
-###  https://cyberterrain.org/ns/stone#objectMarkingRefs
-stone:objectMarkingRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#objectMarkingRefs
+stones:objectMarkingRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to MarkingDefinition objects that apply data-handling markings to this entire object." ;
     rdfs:comment "(STIX: object_marking_refs)" ;
-    rdfs:range stone:MarkingDefinitionObject .
+    rdfs:range stones:MarkingDefinitionObject .
 
 
-###  https://cyberterrain.org/ns/stone#granularMarkings
-stone:granularMarkings rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#granularMarkings
+stones:granularMarkings rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Property-level data-handling markings targeting specific fields of this object." ;
     rdfs:comment "(STIX: granular_markings)" ;
-    rdfs:range stone:GranularMarking .
+    rdfs:range stones:GranularMarking .
 
 
-###  https://cyberterrain.org/ns/stone#externalReferences
-stone:externalReferences rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#externalReferences
+stones:externalReferences rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to non-STIX information sources such as CVEs, ATT&CK techniques, or URLs." ;
     rdfs:comment "(STIX: external_references)" ;
-    rdfs:range stone:ExternalReference .
+    rdfs:range stones:ExternalReference .
 
 
 #################################################################
 #    Sub-Object: GranularMarking
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#markingRef
-stone:markingRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#markingRef
+stones:markingRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the MarkingDefinition applied by this granular marking entry." ;
     rdfs:comment "(STIX: granular-marking.marking_ref)" ;
-    rdfs:domain stone:GranularMarking ;
-    rdfs:range stone:MarkingDefinitionObject .
+    rdfs:domain stones:GranularMarking ;
+    rdfs:range stones:MarkingDefinitionObject .
 
 
 #################################################################
 #    Sub-Object: HashEntry
 #    The hashes dictionary in STIX maps algorithm names to hex values.
-#    Each entry is reified as a stone:HashEntry individual with
-#    stone:algorithm (ObjectProperty) and stone:hashValue (DatatypeProperty).
+#    Each entry is reified as a stones:HashEntry individual with
+#    stones:algorithm (ObjectProperty) and stones:hashValue (DatatypeProperty).
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#hashes
-stone:hashes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#hashes
+stones:hashes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Cryptographic hashes of an artifact, file, certificate, or other content, expressed as a set of HashEntry individuals." ;
     rdfs:comment "(STIX: hashes)" ;
-    rdfs:range stone:HashEntry .
+    rdfs:range stones:HashEntry .
 
 
-###  https://cyberterrain.org/ns/stone#algorithm
-stone:algorithm rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#algorithm
+stones:algorithm rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "The hashing algorithm used for this hash entry (hashing-algorithm-ov)." ;
     rdfs:comment "(STIX: hashes dictionary key)" ;
-    rdfs:domain stone:HashEntry ;
-    rdfs:range stone:HashingAlgorithmVocabulary .
+    rdfs:domain stones:HashEntry ;
+    rdfs:range stones:HashingAlgorithmVocabulary .
 
 
 #################################################################
 #    Common: kill chain phases
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#killChainPhases
-stone:killChainPhases rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#killChainPhases
+stones:killChainPhases rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Kill chain phase(s) associated with this attack-pattern, indicator, infrastructure, malware, or tool." ;
     rdfs:comment "(STIX: kill_chain_phases)" ;
-    rdfs:range stone:KillChainPhase .
+    rdfs:range stones:KillChainPhase .
 
 
 #################################################################
 #    SDO: grouping
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#context
-stone:context rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#context
+stones:context rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Shared context that motivates this grouping (grouping-context-ov)." ;
     rdfs:comment "(STIX: context)" ;
-    rdfs:domain stone:Grouping ;
-    rdfs:range stone:GroupingContextVocabulary .
+    rdfs:domain stones:Grouping ;
+    rdfs:range stones:GroupingContextVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#objectRefs
-stone:objectRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#objectRefs
+stones:objectRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to STIX objects included in or annotated by this grouping, report, note, opinion, or observed-data. For observed-data the referenced objects MUST be SCOs." ;
     rdfs:comment "(STIX: object_refs)" ;
-    rdfs:range stone:StixObject .
+    rdfs:range stones:StixObject .
 
 
 #################################################################
 #    SDO: identity
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#identityClass
-stone:identityClass rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#identityClass
+stones:identityClass rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Type of entity represented by this identity (identity-class-ov): individual, group, system, organization, class, unknown." ;
     rdfs:comment "(STIX: identity_class)" ;
-    rdfs:domain stone:Identity ;
-    rdfs:range stone:IdentityClassVocabulary .
+    rdfs:domain stones:Identity ;
+    rdfs:range stones:IdentityClassVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#sectors
-stone:sectors rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#sectors
+stones:sectors rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Industry sectors this identity operates in (industry-sector-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: sectors)" ;
-    rdfs:domain stone:Identity ;
-    rdfs:range stone:IndustrySectorVocabulary .
+    rdfs:domain stones:Identity ;
+    rdfs:range stones:IndustrySectorVocabulary .
 
 
 #################################################################
 #    SDO: indicator
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#indicatorTypes
-stone:indicatorTypes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#indicatorTypes
+stones:indicatorTypes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Categories of this indicator (indicator-type-ov): anomalous-activity, anonymization, benign, compromised, malicious-activity, attribution, unknown." ;
     rdfs:comment "(STIX: indicator_types)" ;
-    rdfs:domain stone:Indicator ;
-    rdfs:range stone:IndicatorTypeVocabulary .
+    rdfs:domain stones:Indicator ;
+    rdfs:range stones:IndicatorTypeVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#patternType
-stone:patternType rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#patternType
+stones:patternType rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Pattern language used by this indicator (pattern-type-ov): stix, pcre, sigma, snort, suricata, yara." ;
     rdfs:comment "(STIX: pattern_type)" ;
-    rdfs:domain stone:Indicator ;
-    rdfs:range stone:PatternTypeVocabulary .
+    rdfs:domain stones:Indicator ;
+    rdfs:range stones:PatternTypeVocabulary .
 
 
 #################################################################
 #    SDO: infrastructure
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#infrastructureTypes
-stone:infrastructureTypes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#infrastructureTypes
+stones:infrastructureTypes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Functional categories of this infrastructure (infrastructure-type-ov)." ;
     rdfs:comment "(STIX: infrastructure_types)" ;
-    rdfs:domain stone:Infrastructure ;
-    rdfs:range stone:InfrastuctureTypeVocabulary .
+    rdfs:domain stones:Infrastructure ;
+    rdfs:range stones:InfrastuctureTypeVocabulary .
 
 
 #################################################################
 #    SDO: intrusion-set and threat-actor (shared)
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#resourceLevel
-stone:resourceLevel rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#resourceLevel
+stones:resourceLevel rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Resource level available to this intrusion set or threat actor (attack-resource-level-ov): individual, club, contest, team, organization, government." ;
     rdfs:comment "(STIX: resource_level)" ;
-    rdfs:range stone:AttackResourceLevelVocabulary .
+    rdfs:range stones:AttackResourceLevelVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#primaryMotivation
-stone:primaryMotivation rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#primaryMotivation
+stones:primaryMotivation rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Primary motivation driving this intrusion set or threat actor (attack-motivation-ov)." ;
     rdfs:comment "(STIX: primary_motivation)" ;
-    rdfs:range stone:AttackMotivationVocabulary .
+    rdfs:range stones:AttackMotivationVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#secondaryMotivations
-stone:secondaryMotivations rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#secondaryMotivations
+stones:secondaryMotivations rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Additional motivations beyond the primary motivation (attack-motivation-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: secondary_motivations)" ;
-    rdfs:range stone:AttackMotivationVocabulary .
+    rdfs:range stones:AttackMotivationVocabulary .
 
 
 #################################################################
 #    SDO: location
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#region
-stone:region rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#region
+stones:region rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "UN M.49 macro-geographical region (region-ov)." ;
     rdfs:comment "(STIX: region)" ;
-    rdfs:domain stone:Location ;
-    rdfs:range stone:RegionVocabulary .
+    rdfs:domain stones:Location ;
+    rdfs:range stones:RegionVocabulary .
 
 
 #################################################################
 #    SDO: malware
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#malwareTypes
-stone:malwareTypes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#malwareTypes
+stones:malwareTypes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Functional categories of this malware (malware-type-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: malware_types)" ;
-    rdfs:domain stone:Malware ;
-    rdfs:range stone:MalwareTypeVocabulary .
+    rdfs:domain stones:Malware ;
+    rdfs:range stones:MalwareTypeVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#architectureExecutionEnvs
-stone:architectureExecutionEnvs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#architectureExecutionEnvs
+stones:architectureExecutionEnvs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Processor architectures this malware can execute on (processor-architecture-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: architecture_execution_envs)" ;
-    rdfs:domain stone:Malware ;
-    rdfs:range stone:ProcessorArchitectureVocabulary .
+    rdfs:domain stones:Malware ;
+    rdfs:range stones:ProcessorArchitectureVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#implementationLanguages
-stone:implementationLanguages rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#implementationLanguages
+stones:implementationLanguages rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Programming languages used to implement this malware (implementation-language-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: implementation_languages)" ;
-    rdfs:domain stone:Malware ;
-    rdfs:range stone:ImplementationLanguageVocabulary .
+    rdfs:domain stones:Malware ;
+    rdfs:range stones:ImplementationLanguageVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#capabilities
-stone:capabilities rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#capabilities
+stones:capabilities rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Functional capabilities exhibited by this malware (malware-capabilities-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: capabilities)" ;
-    rdfs:domain stone:Malware ;
-    rdfs:range stone:MalwareCapabilitesVocabulary .
+    rdfs:domain stones:Malware ;
+    rdfs:range stones:MalwareCapabilitesVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#operatingSystemRefs
-stone:operatingSystemRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#operatingSystemRefs
+stones:operatingSystemRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to software SCOs describing the operating systems this malware targets or runs on." ;
     rdfs:comment "(STIX: operating_system_refs)" ;
-    rdfs:domain stone:Malware ;
-    rdfs:range stone:SoftwareObject .
+    rdfs:domain stones:Malware ;
+    rdfs:range stones:SoftwareObject .
 
 
-###  https://cyberterrain.org/ns/stone#sampleRefs
-stone:sampleRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#sampleRefs
+stones:sampleRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to file or artifact SCOs that are samples of this malware." ;
     rdfs:comment "(STIX: sample_refs)" ;
-    rdfs:domain stone:Malware ;
-    rdfs:range stone:StixCyberobservableObject .
+    rdfs:domain stones:Malware ;
+    rdfs:range stones:StixCyberobservableObject .
 
 
 #################################################################
 #    SDO: malware-analysis
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#result
-stone:result rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#result
+stones:result rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Analysis verdict for this malware analysis (malware-result-ov): malicious, suspicious, benign, unknown." ;
     rdfs:comment "(STIX: result)" ;
-    rdfs:domain stone:MalwareAnalysis ;
-    rdfs:range stone:MalwareResultVocabulary .
+    rdfs:domain stones:MalwareAnalysis ;
+    rdfs:range stones:MalwareResultVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#hostVmRef
-stone:hostVmRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#hostVmRef
+stones:hostVmRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the software SCO describing the virtual machine used for analysis." ;
     rdfs:comment "(STIX: host_vm_ref)" ;
-    rdfs:domain stone:MalwareAnalysis ;
-    rdfs:range stone:SoftwareObject .
+    rdfs:domain stones:MalwareAnalysis ;
+    rdfs:range stones:SoftwareObject .
 
 
-###  https://cyberterrain.org/ns/stone#operatingSystemRef
-stone:operatingSystemRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#operatingSystemRef
+stones:operatingSystemRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the software SCO describing the operating system used for analysis." ;
     rdfs:comment "(STIX: operating_system_ref)" ;
-    rdfs:domain stone:MalwareAnalysis ;
-    rdfs:range stone:SoftwareObject .
+    rdfs:domain stones:MalwareAnalysis ;
+    rdfs:range stones:SoftwareObject .
 
 
-###  https://cyberterrain.org/ns/stone#installedSoftwareRefs
-stone:installedSoftwareRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#installedSoftwareRefs
+stones:installedSoftwareRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to software SCOs installed in the analysis environment." ;
     rdfs:comment "(STIX: installed_software_refs)" ;
-    rdfs:domain stone:MalwareAnalysis ;
-    rdfs:range stone:SoftwareObject .
+    rdfs:domain stones:MalwareAnalysis ;
+    rdfs:range stones:SoftwareObject .
 
 
-###  https://cyberterrain.org/ns/stone#analysisScoRefs
-stone:analysisScoRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#analysisScoRefs
+stones:analysisScoRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to SCOs generated or observed as a result of this analysis." ;
     rdfs:comment "(STIX: analysis_sco_refs)" ;
-    rdfs:domain stone:MalwareAnalysis ;
-    rdfs:range stone:StixCyberobservableObject .
+    rdfs:domain stones:MalwareAnalysis ;
+    rdfs:range stones:StixCyberobservableObject .
 
 
 #################################################################
 #    SDO: opinion
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#opinion
-stone:opinion rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#opinion
+stones:opinion rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Level of agreement expressed by this opinion (opinion-enum): strongly-disagree, disagree, neutral, agree, strongly-agree." ;
     rdfs:comment "(STIX: opinion)" ;
-    rdfs:domain stone:Opinion ;
-    rdfs:range stone:OpinionEnumeration .
+    rdfs:domain stones:Opinion ;
+    rdfs:range stones:OpinionEnumeration .
 
 
 #################################################################
 #    SDO: report
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#reportTypes
-stone:reportTypes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#reportTypes
+stones:reportTypes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Categories of intelligence covered by this report (report-type-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: report_types)" ;
-    rdfs:domain stone:Report ;
-    rdfs:range stone:ReportTypeVocabulary .
+    rdfs:domain stones:Report ;
+    rdfs:range stones:ReportTypeVocabulary .
 
 
 #################################################################
 #    SDO: threat-actor
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#threatActorTypes
-stone:threatActorTypes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#threatActorTypes
+stones:threatActorTypes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Categories of this threat actor (threat-actor-type-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: threat_actor_types)" ;
-    rdfs:domain stone:ThreatActor ;
-    rdfs:range stone:ThreatActorTypeVocabulary .
+    rdfs:domain stones:ThreatActor ;
+    rdfs:range stones:ThreatActorTypeVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#threatActorRoles
-stone:threatActorRoles rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#threatActorRoles
+stones:threatActorRoles rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Roles this threat actor plays in an attack (threat-actor-role-ov): agent, director, independent, infrastructure-architect, infrastructure-operator, malware-author, sponsor." ;
     rdfs:comment "(STIX: roles)" ;
-    rdfs:domain stone:ThreatActor ;
-    rdfs:range stone:ThreatActorRoleVocabulary .
+    rdfs:domain stones:ThreatActor ;
+    rdfs:range stones:ThreatActorRoleVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#sophistication
-stone:sophistication rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#sophistication
+stones:sophistication rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Skill and knowledge level of this threat actor (threat-actor-sophistication-ov): none, minimal, intermediate, advanced, expert, innovator, strategic." ;
     rdfs:comment "(STIX: sophistication)" ;
-    rdfs:domain stone:ThreatActor ;
-    rdfs:range stone:ThreatActorSophisticationVocabulary .
+    rdfs:domain stones:ThreatActor ;
+    rdfs:range stones:ThreatActorSophisticationVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#personalMotivations
-stone:personalMotivations rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#personalMotivations
+stones:personalMotivations rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Personal motivations of this threat actor, distinct from organisational motivations (attack-motivation-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: personal_motivations)" ;
-    rdfs:domain stone:ThreatActor ;
-    rdfs:range stone:AttackMotivationVocabulary .
+    rdfs:domain stones:ThreatActor ;
+    rdfs:range stones:AttackMotivationVocabulary .
 
 
 #################################################################
 #    SDO: tool
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#toolTypes
-stone:toolTypes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#toolTypes
+stones:toolTypes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Functional categories of this tool (tool-type-ov). Multiple values as multiple triples." ;
     rdfs:comment "(STIX: tool_types)" ;
-    rdfs:domain stone:Tool ;
-    rdfs:range stone:ToolTypeVocabulary .
+    rdfs:domain stones:Tool ;
+    rdfs:range stones:ToolTypeVocabulary .
 
 
 #################################################################
 #    SRO: relationship
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#sourceRef
-stone:sourceRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#sourceRef
+stones:sourceRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "The STIX Core Object at the source (start) of this relationship." ;
     rdfs:comment "(STIX: source_ref)" ;
-    rdfs:domain stone:Relationship ;
-    rdfs:range stone:StixCoreObject .
+    rdfs:domain stones:Relationship ;
+    rdfs:range stones:StixCoreObject .
 
 
-###  https://cyberterrain.org/ns/stone#targetRef
-stone:targetRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#targetRef
+stones:targetRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "The STIX Core Object at the target (end) of this relationship." ;
     rdfs:comment "(STIX: target_ref)" ;
-    rdfs:domain stone:Relationship ;
-    rdfs:range stone:StixCoreObject .
+    rdfs:domain stones:Relationship ;
+    rdfs:range stones:StixCoreObject .
 
 
 #################################################################
 #    SRO: sighting
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#sightingOfRef
-stone:sightingOfRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#sightingOfRef
+stones:sightingOfRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the STIX Core Object that was sighted. Typically an indicator, malware, campaign, threat-actor, intrusion-set, tool, attack-pattern, or infrastructure." ;
     rdfs:comment "(STIX: sighting_of_ref)" ;
-    rdfs:domain stone:Sighting ;
-    rdfs:range stone:StixCoreObject .
+    rdfs:domain stones:Sighting ;
+    rdfs:range stones:StixCoreObject .
 
 
-###  https://cyberterrain.org/ns/stone#observedDataRefs
-stone:observedDataRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#observedDataRefs
+stones:observedDataRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to ObservedData SDOs that provide evidence supporting this sighting." ;
     rdfs:comment "(STIX: observed_data_refs)" ;
-    rdfs:domain stone:Sighting ;
-    rdfs:range stone:ObservedData .
+    rdfs:domain stones:Sighting ;
+    rdfs:range stones:ObservedData .
 
 
-###  https://cyberterrain.org/ns/stone#whereSightedRefs
-stone:whereSightedRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#whereSightedRefs
+stones:whereSightedRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to Identity SDOs representing where or by whom the sighting was recorded." ;
     rdfs:comment "(STIX: where_sighted_refs)" ;
-    rdfs:domain stone:Sighting ;
-    rdfs:range stone:Identity .
+    rdfs:domain stones:Sighting ;
+    rdfs:range stones:Identity .
 
 
 #################################################################
 #    Meta: language-content
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#objectRef
-stone:objectRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#objectRef
+stones:objectRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the STIX object whose string properties are being translated by this language-content object." ;
     rdfs:comment "(STIX: object_ref)" ;
-    rdfs:domain stone:LanguageContentObject ;
-    rdfs:range stone:StixObject .
+    rdfs:domain stones:LanguageContentObject ;
+    rdfs:range stones:StixObject .
 
 
 #################################################################
 #    Meta: extension-definition
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#extensionTypes
-stone:extensionTypes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#extensionTypes
+stones:extensionTypes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "How this extension definition is used (extension-types-enum): new-sdo, new-sco, new-sro, property-extension, toplevel-property-extension. Multiple values as multiple triples." ;
     rdfs:comment "(STIX: extension_types)" ;
-    rdfs:domain stone:ExtensionDefinitionObject ;
-    rdfs:range stone:ExtensionTypesEnumeration .
+    rdfs:domain stones:ExtensionDefinitionObject ;
+    rdfs:range stones:ExtensionTypesEnumeration .
 
 
 #################################################################
 #    Bundle
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#objects
-stone:objects rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#objects
+stones:objects rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "STIX objects (SDOs, SCOs, SROs, meta-objects) carried in this bundle." ;
     rdfs:comment "(STIX: objects)" ;
-    rdfs:domain stone:StixBundle ;
-    rdfs:range stone:StixObject .
+    rdfs:domain stones:StixBundle ;
+    rdfs:range stones:StixObject .
 
 
 #################################################################
 #    SCO: directory
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#containsRefs
-stone:containsRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#containsRefs
+stones:containsRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to file or directory SCOs contained within this directory or archive." ;
     rdfs:comment "(STIX: contains_refs)" ;
-    rdfs:range stone:StixCyberobservableObject .
+    rdfs:range stones:StixCyberobservableObject .
 
 
 #################################################################
 #    SCO: domain-name, ipv4-addr, ipv6-addr
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#resolvesToRefs
-stone:resolvesToRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#resolvesToRefs
+stones:resolvesToRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "For domain-name: references to ipv4-addr, ipv6-addr, or domain-name SCOs this domain resolves to. For ipv4-addr or ipv6-addr: references to mac-addr SCOs." ;
     rdfs:comment "(STIX: resolves_to_refs)" ;
-    rdfs:range stone:StixCyberobservableObject .
+    rdfs:range stones:StixCyberobservableObject .
 
 
-###  https://cyberterrain.org/ns/stone#belongsToRefs
-stone:belongsToRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#belongsToRefs
+stones:belongsToRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to autonomous-system SCOs that own this IP address." ;
     rdfs:comment "(STIX: belongs_to_refs)" ;
-    rdfs:range stone:AutonomousSystemObject .
+    rdfs:range stones:AutonomousSystemObject .
 
 
 #################################################################
 #    SCO: email-addr
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#belongsToRef
-stone:belongsToRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#belongsToRef
+stones:belongsToRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the user-account SCO that owns this email address." ;
     rdfs:comment "(STIX: belongs_to_ref)" ;
-    rdfs:domain stone:EmailAddressObject ;
-    rdfs:range stone:UserAccountObject .
+    rdfs:domain stones:EmailAddressObject ;
+    rdfs:range stones:UserAccountObject .
 
 
 #################################################################
 #    SCO: email-message
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#fromRef
-stone:fromRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#fromRef
+stones:fromRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the email-addr SCO in the From: header." ;
     rdfs:comment "(STIX: from_ref)" ;
-    rdfs:domain stone:EmailMessageObject ;
-    rdfs:range stone:EmailAddressObject .
+    rdfs:domain stones:EmailMessageObject ;
+    rdfs:range stones:EmailAddressObject .
 
 
-###  https://cyberterrain.org/ns/stone#senderRef
-stone:senderRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#senderRef
+stones:senderRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the email-addr SCO in the Sender: header." ;
     rdfs:comment "(STIX: sender_ref)" ;
-    rdfs:domain stone:EmailMessageObject ;
-    rdfs:range stone:EmailAddressObject .
+    rdfs:domain stones:EmailMessageObject ;
+    rdfs:range stones:EmailAddressObject .
 
 
-###  https://cyberterrain.org/ns/stone#toRefs
-stone:toRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#toRefs
+stones:toRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to email-addr SCOs in the To: header." ;
     rdfs:comment "(STIX: to_refs)" ;
-    rdfs:domain stone:EmailMessageObject ;
-    rdfs:range stone:EmailAddressObject .
+    rdfs:domain stones:EmailMessageObject ;
+    rdfs:range stones:EmailAddressObject .
 
 
-###  https://cyberterrain.org/ns/stone#ccRefs
-stone:ccRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#ccRefs
+stones:ccRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to email-addr SCOs in the Cc: header." ;
     rdfs:comment "(STIX: cc_refs)" ;
-    rdfs:domain stone:EmailMessageObject ;
-    rdfs:range stone:EmailAddressObject .
+    rdfs:domain stones:EmailMessageObject ;
+    rdfs:range stones:EmailAddressObject .
 
 
-###  https://cyberterrain.org/ns/stone#bccRefs
-stone:bccRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#bccRefs
+stones:bccRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to email-addr SCOs in the Bcc: header." ;
     rdfs:comment "(STIX: bcc_refs)" ;
-    rdfs:domain stone:EmailMessageObject ;
-    rdfs:range stone:EmailAddressObject .
+    rdfs:domain stones:EmailMessageObject ;
+    rdfs:range stones:EmailAddressObject .
 
 
-###  https://cyberterrain.org/ns/stone#rawEmailRef
-stone:rawEmailRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#rawEmailRef
+stones:rawEmailRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the artifact SCO containing the full raw email bytes." ;
     rdfs:comment "(STIX: raw_email_ref)" ;
-    rdfs:domain stone:EmailMessageObject ;
-    rdfs:range stone:ArtifactObject .
+    rdfs:domain stones:EmailMessageObject ;
+    rdfs:range stones:ArtifactObject .
 
 
-###  https://cyberterrain.org/ns/stone#bodyMultipart
-stone:bodyMultipart rdf:type owl:ObjectProperty ;
-    skos:definition "MIME parts of a multipart email message. Each part is a stone:EmailMimePart individual." ;
+###  https://cyberterrain.org/ns/stones#bodyMultipart
+stones:bodyMultipart rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "MIME parts of a multipart email message. Each part is a stones:EmailMimePart individual." ;
     rdfs:comment "(STIX: body_multipart)" ;
-    rdfs:domain stone:EmailMessageObject ;
-    rdfs:range stone:EmailMimePart .
+    rdfs:domain stones:EmailMessageObject ;
+    rdfs:range stones:EmailMimePart .
 
 
-###  https://cyberterrain.org/ns/stone#bodyRawRef
-stone:bodyRawRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#bodyRawRef
+stones:bodyRawRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to an artifact or file SCO containing the raw bytes of this MIME part." ;
     rdfs:comment "(STIX: body_raw_ref)" ;
-    rdfs:domain stone:EmailMimePart ;
-    rdfs:range stone:StixCyberobservableObject .
+    rdfs:domain stones:EmailMimePart ;
+    rdfs:range stones:StixCyberobservableObject .
 
 
 #################################################################
 #    SCO: file
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#parentDirectoryRef
-stone:parentDirectoryRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#parentDirectoryRef
+stones:parentDirectoryRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the directory SCO that contains this file." ;
     rdfs:comment "(STIX: parent_directory_ref)" ;
-    rdfs:domain stone:FileObject ;
-    rdfs:range stone:DirectoryObject .
+    rdfs:domain stones:FileObject ;
+    rdfs:range stones:DirectoryObject .
 
 
-###  https://cyberterrain.org/ns/stone#contentRef
-stone:contentRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#contentRef
+stones:contentRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the artifact SCO that holds the content of this file." ;
     rdfs:comment "(STIX: content_ref)" ;
-    rdfs:domain stone:FileObject ;
-    rdfs:range stone:ArtifactObject .
+    rdfs:domain stones:FileObject ;
+    rdfs:range stones:ArtifactObject .
 
 
 #################################################################
 #    SCO: network-traffic
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#srcRef
-stone:srcRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#srcRef
+stones:srcRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the source address SCO for this network traffic flow (ipv4-addr, ipv6-addr, mac-addr, or domain-name)." ;
     rdfs:comment "(STIX: src_ref)" ;
-    rdfs:domain stone:NetworkTrafficObject ;
-    rdfs:range stone:StixCyberobservableObject .
+    rdfs:domain stones:NetworkTrafficObject ;
+    rdfs:range stones:StixCyberobservableObject .
 
 
-###  https://cyberterrain.org/ns/stone#dstRef
-stone:dstRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#dstRef
+stones:dstRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the destination address SCO for this network traffic flow." ;
     rdfs:comment "(STIX: dst_ref)" ;
-    rdfs:domain stone:NetworkTrafficObject ;
-    rdfs:range stone:StixCyberobservableObject .
+    rdfs:domain stones:NetworkTrafficObject ;
+    rdfs:range stones:StixCyberobservableObject .
 
 
-###  https://cyberterrain.org/ns/stone#srcPayloadRef
-stone:srcPayloadRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#srcPayloadRef
+stones:srcPayloadRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the artifact SCO containing the source-to-destination payload bytes." ;
     rdfs:comment "(STIX: src_payload_ref)" ;
-    rdfs:domain stone:NetworkTrafficObject ;
-    rdfs:range stone:ArtifactObject .
+    rdfs:domain stones:NetworkTrafficObject ;
+    rdfs:range stones:ArtifactObject .
 
 
-###  https://cyberterrain.org/ns/stone#dstPayloadRef
-stone:dstPayloadRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#dstPayloadRef
+stones:dstPayloadRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the artifact SCO containing the destination-to-source payload bytes." ;
     rdfs:comment "(STIX: dst_payload_ref)" ;
-    rdfs:domain stone:NetworkTrafficObject ;
-    rdfs:range stone:ArtifactObject .
+    rdfs:domain stones:NetworkTrafficObject ;
+    rdfs:range stones:ArtifactObject .
 
 
-###  https://cyberterrain.org/ns/stone#encapsulatesRefs
-stone:encapsulatesRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#encapsulatesRefs
+stones:encapsulatesRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to network-traffic SCOs encapsulated within this flow, e.g. inner tunnelled protocols." ;
     rdfs:comment "(STIX: encapsulates_refs)" ;
-    rdfs:domain stone:NetworkTrafficObject ;
-    rdfs:range stone:NetworkTrafficObject .
+    rdfs:domain stones:NetworkTrafficObject ;
+    rdfs:range stones:NetworkTrafficObject .
 
 
-###  https://cyberterrain.org/ns/stone#encapsulatedByRef
-stone:encapsulatedByRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#encapsulatedByRef
+stones:encapsulatedByRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the network-traffic SCO that encapsulates (wraps) this flow." ;
     rdfs:comment "(STIX: encapsulated_by_ref)" ;
-    rdfs:domain stone:NetworkTrafficObject ;
-    rdfs:range stone:NetworkTrafficObject .
+    rdfs:domain stones:NetworkTrafficObject ;
+    rdfs:range stones:NetworkTrafficObject .
 
 
 #################################################################
 #    SCO: process
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#openedConnectionRefs
-stone:openedConnectionRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#openedConnectionRefs
+stones:openedConnectionRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to network-traffic SCOs representing connections this process has opened." ;
     rdfs:comment "(STIX: opened_connection_refs)" ;
-    rdfs:domain stone:ProcessObject ;
-    rdfs:range stone:NetworkTrafficObject .
+    rdfs:domain stones:ProcessObject ;
+    rdfs:range stones:NetworkTrafficObject .
 
 
-###  https://cyberterrain.org/ns/stone#creatorUserRef
-stone:creatorUserRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#creatorUserRef
+stones:creatorUserRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the user-account SCO of the user who created this process or registry key." ;
     rdfs:comment "(STIX: creator_user_ref)" ;
-    rdfs:range stone:UserAccountObject .
+    rdfs:range stones:UserAccountObject .
 
 
-###  https://cyberterrain.org/ns/stone#imageRef
-stone:imageRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#imageRef
+stones:imageRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the file SCO of the executable image that was launched to create this process." ;
     rdfs:comment "(STIX: image_ref)" ;
-    rdfs:domain stone:ProcessObject ;
-    rdfs:range stone:FileObject .
+    rdfs:domain stones:ProcessObject ;
+    rdfs:range stones:FileObject .
 
 
-###  https://cyberterrain.org/ns/stone#parentRef
-stone:parentRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#parentRef
+stones:parentRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the parent process SCO of this process." ;
     rdfs:comment "(STIX: parent_ref)" ;
-    rdfs:domain stone:ProcessObject ;
-    rdfs:range stone:ProcessObject .
+    rdfs:domain stones:ProcessObject ;
+    rdfs:range stones:ProcessObject .
 
 
-###  https://cyberterrain.org/ns/stone#childRefs
-stone:childRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#childRefs
+stones:childRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to child process SCOs spawned by this process." ;
     rdfs:comment "(STIX: child_refs)" ;
-    rdfs:domain stone:ProcessObject ;
-    rdfs:range stone:ProcessObject .
+    rdfs:domain stones:ProcessObject ;
+    rdfs:range stones:ProcessObject .
 
 
 #################################################################
 #    SCO: user-account
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#accountType
-stone:accountType rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#accountType
+stones:accountType rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Type of user account (account-type-ov): facebook, ldap, nis, openid, radius, skype, tacacs, twitter, unix, windows-domain, windows-local." ;
     rdfs:comment "(STIX: account_type)" ;
-    rdfs:domain stone:UserAccountObject ;
-    rdfs:range stone:AccountTypeVocabulary .
+    rdfs:domain stones:UserAccountObject ;
+    rdfs:range stones:AccountTypeVocabulary .
 
 
 #################################################################
 #    SCO: windows-registry-key
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#values
-stone:values rdf:type owl:ObjectProperty ;
-    skos:definition "Windows registry value entries under this key. Each entry is a stone:WindowsRegistryValue individual." ;
+###  https://cyberterrain.org/ns/stones#values
+stones:values rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "Windows registry value entries under this key. Each entry is a stones:WindowsRegistryValue individual." ;
     rdfs:comment "(STIX: values)" ;
-    rdfs:domain stone:WindowsRegistryKetObject ;
-    rdfs:range stone:WindowsRegistryValue .
+    rdfs:domain stones:WindowsRegistryKeyObject ;
+    rdfs:range stones:WindowsRegistryValue .
 
 
 #################################################################
 #    Sub-Object: WindowsRegistryValue
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#dataType
-stone:dataType rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#dataType
+stones:dataType rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Data type of this Windows registry value (windows-registry-datatype-enum): REG_NONE, REG_SZ, REG_EXPAND_SZ, REG_BINARY, REG_DWORD, etc." ;
     rdfs:comment "(STIX: data_type)" ;
-    rdfs:domain stone:WindowsRegistryValue ;
-    rdfs:range stone:WindowsRegistryDatatypeEnumeration .
+    rdfs:domain stones:WindowsRegistryValue ;
+    rdfs:range stones:WindowsRegistryDatatypeEnumeration .
 
 
 #################################################################
 #    SCO: x509-certificate
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#x509V3Extensions
-stone:x509V3Extensions rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#x509V3Extensions
+stones:x509V3Extensions rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "X.509 v3 extension fields for this certificate." ;
     rdfs:comment "(STIX: x509_v3_extensions)" ;
-    rdfs:domain stone:X509CertificateObject ;
-    rdfs:range stone:X509V3Extensions .
+    rdfs:domain stones:X509CertificateObject ;
+    rdfs:range stones:X509V3Extensions .
 
 
 #################################################################
 #    Extension: artifact
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#encryptionAlgorithm
-stone:encryptionAlgorithm rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#encryptionAlgorithm
+stones:encryptionAlgorithm rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Encryption algorithm applied to this artifact (encryption-algorithm-enum). Required when decryptionKey is present." ;
     rdfs:comment "(STIX: encryption_algorithm)" ;
-    rdfs:domain stone:ArtifactObject ;
-    rdfs:range stone:EncryptionAlgorithmEnumeration .
+    rdfs:domain stones:ArtifactObject ;
+    rdfs:range stones:EncryptionAlgorithmEnumeration .
 
 
 #################################################################
 #    Extension: windows-pebinary-ext
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#peType
-stone:peType rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#peType
+stones:peType rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "PE binary subtype (windows-pebinary-type-ov): exe, dll, or sys." ;
     rdfs:comment "(STIX: pe_type)" ;
-    rdfs:range stone:WindowsPEBinaryVocabulary .
+    rdfs:range stones:WindowsPEBinaryVocabulary .
 
 
-###  https://cyberterrain.org/ns/stone#fileHeaderHashes
-stone:fileHeaderHashes rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#fileHeaderHashes
+stones:fileHeaderHashes rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Hashes of the PE file header, expressed as HashEntry individuals." ;
     rdfs:comment "(STIX: file_header_hashes)" ;
-    rdfs:range stone:HashEntry .
+    rdfs:range stones:HashEntry .
 
 
-###  https://cyberterrain.org/ns/stone#sections
-stone:sections rdf:type owl:ObjectProperty ;
-    skos:definition "PE section entries for this binary. Each entry is a stone:WindowsPeSection individual." ;
+###  https://cyberterrain.org/ns/stones#sections
+stones:sections rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "PE section entries for this binary. Each entry is a stones:WindowsPeSection individual." ;
     rdfs:comment "(STIX: sections)" ;
-    rdfs:range stone:WindowsPeSection .
+    rdfs:range stones:WindowsPeSection .
 
 
 #################################################################
 #    Extension: ntfs-ext
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#alternateDataStreams
-stone:alternateDataStreams rdf:type owl:ObjectProperty ;
-    skos:definition "NTFS Alternate Data Streams present on this file. Each entry is a stone:AlternateDataStream individual." ;
+###  https://cyberterrain.org/ns/stones#alternateDataStreams
+stones:alternateDataStreams rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "NTFS Alternate Data Streams present on this file. Each entry is a stones:AlternateDataStream individual." ;
     rdfs:comment "(STIX: alternate_data_streams)" ;
-    rdfs:range stone:AlternateDataStream .
+    rdfs:range stones:AlternateDataStream .
 
 
 #################################################################
 #    Extension: socket-ext
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#addressFamily
-stone:addressFamily rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#addressFamily
+stones:addressFamily rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Address family of this socket (network-socket-address-family-enum): AF_UNSPEC, AF_INET, AF_INET6, AF_IPX, AF_APPLETALK, AF_NETBIOS, AF_IRDA, AF_BTH." ;
     rdfs:comment "(STIX: address_family)" ;
-    rdfs:range stone:NetworkSocketAddressFamilyEnumeration .
+    rdfs:range stones:NetworkSocketAddressFamilyEnumeration .
 
 
-###  https://cyberterrain.org/ns/stone#socketType
-stone:socketType rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#socketType
+stones:socketType rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Type of this socket (network-socket-type-enum): SOCK_STREAM, SOCK_DGRAM, SOCK_RAW, SOCK_RDM, SOCK_SEQPACKET." ;
     rdfs:comment "(STIX: socket_type)" ;
-    rdfs:range stone:NetworkSocketTypeEnumeration .
+    rdfs:range stones:NetworkSocketTypeEnumeration .
 
 
 #################################################################
 #    Extension: windows-process-ext
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#integrityLevel
-stone:integrityLevel rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#integrityLevel
+stones:integrityLevel rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Windows integrity level of this process (windows-integrity-level-enum): low, medium, high, system." ;
     rdfs:comment "(STIX: integrity_level)" ;
-    rdfs:range stone:WindowsIntegrityLevelEnumeration .
+    rdfs:range stones:WindowsIntegrityLevelEnumeration .
 
 
 #################################################################
 #    Extension: windows-service-ext
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#startType
-stone:startType rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#startType
+stones:startType rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Service start type (windows-service-start-type-enum): SERVICE_AUTO_START, SERVICE_BOOT_START, SERVICE_DEMAND_START, SERVICE_DISABLED, SERVICE_SYSTEM_ALERT." ;
     rdfs:comment "(STIX: start_type)" ;
-    rdfs:range stone:WindowsServiceStartTypeEnumeration .
+    rdfs:range stones:WindowsServiceStartTypeEnumeration .
 
 
-###  https://cyberterrain.org/ns/stone#serviceType
-stone:serviceType rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#serviceType
+stones:serviceType rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Windows service type (windows-service-type-enum): SERVICE_KERNEL_DRIVER, SERVICE_FILE_SYSTEM_DRIVER, SERVICE_WIN32_OWN_PROCESS, SERVICE_WIN32_SHARE_PROCESS." ;
     rdfs:comment "(STIX: service_type)" ;
-    rdfs:range stone:WindowsServiceTypeEnumeration .
+    rdfs:range stones:WindowsServiceTypeEnumeration .
 
 
-###  https://cyberterrain.org/ns/stone#serviceStatus
-stone:serviceStatus rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#serviceStatus
+stones:serviceStatus rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Current status of this Windows service (windows-service-status-enum): SERVICE_RUNNING, SERVICE_STOPPED, SERVICE_PAUSED, etc." ;
     rdfs:comment "(STIX: service_status)" ;
-    rdfs:range stone:WindowsServiceStatusEnumeration .
+    rdfs:range stones:WindowsServiceStatusEnumeration .
 
 
-###  https://cyberterrain.org/ns/stone#serviceDllRefs
-stone:serviceDllRefs rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#serviceDllRefs
+stones:serviceDllRefs rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to file SCOs for DLLs loaded by this Windows service." ;
     rdfs:comment "(STIX: service_dll_refs)" ;
-    rdfs:range stone:FileObject .
+    rdfs:range stones:FileObject .
 
 
 #################################################################
 #    Extension: http-request-ext
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#messageBodyRef
-stone:messageBodyRef rdf:type owl:ObjectProperty ;
+###  https://cyberterrain.org/ns/stones#messageBodyRef
+stones:messageBodyRef rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the artifact SCO containing the HTTP message body." ;
     rdfs:comment "(STIX: http-request-ext.message_body_ref)" ;
-    rdfs:range stone:ArtifactObject .
+    rdfs:range stones:ArtifactObject .

@@ -1,14 +1,22 @@
-@prefix : <https://cyberterrain.org/ns/stone#> .
+@prefix : <https://cyberterrain.org/ns/stones#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix stone: <https://cyberterrain.org/ns/stone#> .
-@base <https://cyberterrain.org/ns/stone#> .
+@prefix stones: <https://cyberterrain.org/ns/stones#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://cyberterrain.org/ns/stones#> .
 
-<https://cyberterrain.org/ns/stone#> rdf:type owl:Ontology ;
+<https://cyberterrain.org/ns/stones#> rdf:type owl:Ontology ;
+                                      owl:versionIRI <https://cyberterrain.org/ns/stones/0.1.0> ;
+                                      owl:versionInfo "0.1.0" ;
+                                      rdfs:label "STONES"@en ;
+                                      dcterms:title "STONES — STIX Ontology for Network Environments"@en ;
+                                      dcterms:description "An OWL 2 ontology modelling the STIX 2.1 specification. Provides a class hierarchy for all STIX Domain Objects (SDOs), Cyber Observable Objects (SCOs), Relationship Objects (SROs), Meta Objects, and structured sub-types, together with datatype and object properties covering all standard STIX properties."@en ;
+                                      dcterms:creator "Hohimer Intelligence Strategies LLC" ;
+                                      dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
                                       owl:imports <http://www.w3.org/2004/02/skos/core> ,
                                                   <https://cyberterrain.org/ns/datatype-properties#> ,
                                                   <https://cyberterrain.org/ns/object-properties#> ,
@@ -18,798 +26,944 @@
 #    Classes
 #################################################################
 
-###  https://cyberterrain.org/ns/stone#AlternateDataStream
-stone:AlternateDataStream rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#AlternateDataStream
+stones:AlternateDataStream rdf:type owl:Class ;
+                          rdfs:subClassOf stones:StixSubType ;
+                          rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                          skos:prefLabel "Alternate Data Stream"@en ;
                           skos:definition "An NTFS Alternate Data Stream (ADS) attached to a file, identified by name with optional hashes and size." .
 
 
-###  https://cyberterrain.org/ns/stone#ArtifactObject
-stone:ArtifactObject rdf:type owl:Class ;
-                     rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#ArtifactObject
+stones:ArtifactObject rdf:type owl:Class ;
+                     rdfs:subClassOf stones:StixCyberobservableObject ;
                      owl:equivalentClass [
                          a owl:Class ;
                          owl:intersectionOf (
-                             stone:StixObject
+                             stones:StixObject
                              [
                                  a owl:Restriction ;
-                                 owl:onProperty stone:stixType ;
+                                 owl:onProperty stones:stixType ;
                                  owl:hasValue "artifact"^^xsd:string ;
                              ]
                          ) ;
                      ] ;
+                     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                     skos:prefLabel "Artifact Object"@en ;
                      skos:definition "Represents a sequence of bytes, such as the content of a file, a raw stream of network traffic, or a data blob captured from memory. The content may be embedded directly via payload_bin or referenced via url." .
 
 
-###  https://cyberterrain.org/ns/stone#AttackPattern
-stone:AttackPattern rdf:type owl:Class ;
-                    rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#AttackPattern
+stones:AttackPattern rdf:type owl:Class ;
+                    rdfs:subClassOf stones:StixDomainObject ;
                     owl:equivalentClass [
                         a owl:Class ;
                         owl:intersectionOf (
-                            stone:StixObject
+                            stones:StixObject
                             [
                                 a owl:Restriction ;
-                                owl:onProperty stone:stixType ;
+                                owl:onProperty stones:stixType ;
                                 owl:hasValue "attack-pattern"^^xsd:string ;
                             ]
                         ) ;
                     ] ;
+                    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                    skos:prefLabel "Attack Pattern"@en ;
                     skos:definition "A type of Tactics, Techniques, and Procedures (TTP) that describes ways that adversaries attempt to compromise targets. Often maps to MITRE ATT&CK techniques." .
 
 
-###  https://cyberterrain.org/ns/stone#AutonomousSystemObject
-stone:AutonomousSystemObject rdf:type owl:Class ;
-                             rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#AutonomousSystemObject
+stones:AutonomousSystemObject rdf:type owl:Class ;
+                             rdfs:subClassOf stones:StixCyberobservableObject ;
                              owl:equivalentClass [
                                  a owl:Class ;
                                  owl:intersectionOf (
-                                     stone:StixObject
+                                     stones:StixObject
                                      [
                                          a owl:Restriction ;
-                                         owl:onProperty stone:stixType ;
+                                         owl:onProperty stones:stixType ;
                                          owl:hasValue "autonomous-system"^^xsd:string ;
                                      ]
                                  ) ;
                              ] ;
+                             rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                             skos:prefLabel "Autonomous System Object"@en ;
                              skos:definition "Represents an Autonomous System (AS), a collection of IP routing prefixes under the control of a single administrative entity, identified by its AS number." .
 
 
-###  https://cyberterrain.org/ns/stone#Campaign
-stone:Campaign rdf:type owl:Class ;
-               rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Campaign
+stones:Campaign rdf:type owl:Class ;
+               rdfs:subClassOf stones:StixDomainObject ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
-                       stone:StixObject
+                       stones:StixObject
                        [
                            a owl:Restriction ;
-                           owl:onProperty stone:stixType ;
+                           owl:onProperty stones:stixType ;
                            owl:hasValue "campaign"^^xsd:string ;
                        ]
                    ) ;
                ] ;
+               rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+               skos:prefLabel "Campaign"@en ;
                skos:definition "A grouping of adversary behaviours and resources with a common objective pursued over a period of time. Campaigns may be attributed to intrusion sets or threat actors." .
 
 
-###  https://cyberterrain.org/ns/stone#CourseOfAction
-stone:CourseOfAction rdf:type owl:Class ;
-                     rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#CourseOfAction
+stones:CourseOfAction rdf:type owl:Class ;
+                     rdfs:subClassOf stones:StixDomainObject ;
                      owl:equivalentClass [
                          a owl:Class ;
                          owl:intersectionOf (
-                             stone:StixObject
+                             stones:StixObject
                              [
                                  a owl:Restriction ;
-                                 owl:onProperty stone:stixType ;
+                                 owl:onProperty stones:stixType ;
                                  owl:hasValue "course-of-action"^^xsd:string ;
                              ]
                          ) ;
                      ] ;
+                     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                     skos:prefLabel "Course of Action"@en ;
                      skos:definition "A recommendation for a specific measure to be taken in response to an attack. May describe automated responses, playbook steps, or manual mitigations." .
 
 
-###  https://cyberterrain.org/ns/stone#DirectoryObject
-stone:DirectoryObject rdf:type owl:Class ;
-                      rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#DirectoryObject
+stones:DirectoryObject rdf:type owl:Class ;
+                      rdfs:subClassOf stones:StixCyberobservableObject ;
                       owl:equivalentClass [
                           a owl:Class ;
                           owl:intersectionOf (
-                              stone:StixObject
+                              stones:StixObject
                               [
                                   a owl:Restriction ;
-                                  owl:onProperty stone:stixType ;
+                                  owl:onProperty stones:stixType ;
                                   owl:hasValue "directory"^^xsd:string ;
                               ]
                           ) ;
                       ] ;
+                      rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                      skos:prefLabel "Directory Object"@en ;
                       skos:definition "Represents a file system directory, conveying its path and timestamps. May reference the files and sub-directories it contains." .
 
 
-###  https://cyberterrain.org/ns/stone#DomainNameObject
-stone:DomainNameObject rdf:type owl:Class ;
-                       rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#DomainNameObject
+stones:DomainNameObject rdf:type owl:Class ;
+                       rdfs:subClassOf stones:StixCyberobservableObject ;
                        owl:equivalentClass [
                            a owl:Class ;
                            owl:intersectionOf (
-                               stone:StixObject
+                               stones:StixObject
                                [
                                    a owl:Restriction ;
-                                   owl:onProperty stone:stixType ;
+                                   owl:onProperty stones:stixType ;
                                    owl:hasValue "domain-name"^^xsd:string ;
                                ]
                            ) ;
                        ] ;
+                       rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                       skos:prefLabel "Domain Name Object"@en ;
                        skos:definition "Represents a network domain name. Can reference the IP addresses it resolves to." .
 
 
-###  https://cyberterrain.org/ns/stone#EmailAddressObject
-stone:EmailAddressObject rdf:type owl:Class ;
-                         rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#EmailAddressObject
+stones:EmailAddressObject rdf:type owl:Class ;
+                         rdfs:subClassOf stones:StixCyberobservableObject ;
                          owl:equivalentClass [
                              a owl:Class ;
                              owl:intersectionOf (
-                                 stone:StixObject
+                                 stones:StixObject
                                  [
                                      a owl:Restriction ;
-                                     owl:onProperty stone:stixType ;
+                                     owl:onProperty stones:stixType ;
                                      owl:hasValue "email-addr"^^xsd:string ;
                                  ]
                              ) ;
                          ] ;
+                         rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                         skos:prefLabel "Email Address Object"@en ;
                          skos:definition "Represents a single email address, optionally associating it with a display name and a user account." .
 
 
-###  https://cyberterrain.org/ns/stone#EmailMessageObject
-stone:EmailMessageObject rdf:type owl:Class ;
-                         rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#EmailMessageObject
+stones:EmailMessageObject rdf:type owl:Class ;
+                         rdfs:subClassOf stones:StixCyberobservableObject ;
                          owl:equivalentClass [
                              a owl:Class ;
                              owl:intersectionOf (
-                                 stone:StixObject
+                                 stones:StixObject
                                  [
                                      a owl:Restriction ;
-                                     owl:onProperty stone:stixType ;
+                                     owl:onProperty stones:stixType ;
                                      owl:hasValue "email-message"^^xsd:string ;
                                  ]
                              ) ;
                          ] ;
+                         rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                         skos:prefLabel "Email Message Object"@en ;
                          skos:definition "Represents an email message, including its headers, body, and any MIME parts." .
 
 
-###  https://cyberterrain.org/ns/stone#EmailMimePart
-stone:EmailMimePart rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#EmailMimePart
+stones:EmailMimePart rdf:type owl:Class ;
+                    rdfs:subClassOf stones:StixSubType ;
+                    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                    skos:prefLabel "Email MIME Part"@en ;
                     skos:definition "A single MIME part within a multipart email message, including its body content, content type, and content disposition." .
 
 
-###  https://cyberterrain.org/ns/stone#ExtensionDefinitionObject
-stone:ExtensionDefinitionObject rdf:type owl:Class ;
-                                rdfs:subClassOf stone:StixMetaObject ;
+###  https://cyberterrain.org/ns/stones#ExtensionDefinitionObject
+stones:ExtensionDefinitionObject rdf:type owl:Class ;
+                                rdfs:subClassOf stones:StixMetaObject ;
                                 owl:equivalentClass [
                                     a owl:Class ;
                                     owl:intersectionOf (
-                                        stone:StixObject
+                                        stones:StixObject
                                         [
                                             a owl:Restriction ;
-                                            owl:onProperty stone:stixType ;
+                                            owl:onProperty stones:stixType ;
                                             owl:hasValue "extension-definition"^^xsd:string ;
                                         ]
                                     ) ;
                                 ] ;
+                                rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                                skos:prefLabel "Extension Definition Object"@en ;
                                 skos:definition "Defines a schema extension to STIX 2.1. Allows producers to add new properties or new object types in a structured, interoperable way." .
 
 
-###  https://cyberterrain.org/ns/stone#ExternalReference
-stone:ExternalReference rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#ExternalReference
+stones:ExternalReference rdf:type owl:Class ;
+                        rdfs:subClassOf stones:StixSubType ;
+                        rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                        skos:prefLabel "External Reference"@en ;
                         skos:definition "A structured reference to non-STIX information, such as a CVE entry, MITRE ATT&CK technique, or external URL. Used to link STIX content to authoritative external sources." .
 
 
-###  https://cyberterrain.org/ns/stone#FileObject
-stone:FileObject rdf:type owl:Class ;
-                 rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#FileObject
+stones:FileObject rdf:type owl:Class ;
+                 rdfs:subClassOf stones:StixCyberobservableObject ;
                  owl:equivalentClass [
                      a owl:Class ;
                      owl:intersectionOf (
-                         stone:StixObject
+                         stones:StixObject
                          [
                              a owl:Restriction ;
-                             owl:onProperty stone:stixType ;
+                             owl:onProperty stones:stixType ;
                              owl:hasValue "file"^^xsd:string ;
                          ]
                      ) ;
                  ] ;
+                 rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                 skos:prefLabel "File Object"@en ;
                  skos:definition "Represents a file with its metadata and optional content reference. Supports extensions for archive files, NTFS streams, PE binaries, PDF documents, and raster images." .
 
 
-###  https://cyberterrain.org/ns/stone#GranularMarking
-stone:GranularMarking rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#GranularMarking
+stones:GranularMarking rdf:type owl:Class ;
+                      rdfs:subClassOf stones:StixSubType ;
+                      rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                      skos:prefLabel "Granular Marking"@en ;
                       skos:definition "A property-level data handling marking that applies a marking definition to specific named fields of a STIX object, enabling fine-grained access control." .
 
 
-###  https://cyberterrain.org/ns/stone#Grouping
-stone:Grouping rdf:type owl:Class ;
-               rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Grouping
+stones:Grouping rdf:type owl:Class ;
+               rdfs:subClassOf stones:StixDomainObject ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
-                       stone:StixObject
+                       stones:StixObject
                        [
                            a owl:Restriction ;
-                           owl:onProperty stone:stixType ;
+                           owl:onProperty stones:stixType ;
                            owl:hasValue "grouping"^^xsd:string ;
                        ]
                    ) ;
                ] ;
+               rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+               skos:prefLabel "Grouping"@en ;
                skos:definition "Explicitly asserts that a set of STIX objects share a common context without implying the existence of a threat report. Useful for linking related objects without a formal report." .
 
 
-###  https://cyberterrain.org/ns/stone#HashEntry
-stone:HashEntry rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#HashEntry
+stones:HashEntry rdf:type owl:Class ;
+                rdfs:subClassOf stones:StixSubType ;
+                rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                skos:prefLabel "Hash Entry"@en ;
                 skos:definition "A single cryptographic hash entry associating a hashing algorithm with its hex-encoded digest value. Used to represent entries in the STIX hashes dictionary." .
 
 
-###  https://cyberterrain.org/ns/stone#IPv4AddressObject
-stone:IPv4AddressObject rdf:type owl:Class ;
-                        rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#IPv4AddressObject
+stones:IPv4AddressObject rdf:type owl:Class ;
+                        rdfs:subClassOf stones:StixCyberobservableObject ;
                         owl:equivalentClass [
                             a owl:Class ;
                             owl:intersectionOf (
-                                stone:StixObject
+                                stones:StixObject
                                 [
                                     a owl:Restriction ;
-                                    owl:onProperty stone:stixType ;
+                                    owl:onProperty stones:stixType ;
                                     owl:hasValue "ipv4-addr"^^xsd:string ;
                                 ]
                             ) ;
                         ] ;
+                        rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                        skos:prefLabel "IPv4 Address Object"@en ;
                         skos:definition "Represents one or more IPv4 addresses expressed using CIDR notation." .
 
 
-###  https://cyberterrain.org/ns/stone#IPv6AddressObject
-stone:IPv6AddressObject rdf:type owl:Class ;
-                        rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#IPv6AddressObject
+stones:IPv6AddressObject rdf:type owl:Class ;
+                        rdfs:subClassOf stones:StixCyberobservableObject ;
                         owl:equivalentClass [
                             a owl:Class ;
                             owl:intersectionOf (
-                                stone:StixObject
+                                stones:StixObject
                                 [
                                     a owl:Restriction ;
-                                    owl:onProperty stone:stixType ;
+                                    owl:onProperty stones:stixType ;
                                     owl:hasValue "ipv6-addr"^^xsd:string ;
                                 ]
                             ) ;
                         ] ;
+                        rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                        skos:prefLabel "IPv6 Address Object"@en ;
                         skos:definition "Represents one or more IPv6 addresses expressed using CIDR notation." .
 
 
-###  https://cyberterrain.org/ns/stone#Identity
-stone:Identity rdf:type owl:Class ;
-               rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Identity
+stones:Identity rdf:type owl:Class ;
+               rdfs:subClassOf stones:StixDomainObject ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
-                       stone:StixObject
+                       stones:StixObject
                        [
                            a owl:Restriction ;
-                           owl:onProperty stone:stixType ;
+                           owl:onProperty stones:stixType ;
                            owl:hasValue "identity"^^xsd:string ;
                        ]
                    ) ;
                ] ;
+               rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+               skos:prefLabel "Identity"@en ;
                skos:definition "Actual individuals, organisations, or groups, as well as classes of individuals, organisations, systems, or groups. Used to represent victims, producers, or any other real-world actor." .
 
 
-###  https://cyberterrain.org/ns/stone#Indicator
-stone:Indicator rdf:type owl:Class ;
-                rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Indicator
+stones:Indicator rdf:type owl:Class ;
+                rdfs:subClassOf stones:StixDomainObject ;
                 owl:equivalentClass [
                     a owl:Class ;
                     owl:intersectionOf (
-                        stone:StixObject
+                        stones:StixObject
                         [
                             a owl:Restriction ;
-                            owl:onProperty stone:stixType ;
+                            owl:onProperty stones:stixType ;
                             owl:hasValue "indicator"^^xsd:string ;
                         ]
                     ) ;
                 ] ;
+                rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                skos:prefLabel "Indicator"@en ;
                 skos:definition "Contains a pattern that can be used to detect suspicious or malicious cyber activity. Patterns are expressed using the STIX Patterning Language or another supported pattern language." .
 
 
-###  https://cyberterrain.org/ns/stone#Infrastructure
-stone:Infrastructure rdf:type owl:Class ;
-                     rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Infrastructure
+stones:Infrastructure rdf:type owl:Class ;
+                     rdfs:subClassOf stones:StixDomainObject ;
                      owl:equivalentClass [
                          a owl:Class ;
                          owl:intersectionOf (
-                             stone:StixObject
+                             stones:StixObject
                              [
                                  a owl:Restriction ;
-                                 owl:onProperty stone:stixType ;
+                                 owl:onProperty stones:stixType ;
                                  owl:hasValue "infrastructure"^^xsd:string ;
                              ]
                          ) ;
                      ] ;
+                     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                     skos:prefLabel "Infrastructure"@en ;
                      skos:definition "Represents systems, software services, or any group of resources used to conduct cyber operations. Infrastructure is used by threat actors and intrusion sets both offensively and defensively." .
 
 
-###  https://cyberterrain.org/ns/stone#IntrusionSet
-stone:IntrusionSet rdf:type owl:Class ;
-                   rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#IntrusionSet
+stones:IntrusionSet rdf:type owl:Class ;
+                   rdfs:subClassOf stones:StixDomainObject ;
                    owl:equivalentClass [
                        a owl:Class ;
                        owl:intersectionOf (
-                           stone:StixObject
+                           stones:StixObject
                            [
                                a owl:Restriction ;
-                               owl:onProperty stone:stixType ;
+                               owl:onProperty stones:stixType ;
                                owl:hasValue "intrusion-set"^^xsd:string ;
                            ]
                        ) ;
                    ] ;
+                   rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                   skos:prefLabel "Intrusion Set"@en ;
                    skos:definition "A grouped set of adversarial behaviours and resources with common properties, believed to be orchestrated by a single organisation. Often represents a named APT group." .
 
 
-###  https://cyberterrain.org/ns/stone#KillChainPhase
-stone:KillChainPhase rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#KillChainPhase
+stones:KillChainPhase rdf:type owl:Class ;
+                     rdfs:subClassOf stones:StixSubType ;
+                     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                     skos:prefLabel "Kill Chain Phase"@en ;
                      skos:definition "Represents a phase within a named kill chain framework, such as the MITRE ATT&CK or Lockheed Martin Cyber Kill Chain, used to categorise the stage of an attack." .
 
 
-###  https://cyberterrain.org/ns/stone#LanguageContentObject
-stone:LanguageContentObject rdf:type owl:Class ;
-                            rdfs:subClassOf stone:StixMetaObject ;
+###  https://cyberterrain.org/ns/stones#LanguageContentObject
+stones:LanguageContentObject rdf:type owl:Class ;
+                            rdfs:subClassOf stones:StixMetaObject ;
                             owl:equivalentClass [
                                 a owl:Class ;
                                 owl:intersectionOf (
-                                    stone:StixObject
+                                    stones:StixObject
                                     [
                                         a owl:Restriction ;
-                                        owl:onProperty stone:stixType ;
+                                        owl:onProperty stones:stixType ;
                                         owl:hasValue "language-content"^^xsd:string ;
                                     ]
                                 ) ;
                             ] ;
+                            rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                            skos:prefLabel "Language Content Object"@en ;
                             skos:definition "Provides translations of string properties of another STIX object into different languages. Allows internationalisation without modifying the original object." .
 
 
-###  https://cyberterrain.org/ns/stone#Location
-stone:Location rdf:type owl:Class ;
-               rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Location
+stones:Location rdf:type owl:Class ;
+               rdfs:subClassOf stones:StixDomainObject ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
-                       stone:StixObject
+                       stones:StixObject
                        [
                            a owl:Restriction ;
-                           owl:onProperty stone:stixType ;
+                           owl:onProperty stones:stixType ;
                            owl:hasValue "location"^^xsd:string ;
                        ]
                    ) ;
                ] ;
+               rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+               skos:prefLabel "Location"@en ;
                skos:definition "Represents a geographic location. May be as specific as a latitude/longitude coordinate or as broad as a continent. At least one of region, country, or latitude/longitude must be provided." .
 
 
-###  https://cyberterrain.org/ns/stone#MACAddressObject
-stone:MACAddressObject rdf:type owl:Class ;
-                       rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#MACAddressObject
+stones:MACAddressObject rdf:type owl:Class ;
+                       rdfs:subClassOf stones:StixCyberobservableObject ;
                        owl:equivalentClass [
                            a owl:Class ;
                            owl:intersectionOf (
-                               stone:StixObject
+                               stones:StixObject
                                [
                                    a owl:Restriction ;
-                                   owl:onProperty stone:stixType ;
+                                   owl:onProperty stones:stixType ;
                                    owl:hasValue "mac-addr"^^xsd:string ;
                                ]
                            ) ;
                        ] ;
+                       rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                       skos:prefLabel "MAC Address Object"@en ;
                        skos:definition "Represents a single MAC address expressed in lowercase IEEE 802 colon-hexadecimal notation." .
 
 
-###  https://cyberterrain.org/ns/stone#Malware
-stone:Malware rdf:type owl:Class ;
-              rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Malware
+stones:Malware rdf:type owl:Class ;
+              rdfs:subClassOf stones:StixDomainObject ;
               owl:equivalentClass [
                   a owl:Class ;
                   owl:intersectionOf (
-                      stone:StixObject
+                      stones:StixObject
                       [
                           a owl:Restriction ;
-                          owl:onProperty stone:stixType ;
+                          owl:onProperty stones:stixType ;
                           owl:hasValue "malware"^^xsd:string ;
                       ]
                   ) ;
               ] ;
+              rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+              skos:prefLabel "Malware"@en ;
               skos:definition "A type of TTP that represents malicious code. Captures both malware families (when is_family is true) and specific instances or samples." .
 
 
-###  https://cyberterrain.org/ns/stone#MalwareAnalysis
-stone:MalwareAnalysis rdf:type owl:Class ;
-                      rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#MalwareAnalysis
+stones:MalwareAnalysis rdf:type owl:Class ;
+                      rdfs:subClassOf stones:StixDomainObject ;
                       owl:equivalentClass [
                           a owl:Class ;
                           owl:intersectionOf (
-                              stone:StixObject
+                              stones:StixObject
                               [
                                   a owl:Restriction ;
-                                  owl:onProperty stone:stixType ;
+                                  owl:onProperty stones:stixType ;
                                   owl:hasValue "malware-analysis"^^xsd:string ;
                               ]
                           ) ;
                       ] ;
+                      rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                      skos:prefLabel "Malware Analysis"@en ;
                       skos:definition "Captures the results of a malware analysis process, whether static or dynamic. Represents the output of a specific analysis run on a specific sample." .
 
 
-###  https://cyberterrain.org/ns/stone#MarkingDefinitionObject
-stone:MarkingDefinitionObject rdf:type owl:Class ;
-                              rdfs:subClassOf stone:StixMetaObject ;
+###  https://cyberterrain.org/ns/stones#MarkingDefinitionObject
+stones:MarkingDefinitionObject rdf:type owl:Class ;
+                              rdfs:subClassOf stones:StixMetaObject ;
                               owl:equivalentClass [
                                   a owl:Class ;
                                   owl:intersectionOf (
-                                      stone:StixObject
+                                      stones:StixObject
                                       [
                                           a owl:Restriction ;
-                                          owl:onProperty stone:stixType ;
+                                          owl:onProperty stones:stixType ;
                                           owl:hasValue "marking-definition"^^xsd:string ;
                                       ]
                                   ) ;
                               ] ;
+                              rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                              skos:prefLabel "Marking Definition Object"@en ;
                               skos:definition "Defines a data handling marking used to restrict or label how STIX data can be shared or handled, such as TLP markings. Referenced by object_marking_refs or granular_markings." .
 
 
-###  https://cyberterrain.org/ns/stone#MutexObject
-stone:MutexObject rdf:type owl:Class ;
-                  rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#MutexObject
+stones:MutexObject rdf:type owl:Class ;
+                  rdfs:subClassOf stones:StixCyberobservableObject ;
                   owl:equivalentClass [
                       a owl:Class ;
                       owl:intersectionOf (
-                          stone:StixObject
+                          stones:StixObject
                           [
                               a owl:Restriction ;
-                              owl:onProperty stone:stixType ;
+                              owl:onProperty stones:stixType ;
                               owl:hasValue "mutex"^^xsd:string ;
                           ]
                       ) ;
                   ] ;
+                  rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                  skos:prefLabel "Mutex Object"@en ;
                   skos:definition "Represents a named mutual-exclusion object, commonly created or checked by malware to prevent multiple concurrent instances from running." .
 
 
-###  https://cyberterrain.org/ns/stone#NetworkTrafficObject
-stone:NetworkTrafficObject rdf:type owl:Class ;
-                           rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#NetworkTrafficObject
+stones:NetworkTrafficObject rdf:type owl:Class ;
+                           rdfs:subClassOf stones:StixCyberobservableObject ;
                            owl:equivalentClass [
                                a owl:Class ;
                                owl:intersectionOf (
-                                   stone:StixObject
+                                   stones:StixObject
                                    [
                                        a owl:Restriction ;
-                                       owl:onProperty stone:stixType ;
+                                       owl:onProperty stones:stixType ;
                                        owl:hasValue "network-traffic"^^xsd:string ;
                                    ]
                                ) ;
                            ] ;
+                           rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                           skos:prefLabel "Network Traffic Object"@en ;
                            skos:definition "Represents an arbitrary network traffic flow between source and destination endpoints. Supports extensions for HTTP, ICMP, socket, and TCP specifics." .
 
 
-###  https://cyberterrain.org/ns/stone#Note
-stone:Note rdf:type owl:Class ;
-           rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Note
+stones:Note rdf:type owl:Class ;
+           rdfs:subClassOf stones:StixDomainObject ;
            owl:equivalentClass [
                a owl:Class ;
                owl:intersectionOf (
-                   stone:StixObject
+                   stones:StixObject
                    [
                        a owl:Restriction ;
-                       owl:onProperty stone:stixType ;
+                       owl:onProperty stones:stixType ;
                        owl:hasValue "note"^^xsd:string ;
                    ]
                ) ;
            ] ;
+           rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+           skos:prefLabel "Note"@en ;
            skos:definition "Conveys informational text to provide further context and/or to assess the accuracy of existing STIX information. Similar to a comment or annotation on other STIX objects." .
 
 
-###  https://cyberterrain.org/ns/stone#ObservedData
-stone:ObservedData rdf:type owl:Class ;
-                   rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#ObservedData
+stones:ObservedData rdf:type owl:Class ;
+                   rdfs:subClassOf stones:StixDomainObject ;
                    owl:equivalentClass [
                        a owl:Class ;
                        owl:intersectionOf (
-                           stone:StixObject
+                           stones:StixObject
                            [
                                a owl:Restriction ;
-                               owl:onProperty stone:stixType ;
+                               owl:onProperty stones:stixType ;
                                owl:hasValue "observed-data"^^xsd:string ;
                            ]
                        ) ;
                    ] ;
+                   rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                   skos:prefLabel "Observed Data"@en ;
                    skos:definition "Conveys information observed on systems and networks, wrapping one or more SCO references together with observation metadata such as first and last observed timestamps." .
 
 
-###  https://cyberterrain.org/ns/stone#Opinion
-stone:Opinion rdf:type owl:Class ;
-              rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Opinion
+stones:Opinion rdf:type owl:Class ;
+              rdfs:subClassOf stones:StixDomainObject ;
               owl:equivalentClass [
                   a owl:Class ;
                   owl:intersectionOf (
-                      stone:StixObject
+                      stones:StixObject
                       [
                           a owl:Restriction ;
-                          owl:onProperty stone:stixType ;
+                          owl:onProperty stones:stixType ;
                           owl:hasValue "opinion"^^xsd:string ;
                       ]
                   ) ;
               ] ;
+              rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+              skos:prefLabel "Opinion"@en ;
               skos:definition "An assessment of the correctness of information in one or more STIX objects. Allows analysts to express agreement or disagreement with existing intelligence." .
 
 
-###  https://cyberterrain.org/ns/stone#ProcessObject
-stone:ProcessObject rdf:type owl:Class ;
-                    rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#ProcessObject
+stones:ProcessObject rdf:type owl:Class ;
+                    rdfs:subClassOf stones:StixCyberobservableObject ;
                     owl:equivalentClass [
                         a owl:Class ;
                         owl:intersectionOf (
-                            stone:StixObject
+                            stones:StixObject
                             [
                                 a owl:Restriction ;
-                                owl:onProperty stone:stixType ;
+                                owl:onProperty stones:stixType ;
                                 owl:hasValue "process"^^xsd:string ;
                             ]
                         ) ;
                     ] ;
+                    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                    skos:prefLabel "Process Object"@en ;
                     skos:definition "Represents a running or terminated process on a host. Supports extensions for Windows-specific process and service attributes." .
 
 
-###  https://cyberterrain.org/ns/stone#Relationship
-stone:Relationship rdf:type owl:Class ;
-                   rdfs:subClassOf stone:StixRelationshipObject ;
+###  https://cyberterrain.org/ns/stones#Relationship
+stones:Relationship rdf:type owl:Class ;
+                   rdfs:subClassOf stones:StixRelationshipObject ;
                    owl:equivalentClass [
                        a owl:Class ;
                        owl:intersectionOf (
-                           stone:StixObject
+                           stones:StixObject
                            [
                                a owl:Restriction ;
-                               owl:onProperty stone:stixType ;
+                               owl:onProperty stones:stixType ;
                                owl:hasValue "relationship"^^xsd:string ;
                            ]
                        ) ;
                    ] ;
+                   rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                   skos:prefLabel "Relationship"@en ;
                    skos:definition "A directed link between two STIX Core Objects. The semantics of the link are defined by the relationship_type property." .
 
 
-###  https://cyberterrain.org/ns/stone#Report
-stone:Report rdf:type owl:Class ;
-             rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Report
+stones:Report rdf:type owl:Class ;
+             rdfs:subClassOf stones:StixDomainObject ;
              owl:equivalentClass [
                  a owl:Class ;
                  owl:intersectionOf (
-                     stone:StixObject
+                     stones:StixObject
                      [
                          a owl:Restriction ;
-                         owl:onProperty stone:stixType ;
+                         owl:onProperty stones:stixType ;
                          owl:hasValue "report"^^xsd:string ;
                      ]
                  ) ;
              ] ;
+             rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+             skos:prefLabel "Report"@en ;
              skos:definition "A collection of threat intelligence focused on one or more topics, such as a description of a threat actor, malware, or attack technique. Used to package related STIX content." .
 
 
-###  https://cyberterrain.org/ns/stone#Sighting
-stone:Sighting rdf:type owl:Class ;
-               rdfs:subClassOf stone:StixRelationshipObject ;
+###  https://cyberterrain.org/ns/stones#Sighting
+stones:Sighting rdf:type owl:Class ;
+               rdfs:subClassOf stones:StixRelationshipObject ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
-                       stone:StixObject
+                       stones:StixObject
                        [
                            a owl:Restriction ;
-                           owl:onProperty stone:stixType ;
+                           owl:onProperty stones:stixType ;
                            owl:hasValue "sighting"^^xsd:string ;
                        ]
                    ) ;
                ] ;
+               rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+               skos:prefLabel "Sighting"@en ;
                skos:definition "Records that a STIX object such as an indicator, malware, tool, or threat actor was seen. Wraps observation metadata around a reference to the sighted object." .
 
 
-###  https://cyberterrain.org/ns/stone#SoftwareObject
-stone:SoftwareObject rdf:type owl:Class ;
-                     rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#SoftwareObject
+stones:SoftwareObject rdf:type owl:Class ;
+                     rdfs:subClassOf stones:StixCyberobservableObject ;
                      owl:equivalentClass [
                          a owl:Class ;
                          owl:intersectionOf (
-                             stone:StixObject
+                             stones:StixObject
                              [
                                  a owl:Restriction ;
-                                 owl:onProperty stone:stixType ;
+                                 owl:onProperty stones:stixType ;
                                  owl:hasValue "software"^^xsd:string ;
                              ]
                          ) ;
                      ] ;
+                     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                     skos:prefLabel "Software Object"@en ;
                      skos:definition "Represents a software product, including commercial applications, operating systems, libraries, and utilities." .
 
 
-###  https://cyberterrain.org/ns/stone#StixBundle
-stone:StixBundle rdf:type owl:Class ;
-                 rdfs:subClassOf stone:StixObject ;
+###  https://cyberterrain.org/ns/stones#StixBundle
+stones:StixBundle rdf:type owl:Class ;
+                 rdfs:subClassOf stones:StixObject ;
                  owl:equivalentClass [
                      a owl:Class ;
                      owl:intersectionOf (
-                         stone:StixObject
+                         stones:StixObject
                          [
                              a owl:Restriction ;
-                             owl:onProperty stone:stixType ;
+                             owl:onProperty stones:stixType ;
                              owl:hasValue "bundle"^^xsd:string ;
                          ]
                      ) ;
                  ] ;
+                 rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                 skos:prefLabel "STIX Bundle"@en ;
                  skos:definition "A collection of arbitrary STIX objects used as a transport container. Bundles are not Core Objects, carry no modified timestamp, and cannot be referenced by identifier." .
 
 
-###  https://cyberterrain.org/ns/stone#StixCoreObject
-stone:StixCoreObject rdf:type owl:Class ;
-                     rdfs:subClassOf stone:StixObject ;
+###  https://cyberterrain.org/ns/stones#StixCoreObject
+stones:StixCoreObject rdf:type owl:Class ;
+                     rdfs:subClassOf stones:StixObject ;
+                     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                     skos:prefLabel "STIX Core Object"@en ;
                      skos:definition "Abstract class for STIX Core Objects, comprising SDOs, SCOs, and SROs. Core objects carry a type-qualified identifier and created/modified timestamps, and may be referenced by other objects." .
 
 
-###  https://cyberterrain.org/ns/stone#StixCyberobservableObject
-stone:StixCyberobservableObject rdf:type owl:Class ;
-                                rdfs:subClassOf stone:StixCoreObject ;
+###  https://cyberterrain.org/ns/stones#StixCyberobservableObject
+stones:StixCyberobservableObject rdf:type owl:Class ;
+                                rdfs:subClassOf stones:StixCoreObject ;
+                                rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                                skos:prefLabel "STIX Cyber Observable Object"@en ;
                                 skos:definition "Abstract class for STIX Cyber Observable Objects (SCOs), which represent technical observations such as IP addresses, files, network traffic, and processes." .
 
 
-###  https://cyberterrain.org/ns/stone#StixDomainObject
-stone:StixDomainObject rdf:type owl:Class ;
-                       rdfs:subClassOf stone:StixCoreObject ;
+###  https://cyberterrain.org/ns/stones#StixDomainObject
+stones:StixDomainObject rdf:type owl:Class ;
+                       rdfs:subClassOf stones:StixCoreObject ;
+                       rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                       skos:prefLabel "STIX Domain Object"@en ;
                        skos:definition "Abstract class for STIX Domain Objects (SDOs), which represent modelled cyber threat intelligence concepts such as malware, campaigns, threat actors, and vulnerabilities." .
 
 
-###  https://cyberterrain.org/ns/stone#StixMetaObject
-stone:StixMetaObject rdf:type owl:Class ;
-                     rdfs:subClassOf stone:StixObject ;
+###  https://cyberterrain.org/ns/stones#StixMetaObject
+stones:StixMetaObject rdf:type owl:Class ;
+                     rdfs:subClassOf stones:StixObject ;
+                     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                     skos:prefLabel "STIX Meta Object"@en ;
                      skos:definition "Abstract class for STIX Meta Objects, which provide supporting infrastructure for the STIX ecosystem, including data markings, language translations, and extension definitions." .
 
 
-###  https://cyberterrain.org/ns/stone#StixObject
-stone:StixObject rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#StixObject
+stones:StixObject rdf:type owl:Class ;
+                 rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                 skos:prefLabel "STIX Object"@en ;
                  skos:definition "The top-level abstract class for all STIX objects, encompassing STIX Core Objects (SDOs, SCOs, SROs), Meta Objects, and Bundles." .
 
 
-###  https://cyberterrain.org/ns/stone#StixRelationshipObject
-stone:StixRelationshipObject rdf:type owl:Class ;
-                             rdfs:subClassOf stone:StixCoreObject ;
+###  https://cyberterrain.org/ns/stones#StixRelationshipObject
+stones:StixRelationshipObject rdf:type owl:Class ;
+                             rdfs:subClassOf stones:StixCoreObject ;
+                             rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                             skos:prefLabel "STIX Relationship Object"@en ;
                              skos:definition "Abstract class for STIX Relationship Objects (SROs), which link Core Objects to express directed relationships and sightings between them." .
 
 
-###  https://cyberterrain.org/ns/stone#ThreatActor
-stone:ThreatActor rdf:type owl:Class ;
-                  rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#StixSubType
+stones:StixSubType rdf:type owl:Class ;
+                  owl:disjointWith stones:StixObject ;
+                  rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                  skos:prefLabel "STIX Sub-Type"@en ;
+                  skos:definition "Abstract class for structured sub-types defined by the STIX 2.1 specification that are embedded as property values within STIX objects. Instances are not STIX objects: they carry no identifier, type, spec_version, created, or modified properties and cannot be referenced by identifier from other objects. Subclasses include ExternalReference, GranularMarking, KillChainPhase, HashEntry, EmailMimePart, AlternateDataStream, WindowsPeSection, WindowsRegistryValue, and X509V3Extensions." .
+
+
+###  https://cyberterrain.org/ns/stones#ThreatActor
+stones:ThreatActor rdf:type owl:Class ;
+                  rdfs:subClassOf stones:StixDomainObject ;
                   owl:equivalentClass [
                       a owl:Class ;
                       owl:intersectionOf (
-                          stone:StixObject
+                          stones:StixObject
                           [
                               a owl:Restriction ;
-                              owl:onProperty stone:stixType ;
+                              owl:onProperty stones:stixType ;
                               owl:hasValue "threat-actor"^^xsd:string ;
                           ]
                       ) ;
                   ] ;
+                  rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                  skos:prefLabel "Threat Actor"@en ;
                   skos:definition "Actual individuals, groups, or organisations believed to be operating with malicious intent. Unlike Identity, a ThreatActor carries adversarial connotations." .
 
 
-###  https://cyberterrain.org/ns/stone#Tool
-stone:Tool rdf:type owl:Class ;
-           rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Tool
+stones:Tool rdf:type owl:Class ;
+           rdfs:subClassOf stones:StixDomainObject ;
            owl:equivalentClass [
                a owl:Class ;
                owl:intersectionOf (
-                   stone:StixObject
+                   stones:StixObject
                    [
                        a owl:Restriction ;
-                       owl:onProperty stone:stixType ;
+                       owl:onProperty stones:stixType ;
                        owl:hasValue "tool"^^xsd:string ;
                    ]
                ) ;
            ] ;
+           rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+           skos:prefLabel "Tool"@en ;
            skos:definition "Legitimate software that can be used by threat actors to perform attacks. Distinguishable from malware by being designed for benign purposes but repurposed maliciously." .
 
 
-###  https://cyberterrain.org/ns/stone#URLObject
-stone:URLObject rdf:type owl:Class ;
-                rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#URLObject
+stones:URLObject rdf:type owl:Class ;
+                rdfs:subClassOf stones:StixCyberobservableObject ;
                 owl:equivalentClass [
                     a owl:Class ;
                     owl:intersectionOf (
-                        stone:StixObject
+                        stones:StixObject
                         [
                             a owl:Restriction ;
-                            owl:onProperty stone:stixType ;
+                            owl:onProperty stones:stixType ;
                             owl:hasValue "url"^^xsd:string ;
                         ]
                     ) ;
                 ] ;
+                rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                skos:prefLabel "URL Object"@en ;
                 skos:definition "Represents a Uniform Resource Locator conforming to RFC 3986." .
 
 
-###  https://cyberterrain.org/ns/stone#UserAccountObject
-stone:UserAccountObject rdf:type owl:Class ;
-                        rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#UserAccountObject
+stones:UserAccountObject rdf:type owl:Class ;
+                        rdfs:subClassOf stones:StixCyberobservableObject ;
                         owl:equivalentClass [
                             a owl:Class ;
                             owl:intersectionOf (
-                                stone:StixObject
+                                stones:StixObject
                                 [
                                     a owl:Restriction ;
-                                    owl:onProperty stone:stixType ;
+                                    owl:onProperty stones:stixType ;
                                     owl:hasValue "user-account"^^xsd:string ;
                                 ]
                             ) ;
                         ] ;
+                        rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                        skos:prefLabel "User Account Object"@en ;
                         skos:definition "Represents a user account on a system or service, including local OS accounts, cloud accounts, and social media accounts. Supports a unix-account extension for POSIX attributes." .
 
 
-###  https://cyberterrain.org/ns/stone#Vulnerability
-stone:Vulnerability rdf:type owl:Class ;
-                    rdfs:subClassOf stone:StixDomainObject ;
+###  https://cyberterrain.org/ns/stones#Vulnerability
+stones:Vulnerability rdf:type owl:Class ;
+                    rdfs:subClassOf stones:StixDomainObject ;
                     owl:equivalentClass [
                         a owl:Class ;
                         owl:intersectionOf (
-                            stone:StixObject
+                            stones:StixObject
                             [
                                 a owl:Restriction ;
-                                owl:onProperty stone:stixType ;
+                                owl:onProperty stones:stixType ;
                                 owl:hasValue "vulnerability"^^xsd:string ;
                             ]
                         ) ;
                     ] ;
+                    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                    skos:prefLabel "Vulnerability"@en ;
                     skos:definition "A mistake in software that can be directly used by a threat actor to gain access to a system or network. Typically identified by a CVE number via an external reference." .
 
 
-###  https://cyberterrain.org/ns/stone#WindowsPeSection
-stone:WindowsPeSection rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#WindowsPeSection
+stones:WindowsPeSection rdf:type owl:Class ;
+                       rdfs:subClassOf stones:StixSubType ;
+                       rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                       skos:prefLabel "Windows PE Section"@en ;
                        skos:definition "A single section entry within a Windows PE (Portable Executable) binary, described by its name, size, and optional entropy value." .
 
 
-###  https://cyberterrain.org/ns/stone#WindowsRegistryKetObject
-stone:WindowsRegistryKetObject rdf:type owl:Class ;
-                               rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#WindowsRegistryKeyObject
+stones:WindowsRegistryKeyObject rdf:type owl:Class ;
+                               rdfs:subClassOf stones:StixCyberobservableObject ;
                                owl:equivalentClass [
                                    a owl:Class ;
                                    owl:intersectionOf (
-                                       stone:StixObject
+                                       stones:StixObject
                                        [
                                            a owl:Restriction ;
-                                           owl:onProperty stone:stixType ;
+                                           owl:onProperty stones:stixType ;
                                            owl:hasValue "windows-registry-key"^^xsd:string ;
                                        ]
                                    ) ;
                                ] ;
+                               rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                               skos:prefLabel "Windows Registry Key Object"@en ;
                                skos:definition "Represents a Windows Registry key with its full path, value entries, modification timestamp, and creator." .
 
 
-###  https://cyberterrain.org/ns/stone#WindowsRegistryValue
-stone:WindowsRegistryValue rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#WindowsRegistryValue
+stones:WindowsRegistryValue rdf:type owl:Class ;
+                           rdfs:subClassOf stones:StixSubType ;
+                           rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                           skos:prefLabel "Windows Registry Value"@en ;
                            skos:definition "A single value entry within a Windows Registry key, comprising a name, a data string, and a registry data type." .
 
 
-###  https://cyberterrain.org/ns/stone#X509CertificateObject
-stone:X509CertificateObject rdf:type owl:Class ;
-                            rdfs:subClassOf stone:StixCyberobservableObject ;
+###  https://cyberterrain.org/ns/stones#X509CertificateObject
+stones:X509CertificateObject rdf:type owl:Class ;
+                            rdfs:subClassOf stones:StixCyberobservableObject ;
                             owl:equivalentClass [
                                 a owl:Class ;
                                 owl:intersectionOf (
-                                    stone:StixObject
+                                    stones:StixObject
                                     [
                                         a owl:Restriction ;
-                                        owl:onProperty stone:stixType ;
+                                        owl:onProperty stones:stixType ;
                                         owl:hasValue "x509-certificate"^^xsd:string ;
                                     ]
                                 ) ;
                             ] ;
+                            rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                            skos:prefLabel "X.509 Certificate Object"@en ;
                             skos:definition "Represents an X.509 digital certificate, capturing its subject, issuer, validity window, public key details, and optional v3 extensions." .
 
 
-###  https://cyberterrain.org/ns/stone#X509V3Extensions
-stone:X509V3Extensions rdf:type owl:Class ;
+###  https://cyberterrain.org/ns/stones#X509V3Extensions
+stones:X509V3Extensions rdf:type owl:Class ;
+                       rdfs:subClassOf stones:StixSubType ;
+                       rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+                       skos:prefLabel "X.509 v3 Extensions"@en ;
                        skos:definition "The set of X.509 version 3 extension fields present in a digital certificate, such as key usage, subject alternative names, and CRL distribution points." .
+
+
+#################################################################
+#    Disjointness Axioms
+#################################################################
+
+###  Direct children of stones:StixObject are mutually disjoint
+[]  rdf:type owl:AllDisjointClasses ;
+    owl:members ( stones:StixCoreObject
+                  stones:StixMetaObject
+                  stones:StixBundle ) .
+
+
+###  stones:stixId uniquely identifies any stones:StixObject individual
+stones:StixObject owl:hasKey ( stones:stixId ) .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
