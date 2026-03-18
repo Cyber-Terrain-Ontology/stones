@@ -13,7 +13,7 @@
                                       owl:versionIRI <https://cyberterrain.org/ns/stones/0.1.0> ;
                                       owl:versionInfo "0.1.0" ;
                                       rdfs:label "STONES"@en ;
-                                      dcterms:title "STONES — STIX Ontology for Network Environments"@en ;
+                                      dcterms:title "STONES — STIX ONtology Expression System"@en ;
                                       dcterms:description "An OWL 2 ontology modelling the STIX 2.1 specification. Provides a class hierarchy for all STIX Domain Objects (SDOs), Cyber Observable Objects (SCOs), Relationship Objects (SROs), Meta Objects, and structured sub-types, together with datatype and object properties covering all standard STIX properties."@en ;
                                       dcterms:creator "Hohimer Intelligence Strategies LLC" ;
                                       dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
