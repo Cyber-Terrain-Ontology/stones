@@ -48,6 +48,7 @@ stones:created rdf:type owl:DatatypeProperty ;
     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Timestamp when this object was created." ;
     rdfs:comment "(STIX: created)" ;
+    rdfs:domain stones:StixCoreObject ;
     rdfs:range xsd:dateTime .
 
 
@@ -56,6 +57,7 @@ stones:modified rdf:type owl:DatatypeProperty ;
     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Timestamp when this object was last modified. MUST be >= created." ;
     rdfs:comment "(STIX: modified)" ;
+    rdfs:domain stones:StixCoreObject ;
     rdfs:range xsd:dateTime .
 
 

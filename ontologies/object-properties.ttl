@@ -19,6 +19,7 @@ stones:createdByRef rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Reference to the Identity SDO that created this STIX object." ;
     rdfs:comment "(STIX: created_by_ref)" ;
+    rdfs:domain stones:StixCoreObject ;
     rdfs:range stones:Identity .
 
 
@@ -27,6 +28,7 @@ stones:objectMarkingRefs rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to MarkingDefinition objects that apply data-handling markings to this entire object." ;
     rdfs:comment "(STIX: object_marking_refs)" ;
+    rdfs:domain stones:StixCoreObject ;
     rdfs:range stones:MarkingDefinitionObject .
 
 
@@ -35,6 +37,7 @@ stones:granularMarkings rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "Property-level data-handling markings targeting specific fields of this object." ;
     rdfs:comment "(STIX: granular_markings)" ;
+    rdfs:domain stones:StixCoreObject ;
     rdfs:range stones:GranularMarking .
 
 
@@ -43,6 +46,7 @@ stones:externalReferences rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
     skos:definition "References to non-STIX information sources such as CVEs, ATT&CK techniques, or URLs." ;
     rdfs:comment "(STIX: external_references)" ;
+    rdfs:domain stones:StixCoreObject ;
     rdfs:range stones:ExternalReference .
 
 

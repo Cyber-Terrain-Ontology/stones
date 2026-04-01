@@ -28,7 +28,10 @@
 
 ###  https://cyberterrain.org/ns/stones#AlternateDataStream
 stones:AlternateDataStream rdf:type owl:Class ;
-                          rdfs:subClassOf stones:StixSubType ;
+                          rdfs:subClassOf stones:StixSubType ,
+                              [ a owl:Restriction ;
+                                owl:onProperty stones:name ;
+                                owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                           rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                           skos:prefLabel "Alternate Data Stream"@en ;
                           skos:definition "An NTFS Alternate Data Stream (ADS) attached to a file, identified by name with optional hashes and size." .
@@ -55,7 +58,10 @@ stones:ArtifactObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#AttackPattern
 stones:AttackPattern rdf:type owl:Class ;
-                    rdfs:subClassOf stones:StixDomainObject ;
+                    rdfs:subClassOf stones:StixDomainObject ,
+                        [ a owl:Restriction ;
+                          owl:onProperty stones:name ;
+                          owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                     owl:equivalentClass [
                         a owl:Class ;
                         owl:intersectionOf (
@@ -93,7 +99,10 @@ stones:AutonomousSystemObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Campaign
 stones:Campaign rdf:type owl:Class ;
-               rdfs:subClassOf stones:StixDomainObject ;
+               rdfs:subClassOf stones:StixDomainObject ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:name ;
+                     owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
@@ -112,7 +121,10 @@ stones:Campaign rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#CourseOfAction
 stones:CourseOfAction rdf:type owl:Class ;
-                     rdfs:subClassOf stones:StixDomainObject ;
+                     rdfs:subClassOf stones:StixDomainObject ,
+                         [ a owl:Restriction ;
+                           owl:onProperty stones:name ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                      owl:equivalentClass [
                          a owl:Class ;
                          owl:intersectionOf (
@@ -234,7 +246,10 @@ stones:ExtensionDefinitionObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#ExternalReference
 stones:ExternalReference rdf:type owl:Class ;
-                        rdfs:subClassOf stones:StixSubType ;
+                        rdfs:subClassOf stones:StixSubType ,
+                            [ a owl:Restriction ;
+                              owl:onProperty stones:sourceName ;
+                              owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                         rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                         skos:prefLabel "External Reference"@en ;
                         skos:definition "A structured reference to non-STIX information, such as a CVE entry, MITRE ATT&CK technique, or external URL. Used to link STIX content to authoritative external sources." .
@@ -261,7 +276,13 @@ stones:FileObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#GranularMarking
 stones:GranularMarking rdf:type owl:Class ;
-                      rdfs:subClassOf stones:StixSubType ;
+                      rdfs:subClassOf stones:StixSubType ,
+                          [ a owl:Restriction ;
+                            owl:onProperty stones:markingRef ;
+                            owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                          [ a owl:Restriction ;
+                            owl:onProperty stones:selectors ;
+                            owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                       rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                       skos:prefLabel "Granular Marking"@en ;
                       skos:definition "A property-level data handling marking that applies a marking definition to specific named fields of a STIX object, enabling fine-grained access control." .
@@ -269,7 +290,13 @@ stones:GranularMarking rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Grouping
 stones:Grouping rdf:type owl:Class ;
-               rdfs:subClassOf stones:StixDomainObject ;
+               rdfs:subClassOf stones:StixDomainObject ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:context ;
+                     owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:objectRefs ;
+                     owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
@@ -288,7 +315,13 @@ stones:Grouping rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#HashEntry
 stones:HashEntry rdf:type owl:Class ;
-                rdfs:subClassOf stones:StixSubType ;
+                rdfs:subClassOf stones:StixSubType ,
+                    [ a owl:Restriction ;
+                      owl:onProperty stones:algorithm ;
+                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                    [ a owl:Restriction ;
+                      owl:onProperty stones:hashValue ;
+                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                 rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                 skos:prefLabel "Hash Entry"@en ;
                 skos:definition "A single cryptographic hash entry associating a hashing algorithm with its hex-encoded digest value. Used to represent entries in the STIX hashes dictionary." .
@@ -334,7 +367,10 @@ stones:IPv6AddressObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Identity
 stones:Identity rdf:type owl:Class ;
-               rdfs:subClassOf stones:StixDomainObject ;
+               rdfs:subClassOf stones:StixDomainObject ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:name ;
+                     owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
@@ -353,7 +389,19 @@ stones:Identity rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Indicator
 stones:Indicator rdf:type owl:Class ;
-                rdfs:subClassOf stones:StixDomainObject ;
+                rdfs:subClassOf stones:StixDomainObject ,
+                    [ a owl:Restriction ;
+                      owl:onProperty stones:indicatorTypes ;
+                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                    [ a owl:Restriction ;
+                      owl:onProperty stones:pattern ;
+                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                    [ a owl:Restriction ;
+                      owl:onProperty stones:patternType ;
+                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                    [ a owl:Restriction ;
+                      owl:onProperty stones:validFrom ;
+                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                 owl:equivalentClass [
                     a owl:Class ;
                     owl:intersectionOf (
@@ -372,7 +420,13 @@ stones:Indicator rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Infrastructure
 stones:Infrastructure rdf:type owl:Class ;
-                     rdfs:subClassOf stones:StixDomainObject ;
+                     rdfs:subClassOf stones:StixDomainObject ,
+                         [ a owl:Restriction ;
+                           owl:onProperty stones:name ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                         [ a owl:Restriction ;
+                           owl:onProperty stones:infrastructureTypes ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                      owl:equivalentClass [
                          a owl:Class ;
                          owl:intersectionOf (
@@ -391,7 +445,10 @@ stones:Infrastructure rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#IntrusionSet
 stones:IntrusionSet rdf:type owl:Class ;
-                   rdfs:subClassOf stones:StixDomainObject ;
+                   rdfs:subClassOf stones:StixDomainObject ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:name ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                    owl:equivalentClass [
                        a owl:Class ;
                        owl:intersectionOf (
@@ -410,7 +467,13 @@ stones:IntrusionSet rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#KillChainPhase
 stones:KillChainPhase rdf:type owl:Class ;
-                     rdfs:subClassOf stones:StixSubType ;
+                     rdfs:subClassOf stones:StixSubType ,
+                         [ a owl:Restriction ;
+                           owl:onProperty stones:killChainName ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                         [ a owl:Restriction ;
+                           owl:onProperty stones:phaseName ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                      rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                      skos:prefLabel "Kill Chain Phase"@en ;
                      skos:definition "Represents a phase within a named kill chain framework, such as the MITRE ATT&CK or Lockheed Martin Cyber Kill Chain, used to categorise the stage of an attack." .
@@ -437,7 +500,19 @@ stones:LanguageContentObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Location
 stones:Location rdf:type owl:Class ;
-               rdfs:subClassOf stones:StixDomainObject ;
+               rdfs:subClassOf stones:StixDomainObject ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:region ;
+                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:country ;
+                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:latitude ;
+                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:longitude ;
+                     owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
@@ -475,7 +550,13 @@ stones:MACAddressObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Malware
 stones:Malware rdf:type owl:Class ;
-              rdfs:subClassOf stones:StixDomainObject ;
+              rdfs:subClassOf stones:StixDomainObject ,
+                  [ a owl:Restriction ;
+                    owl:onProperty stones:malwareTypes ;
+                    owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                  [ a owl:Restriction ;
+                    owl:onProperty stones:isFamily ;
+                    owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
               owl:equivalentClass [
                   a owl:Class ;
                   owl:intersectionOf (
@@ -494,7 +575,10 @@ stones:Malware rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#MalwareAnalysis
 stones:MalwareAnalysis rdf:type owl:Class ;
-                      rdfs:subClassOf stones:StixDomainObject ;
+                      rdfs:subClassOf stones:StixDomainObject ,
+                          [ a owl:Restriction ;
+                            owl:onProperty stones:product ;
+                            owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                       owl:equivalentClass [
                           a owl:Class ;
                           owl:intersectionOf (
@@ -570,7 +654,13 @@ stones:NetworkTrafficObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Note
 stones:Note rdf:type owl:Class ;
-           rdfs:subClassOf stones:StixDomainObject ;
+           rdfs:subClassOf stones:StixDomainObject ,
+               [ a owl:Restriction ;
+                 owl:onProperty stones:content ;
+                 owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+               [ a owl:Restriction ;
+                 owl:onProperty stones:objectRefs ;
+                 owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
            owl:equivalentClass [
                a owl:Class ;
                owl:intersectionOf (
@@ -589,7 +679,19 @@ stones:Note rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#ObservedData
 stones:ObservedData rdf:type owl:Class ;
-                   rdfs:subClassOf stones:StixDomainObject ;
+                   rdfs:subClassOf stones:StixDomainObject ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:firstObserved ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:lastObserved ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:numberObserved ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:objectRefs ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                    owl:equivalentClass [
                        a owl:Class ;
                        owl:intersectionOf (
@@ -608,7 +710,13 @@ stones:ObservedData rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Opinion
 stones:Opinion rdf:type owl:Class ;
-              rdfs:subClassOf stones:StixDomainObject ;
+              rdfs:subClassOf stones:StixDomainObject ,
+                  [ a owl:Restriction ;
+                    owl:onProperty stones:opinion ;
+                    owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                  [ a owl:Restriction ;
+                    owl:onProperty stones:objectRefs ;
+                    owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
               owl:equivalentClass [
                   a owl:Class ;
                   owl:intersectionOf (
@@ -646,7 +754,16 @@ stones:ProcessObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Relationship
 stones:Relationship rdf:type owl:Class ;
-                   rdfs:subClassOf stones:StixRelationshipObject ;
+                   rdfs:subClassOf stones:StixRelationshipObject ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:relationshipType ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:sourceRef ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                       [ a owl:Restriction ;
+                         owl:onProperty stones:targetRef ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                    owl:equivalentClass [
                        a owl:Class ;
                        owl:intersectionOf (
@@ -665,7 +782,19 @@ stones:Relationship rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Report
 stones:Report rdf:type owl:Class ;
-             rdfs:subClassOf stones:StixDomainObject ;
+             rdfs:subClassOf stones:StixDomainObject ,
+                 [ a owl:Restriction ;
+                   owl:onProperty stones:name ;
+                   owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                 [ a owl:Restriction ;
+                   owl:onProperty stones:reportTypes ;
+                   owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                 [ a owl:Restriction ;
+                   owl:onProperty stones:published ;
+                   owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                 [ a owl:Restriction ;
+                   owl:onProperty stones:objectRefs ;
+                   owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
              owl:equivalentClass [
                  a owl:Class ;
                  owl:intersectionOf (
@@ -684,7 +813,10 @@ stones:Report rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Sighting
 stones:Sighting rdf:type owl:Class ;
-               rdfs:subClassOf stones:StixRelationshipObject ;
+               rdfs:subClassOf stones:StixRelationshipObject ,
+                   [ a owl:Restriction ;
+                     owl:onProperty stones:sightingOfRef ;
+                     owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                owl:equivalentClass [
                    a owl:Class ;
                    owl:intersectionOf (
@@ -741,7 +873,13 @@ stones:StixBundle rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#StixCoreObject
 stones:StixCoreObject rdf:type owl:Class ;
-                     rdfs:subClassOf stones:StixObject ;
+                     rdfs:subClassOf stones:StixObject ,
+                         [ a owl:Restriction ;
+                           owl:onProperty stones:created ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                         [ a owl:Restriction ;
+                           owl:onProperty stones:modified ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                      rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                      skos:prefLabel "STIX Core Object"@en ;
                      skos:definition "Abstract class for STIX Core Objects, comprising SDOs, SCOs, and SROs. Core objects carry a type-qualified identifier and created/modified timestamps, and may be referenced by other objects." .
@@ -773,6 +911,16 @@ stones:StixMetaObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#StixObject
 stones:StixObject rdf:type owl:Class ;
+                 rdfs:subClassOf
+                     [ a owl:Restriction ;
+                       owl:onProperty stones:stixId ;
+                       owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                     [ a owl:Restriction ;
+                       owl:onProperty stones:stixType ;
+                       owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                     [ a owl:Restriction ;
+                       owl:onProperty stones:specVersion ;
+                       owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                  rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                  skos:prefLabel "STIX Object"@en ;
                  skos:definition "The top-level abstract class for all STIX objects, encompassing STIX Core Objects (SDOs, SCOs, SROs), Meta Objects, and Bundles." .
@@ -796,7 +944,13 @@ stones:StixSubType rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#ThreatActor
 stones:ThreatActor rdf:type owl:Class ;
-                  rdfs:subClassOf stones:StixDomainObject ;
+                  rdfs:subClassOf stones:StixDomainObject ,
+                      [ a owl:Restriction ;
+                        owl:onProperty stones:name ;
+                        owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                      [ a owl:Restriction ;
+                        owl:onProperty stones:threatActorTypes ;
+                        owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                   owl:equivalentClass [
                       a owl:Class ;
                       owl:intersectionOf (
@@ -815,7 +969,13 @@ stones:ThreatActor rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Tool
 stones:Tool rdf:type owl:Class ;
-           rdfs:subClassOf stones:StixDomainObject ;
+           rdfs:subClassOf stones:StixDomainObject ,
+               [ a owl:Restriction ;
+                 owl:onProperty stones:name ;
+                 owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+               [ a owl:Restriction ;
+                 owl:onProperty stones:toolTypes ;
+                 owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
            owl:equivalentClass [
                a owl:Class ;
                owl:intersectionOf (
@@ -872,7 +1032,10 @@ stones:UserAccountObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#Vulnerability
 stones:Vulnerability rdf:type owl:Class ;
-                    rdfs:subClassOf stones:StixDomainObject ;
+                    rdfs:subClassOf stones:StixDomainObject ,
+                        [ a owl:Restriction ;
+                          owl:onProperty stones:name ;
+                          owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                     owl:equivalentClass [
                         a owl:Class ;
                         owl:intersectionOf (
@@ -891,7 +1054,10 @@ stones:Vulnerability rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#WindowsPeSection
 stones:WindowsPeSection rdf:type owl:Class ;
-                       rdfs:subClassOf stones:StixSubType ;
+                       rdfs:subClassOf stones:StixSubType ,
+                           [ a owl:Restriction ;
+                             owl:onProperty stones:name ;
+                             owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                        rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                        skos:prefLabel "Windows PE Section"@en ;
                        skos:definition "A single section entry within a Windows PE (Portable Executable) binary, described by its name, size, and optional entropy value." .
@@ -918,7 +1084,10 @@ stones:WindowsRegistryKeyObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#WindowsRegistryValue
 stones:WindowsRegistryValue rdf:type owl:Class ;
-                           rdfs:subClassOf stones:StixSubType ;
+                           rdfs:subClassOf stones:StixSubType ,
+                               [ a owl:Restriction ;
+                                 owl:onProperty stones:name ;
+                                 owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                            rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                            skos:prefLabel "Windows Registry Value"@en ;
                            skos:definition "A single value entry within a Windows Registry key, comprising a name, a data string, and a registry data type." .
