@@ -8,6 +8,25 @@ STIX 2.1 is an OASIS Standard designed to express cyber‑threat and observabl
 
 By grounding STIX 2.1 in OWL2 (or similar formal ontology language), organizations gain a machine‑interpretable foundation for threat intelligence fusion, validation, enrichment, and reasoning—capabilities essential for modern cyber‑defense ecosystems. This ontological layer becomes especially valuable as STIX is increasingly used in automated threat detection and response workflows, where precise semantics and inferencing directly improve decision quality and operational resilience.
 
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/Cyber-Terrain-Ontology/stones.git
+cd stones
+```
+
+### Activate the pre-commit hook
+
+Run this once after cloning to enable the pre-commit hook (strips Protégé's default prefix from `.ttl` files and keeps the ontology catalog read-only):
+
+```bash
+git config core.hooksPath .githooks
+```
+
+---
+
 ## License
 STONES is released under the MIT License.  
 This license allows broad reuse, extension, and integration of the ontology in both open-source and commercial environments.  
