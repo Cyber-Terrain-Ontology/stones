@@ -1,0 +1,214 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix stones: <https://cyberterrain.org/ns/stones#> .
+@base <https://cyberterrain.org/ns/stones#> .
+
+###  https://cyberterrain.org/ns/stones-classification#
+<https://cyberterrain.org/ns/stones-classification#> rdf:type owl:Ontology ;
+    owl:versionIRI <https://cyberterrain.org/ns/stones-classification/0.1.1> ;
+    owl:imports <https://cyberterrain.org/ns/stones-core> ;
+    rdfs:label "STONES Classifications"@en .
+
+#################################################################
+#    Abstract Structural Classes
+#################################################################
+
+stones:StixObject 
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty stones:stixId ;       owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty stones:stixType ;     owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty stones:specVersion ;  owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
+
+stones:StixCoreObject 
+    rdfs:subClassOf stones:StixObject ,
+        [ a owl:Restriction ; owl:onProperty stones:created ;  owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+        [ a owl:Restriction ; owl:onProperty stones:modified ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
+
+stones:StixDomainObject rdfs:subClassOf stones:StixCoreObject .
+stones:StixCyberobservableObject rdfs:subClassOf stones:StixCoreObject .
+stones:StixRelationshipObject rdfs:subClassOf stones:StixCoreObject .
+stones:StixMetaObject rdfs:subClassOf stones:StixObject .
+stones:StixSubType rdfs:subClassOf owl:Thing ;
+    owl:disjointWith stones:StixObject .
+
+stones:StixBundle 
+    rdfs:subClassOf stones:StixObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "bundle"^^xsd:string ] ) ] .
+
+#################################################################
+#    STIX Domain Objects (SDOs)
+#################################################################
+
+stones:AttackPattern 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "attack-pattern"^^xsd:string ] ) ] .
+
+stones:Campaign 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "campaign"^^xsd:string ] ) ] .
+
+stones:CourseOfAction 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "course-of-action"^^xsd:string ] ) ] .
+
+stones:Grouping 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "grouping"^^xsd:string ] ) ] .
+
+stones:Identity 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "identity"^^xsd:string ] ) ] .
+
+stones:Indicator 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "indicator"^^xsd:string ] ) ] .
+
+stones:Infrastructure 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "infrastructure"^^xsd:string ] ) ] .
+
+stones:IntrusionSet 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "intrusion-set"^^xsd:string ] ) ] .
+
+stones:Location 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "location"^^xsd:string ] ) ] .
+
+stones:Malware 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "malware"^^xsd:string ] ) ] .
+
+stones:MalwareAnalysis 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "malware-analysis"^^xsd:string ] ) ] .
+
+stones:Note 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "note"^^xsd:string ] ) ] .
+
+stones:ObservedData 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "observed-data"^^xsd:string ] ) ] .
+
+stones:Opinion 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "opinion"^^xsd:string ] ) ] .
+
+stones:Report 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "report"^^xsd:string ] ) ] .
+
+stones:Relationship 
+    rdfs:subClassOf stones:StixRelationshipObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "relationship"^^xsd:string ] ) ] .
+
+stones:Sighting 
+    rdfs:subClassOf stones:StixRelationshipObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "sighting"^^xsd:string ] ) ] .
+
+stones:ThreatActor 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "threat-actor"^^xsd:string ] ) ] .
+
+stones:Tool 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "tool"^^xsd:string ] ) ] .
+
+stones:Vulnerability 
+    rdfs:subClassOf stones:StixDomainObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "vulnerability"^^xsd:string ] ) ] .
+
+#################################################################
+#    STIX Cyber Observable Objects (SCOs)
+#################################################################
+
+stones:ArtifactObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "artifact"^^xsd:string ] ) ] .
+
+stones:AutonomousSystemObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "autonomous-system"^^xsd:string ] ) ] .
+
+stones:DirectoryObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "directory"^^xsd:string ] ) ] .
+
+stones:DomainNameObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "domain-name"^^xsd:string ] ) ] .
+
+stones:EmailAddressObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "email-addr"^^xsd:string ] ) ] .
+
+stones:EmailMessageObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "email-message"^^xsd:string ] ) ] .
+
+stones:FileObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "file"^^xsd:string ] ) ] .
+
+stones:IPv4AddressObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "ipv4-addr"^^xsd:string ] ) ] .
+
+stones:IPv6AddressObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "ipv6-addr"^^xsd:string ] ) ] .
+
+stones:MACAddressObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "mac-addr"^^xsd:string ] ) ] .
+
+stones:MutexObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "mutex"^^xsd:string ] ) ] .
+
+stones:NetworkTrafficObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "network-traffic"^^xsd:string ] ) ] .
+
+stones:ProcessObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "process"^^xsd:string ] ) ] .
+
+stones:SoftwareObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "software"^^xsd:string ] ) ] .
+
+stones:URLObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "url"^^xsd:string ] ) ] .
+
+stones:UserAccountObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "user-account"^^xsd:string ] ) ] .
+
+stones:WindowsRegistryKeyObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "windows-registry-key"^^xsd:string ] ) ] .
+
+stones:X509CertificateObject 
+    rdfs:subClassOf stones:StixCyberobservableObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "x509-certificate"^^xsd:string ] ) ] .
+
+#################################################################
+#    Meta Objects
+#################################################################
+
+stones:ExtensionDefinitionObject 
+    rdfs:subClassOf stones:StixMetaObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "extension-definition"^^xsd:string ] ) ] .
+
+stones:LanguageContentObject 
+    rdfs:subClassOf stones:StixMetaObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "language-content"^^xsd:string ] ) ] .
+
+stones:MarkingDefinitionObject 
+    rdfs:subClassOf stones:StixMetaObject ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( stones:StixObject [ a owl:Restriction ; owl:onProperty stones:stixType ; owl:hasValue "marking-definition"^^xsd:string ] ) ] .
