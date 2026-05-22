@@ -178,6 +178,11 @@ stones:RegionVocabulary rdf:type owl:Class ;
                        rdfs:subClassOf stones:OpenVocabulary .
 
 
+###  https://cyberterrain.org/ns/stones#RelationshipTypeVocabulary
+stones:RelationshipTypeVocabulary rdf:type owl:Class ;
+                                 rdfs:subClassOf stones:OpenVocabulary .
+
+
 ###  https://cyberterrain.org/ns/stones#ReportTypeVocabulary
 stones:ReportTypeVocabulary rdf:type owl:Class ;
                            rdfs:subClassOf stones:OpenVocabulary .
@@ -2255,6 +2260,180 @@ stonex:_x86-64 rdf:type owl:NamedIndividual ,
 stonex:_yara rdf:type owl:NamedIndividual ,
                       stones:PatternTypeVocabulary ;
              skos:notation "yara"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_analysis-of
+stonex:_analysis-of rdf:type owl:NamedIndividual ,
+                             stones:RelationshipTypeVocabulary ;
+                    skos:notation "analysis-of"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_attributed-to
+stonex:_attributed-to rdf:type owl:NamedIndividual ,
+                               stones:RelationshipTypeVocabulary ;
+                      skos:notation "attributed-to"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_authored-by
+stonex:_authored-by rdf:type owl:NamedIndividual ,
+                             stones:RelationshipTypeVocabulary ;
+                    skos:notation "authored-by"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_based-on
+stonex:_based-on rdf:type owl:NamedIndividual ,
+                          stones:RelationshipTypeVocabulary ;
+                 skos:notation "based-on"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_beacons-to
+stonex:_beacons-to rdf:type owl:NamedIndividual ,
+                            stones:RelationshipTypeVocabulary ;
+                   skos:notation "beacons-to"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_characterizes
+stonex:_characterizes rdf:type owl:NamedIndividual ,
+                               stones:RelationshipTypeVocabulary ;
+                      skos:notation "characterizes"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_compromises
+stonex:_compromises rdf:type owl:NamedIndividual ,
+                             stones:RelationshipTypeVocabulary ;
+                    skos:notation "compromises"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_derived-from
+stonex:_derived-from rdf:type owl:NamedIndividual ,
+                              stones:RelationshipTypeVocabulary ;
+                     skos:notation "derived-from"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_detects
+stonex:_detects rdf:type owl:NamedIndividual ,
+                         stones:RelationshipTypeVocabulary ;
+                skos:notation "detects"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_downloads
+stonex:_downloads rdf:type owl:NamedIndividual ,
+                           stones:RelationshipTypeVocabulary ;
+                  skos:notation "downloads"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_drops
+stonex:_drops rdf:type owl:NamedIndividual ,
+                       stones:RelationshipTypeVocabulary ;
+              skos:notation "drops"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_duplicate-of
+stonex:_duplicate-of rdf:type owl:NamedIndividual ,
+                              stones:RelationshipTypeVocabulary ;
+                     skos:notation "duplicate-of"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_dynamic-analysis-of
+stonex:_dynamic-analysis-of rdf:type owl:NamedIndividual ,
+                                     stones:RelationshipTypeVocabulary ;
+                             skos:notation "dynamic-analysis-of"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_exfiltrates-to
+stonex:_exfiltrates-to rdf:type owl:NamedIndividual ,
+                                stones:RelationshipTypeVocabulary ;
+                       skos:notation "exfiltrates-to"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_exploits
+stonex:_exploits rdf:type owl:NamedIndividual ,
+                          stones:RelationshipTypeVocabulary ;
+                 skos:notation "exploits"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_hosts
+stonex:_hosts rdf:type owl:NamedIndividual ,
+                       stones:RelationshipTypeVocabulary ;
+              skos:notation "hosts"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_indicates
+stonex:_indicates rdf:type owl:NamedIndividual ,
+                           stones:RelationshipTypeVocabulary ;
+                  skos:notation "indicates"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_located-at
+stonex:_located-at rdf:type owl:NamedIndividual ,
+                            stones:RelationshipTypeVocabulary ;
+                   skos:notation "located-at"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_mitigates
+stonex:_mitigates rdf:type owl:NamedIndividual ,
+                           stones:RelationshipTypeVocabulary ;
+                  skos:notation "mitigates"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_originates-from
+stonex:_originates-from rdf:type owl:NamedIndividual ,
+                                 stones:RelationshipTypeVocabulary ;
+                        skos:notation "originates-from"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_owns
+stonex:_owns rdf:type owl:NamedIndividual ,
+                      stones:RelationshipTypeVocabulary ;
+             skos:notation "owns"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_related-to
+stonex:_related-to rdf:type owl:NamedIndividual ,
+                            stones:RelationshipTypeVocabulary ;
+                   skos:notation "related-to"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_remediates
+stonex:_remediates rdf:type owl:NamedIndividual ,
+                            stones:RelationshipTypeVocabulary ;
+                   skos:notation "remediates"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_revoked-by
+stonex:_revoked-by rdf:type owl:NamedIndividual ,
+                            stones:RelationshipTypeVocabulary ;
+                   skos:notation "revoked-by"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_static-analysis-of
+stonex:_static-analysis-of rdf:type owl:NamedIndividual ,
+                                    stones:RelationshipTypeVocabulary ;
+                            skos:notation "static-analysis-of"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_subtechnique-of
+stonex:_subtechnique-of rdf:type owl:NamedIndividual ,
+                                 stones:RelationshipTypeVocabulary ;
+                        skos:notation "subtechnique-of"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_targets
+stonex:_targets rdf:type owl:NamedIndividual ,
+                         stones:RelationshipTypeVocabulary ;
+                skos:notation "targets"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_uses
+stonex:_uses rdf:type owl:NamedIndividual ,
+                      stones:RelationshipTypeVocabulary ;
+             skos:notation "uses"^^xsd:string .
+
+
+###  https://cyberterrain.org/ns/stonex#_variant-of
+stonex:_variant-of rdf:type owl:NamedIndividual ,
+                            stones:RelationshipTypeVocabulary ;
+                   skos:notation "variant-of"^^xsd:string .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
