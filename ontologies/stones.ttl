@@ -1,4 +1,3 @@
-@prefix : <https://cyberterrain.org/ns/stones#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -16,7 +15,7 @@
                                       dcterms:title "STONES — STIX ONtology Expression System"@en ;
                                       dcterms:description "An OWL 2 ontology modelling the STIX 2.1 specification. Provides a class hierarchy for all STIX Domain Objects (SDOs), Cyber Observable Objects (SCOs), Relationship Objects (SROs), Meta Objects, and structured sub-types, together with datatype and object properties covering all standard STIX properties."@en ;
                                       dcterms:creator "Hohimer Intelligence Strategies LLC" ;
-                                      dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                      dcterms:license <https://opensource.org/licenses/MIT> ;
                                       owl:imports <http://www.w3.org/2004/02/skos/core> ,
                                                   <https://cyberterrain.org/ns/datatype-properties#> ,
                                                   <https://cyberterrain.org/ns/object-properties#> ,
