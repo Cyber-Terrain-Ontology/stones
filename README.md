@@ -13,13 +13,20 @@ STONES is independent work. It is not affiliated with OASIS or the OASIS Cyber T
 
 ---
 
+## Status
+
+**v0.1.0 — Active Development**
+
+The core class hierarchy and namespace (`https://cyberterrain.org/ns/stones#`) are stable and will not change. Coverage tracks the STIX 2.1 specification. Axiomatics and edge-case modeling are under ongoing refinement. Feedback, issues, and contributions are welcome.
+
+---
+
 ## What STONES enables
 
 - **SPARQL queries** across STIX-structured threat intelligence data
 - **OWL reasoning** over CTI — infer relationships, classify instances, detect inconsistencies
 - **Knowledge graph integration** — connect STIX data to other ontologies and enterprise knowledge systems
 - **Semantic interoperability** — a shared formal model that transcends tool-specific JSON representations
-- **gistCyber alignment** — STONES is imported by [gistCyber](https://github.com/semanticarts/gistCyber) (Semantic Arts), bridging STIX 2.1 to the gist enterprise ontology stack
 
 ---
 
@@ -100,6 +107,12 @@ git config core.hooksPath .githooks
 - **STONEWORK** — extends STONES with MITRE ATT&CK, D3FEND, CWE, NIST SP 800-53, and CIS Critical Controls
 
 Both ontologies are candidate submissions to the **Cyber Ontology Foundry**, alongside MITRE's D3FEND Framework Ontology.
+
+---
+
+## Adopters
+
+*Using STONES in a project or product? Open an issue or pull request to be listed here.*
 
 ---
 
