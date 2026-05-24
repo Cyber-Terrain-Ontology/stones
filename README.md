@@ -1,14 +1,68 @@
 
 ![STONES Badge](docs/resources/images/stones-badge-sub.png)
-# STIX ONtology Expression System (STONES)
 
-The STONE project includes a complete and robust ontological representation of the OASIS STIX 2.1 Standard. It transforms a complex, JSON‑based cyber‑threat intelligence language into a formally precise, interoperable, and semantically consistent knowledge model.
+# STONES — STIX ONtology Expression System
 
-STIX 2.1 is an OASIS Standard designed to express cyber‑threat and observable information in a structured way, defining the concepts and overall structure of the language. While the standard is widely used, its JSON serialization lacks the logical rigor, inferencing capability, and cross‑domain alignment needed for advanced analytics, automated reasoning, and integration with broader cybersecurity ontologies. A formal ontology resolves these gaps by providing explicit semantics for STIX objects, relationships, and constraints, enabling consistent interpretation across tools and organizations. It also addresses long‑standing interoperability challenges identified in earlier STIX versions, where multiple modeling approaches and optionality created inconsistent implementations.
+**STONES is an OWL 2 ontology that gives STIX 2.1 formal semantics.**
 
-By grounding STIX 2.1 in OWL2 (or similar formal ontology language), organizations gain a machine‑interpretable foundation for threat intelligence fusion, validation, enrichment, and reasoning—capabilities essential for modern cyber‑defense ecosystems. This ontological layer becomes especially valuable as STIX is increasingly used in automated threat detection and response workflows, where precise semantics and inferencing directly improve decision quality and operational resilience.
+STIX 2.1 is the OASIS standard for representing and sharing cyber threat intelligence. It is widely used, richly detailed, and entirely non-ontological — a JSON schema whose semantics live in prose, not in a machine-interpretable model. STONES changes that. Every STIX 2.1 domain object, observable, and relationship type is represented as a named OWL class or property, preserving the meaning of the specification while enabling SPARQL querying, OWL reasoning, and knowledge graph integration.
 
-## Getting Started
+STONES is independent work. It is not affiliated with OASIS or the OASIS Cyber Threat Intelligence Technical Committee (CTI-TC).
+
+> STONES is a candidate ontology for the **Cyber Ontology Foundry**, announced at STIDS 2026.
+
+---
+
+## What STONES enables
+
+- **SPARQL queries** across STIX-structured threat intelligence data
+- **OWL reasoning** over CTI — infer relationships, classify instances, detect inconsistencies
+- **Knowledge graph integration** — connect STIX data to other ontologies and enterprise knowledge systems
+- **Semantic interoperability** — a shared formal model that transcends tool-specific JSON representations
+- **gistCyber alignment** — STONES is imported by [gistCyber](https://github.com/semanticarts/gistCyber) (Semantic Arts), bridging STIX 2.1 to the gist enterprise ontology stack
+
+---
+
+## Quick Start — Using the Ontology
+
+### 1. Download
+
+Download the single-file ontology:
+
+```
+ontologies/stones-merged.ttl
+```
+
+Or clone the full repository (see Developer Setup below).
+
+### 2. Load into a triplestore
+
+Load `stones-merged.ttl` into any OWL-compatible triplestore:
+[AllegroGraph](https://allegrograph.com) · [Stardog](https://stardog.com) · [GraphDB](https://graphdb.ontotext.com) · [Apache Jena / Fuseki](https://jena.apache.org)
+
+### 3. Verify with SPARQL
+
+```sparql
+PREFIX stones: <https://cyberterrain.org/ns/stones#>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?class ?label WHERE {
+  ?class a owl:Class ;
+         rdfs:label ?label .
+}
+ORDER BY ?label
+```
+
+This returns all STIX 2.1 domain object classes with their labels — confirming the ontology loaded correctly.
+
+### 4. Go deeper
+
+Load your STIX 2.1 data alongside STONES and query across both. See the worked examples and full documentation at [cyberterrain.org](https://cyberterrain.org).
+
+---
+
+## Developer Setup
 
 ### Clone the repository
 
@@ -19,7 +73,7 @@ cd stones
 
 ### Activate the pre-commit hook
 
-Run this once after cloning to enable the pre-commit hook (strips Protégé's default prefix from `.ttl` files and keeps the ontology catalog read-only):
+Run once after cloning to enable the pre-commit hook (strips Protégé's default prefix from `.ttl` files and keeps the ontology catalog read-only):
 
 ```bash
 git config core.hooksPath .githooks
@@ -27,7 +81,28 @@ git config core.hooksPath .githooks
 
 ---
 
+## Documentation
+
+| Resource | URL |
+|---|---|
+| Website | [cyberterrain.org](https://cyberterrain.org) |
+| Ontology reference (WIDOCO) | [cyberterrain.org/ns/stones/doc](https://cyberterrain.org/ns/stones/doc/) |
+| Namespace | `https://cyberterrain.org/ns/stones#` |
+| Extension ontology | [STONEWORK](https://github.com/Cyber-Terrain-Ontology/stonework) |
+
+---
+
+## Ecosystem
+
+**STONES + STONEWORK** form a composable semantic stack for AI-driven CTI analysis:
+
+- **STONES** — faithful OWL 2 binding of STIX 2.1 *(this repository)*
+- **STONEWORK** — extends STONES with MITRE ATT&CK, D3FEND, CWE, NIST SP 800-53, and CIS Critical Controls
+
+Both ontologies are candidate submissions to the **Cyber Ontology Foundry**, alongside MITRE's D3FEND Framework Ontology.
+
+---
+
 ## License
-STONES is released under the MIT License.  
-This license allows broad reuse, extension, and integration of the ontology in both open-source and commercial environments.  
-See the LICENSE file for full details.
+
+STONES is released under the **MIT License** — free to use, extend, and integrate in both open-source and commercial environments. See [LICENSE](LICENSE) for full terms.
