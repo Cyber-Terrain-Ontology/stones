@@ -15,7 +15,7 @@ STONES is independent work. It is not affiliated with OASIS or the OASIS Cyber T
 
 ## Status
 
-**v0.1.0 — Active Development**
+**v0.2.0 — Active Development** ([changes](CHANGELOG.md))
 
 The core class hierarchy and namespace (`https://cyberterrain.org/ns/stones#`) are stable and will not change. Coverage tracks the STIX 2.1 specification. Axiomatics and edge-case modeling are under ongoing refinement. Feedback, issues, and contributions are welcome.
 
@@ -52,16 +52,16 @@ Load `stones-merged.ttl` into any OWL-compatible triplestore:
 ```sparql
 PREFIX stones: <https://cyberterrain.org/ns/stones#>
 PREFIX owl:    <http://www.w3.org/2002/07/owl#>
-PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:   <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?class ?label WHERE {
   ?class a owl:Class ;
-         rdfs:label ?label .
+         skos:prefLabel ?label .
 }
 ORDER BY ?label
 ```
 
-This returns all STIX 2.1 domain object classes with their labels — confirming the ontology loaded correctly.
+This returns the STONES classes with their labels — confirming the ontology loaded correctly.
 
 ### 4. Go deeper
 
@@ -85,6 +85,16 @@ Run once after cloning to enable the pre-commit hook (strips Protégé's default
 ```bash
 git config core.hooksPath .githooks
 ```
+
+### Rebuild the single-file ontology
+
+`ontologies/stones-merged.ttl` is generated from the four module files. After editing any of them, rebuild it and commit it with your change:
+
+```bash
+JENA_HOME=/path/to/apache-jena RDF_TOOLKIT=/path/to/rdf-toolkit.jar bash tools/build-merged.sh
+```
+
+It needs [Apache Jena](https://jena.apache.org/download/) and the EDM Council [rdf-toolkit](https://github.com/edmcouncil/rdf-toolkit) jar, which sorts the output so a rebuild only changes what changed. Record each release in [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
