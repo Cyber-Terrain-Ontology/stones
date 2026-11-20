@@ -9,8 +9,8 @@
 @base <https://cyberterrain.org/ns/stones#> .
 
 <https://cyberterrain.org/ns/stones#> rdf:type owl:Ontology ;
-                                      owl:versionIRI <https://cyberterrain.org/ns/stones/0.2.0> ;
-                                      owl:versionInfo "0.2.0" ;
+                                      owl:versionIRI <https://cyberterrain.org/ns/stones/0.3.0> ;
+                                      owl:versionInfo "0.3.0" ;
                                       owl:priorVersion <https://cyberterrain.org/ns/stones/0.1.0> ;
                                       rdfs:label "STONES"@en ;
                                       dcterms:title "STONES — STIX ONtology Expression System"@en ;
@@ -1123,6 +1123,28 @@ stones:X509V3Extensions rdf:type owl:Class ;
 #################################################################
 #    Disjointness Axioms
 #################################################################
+
+###  https://cyberterrain.org/ns/stones#ListOrder
+stones:ListOrder rdf:type owl:Class ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:prefLabel "List Order"@en ;
+    skos:definition "The order of one list-valued STIX property on one STIX object, as it was in the STIX JSON. STONES writes a list's members as separate triples, which carry no order; a ListOrder records it, one ListItem per member." ;
+    skos:scopeNote "Serialization fidelity, not a STIX concept or a claim about the cyber domain: it exists so a STIX document can be regenerated exactly from its STONES triples. Not aligned to STONEWORK. Written only where the order differs from the members sorted, which is the order a reader gets without one." .
+
+
+###  https://cyberterrain.org/ns/stones#ListItem
+stones:ListItem rdf:type owl:Class ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:prefLabel "List Item"@en ;
+    skos:definition "One member of a ListOrder: its position (stones:listIndex) and the value the list's property has for it (stones:listValue for a literal, stones:listRef for an IRI)." ;
+    skos:scopeNote "Index nodes rather than an rdf:List because OWL 2 DL reserves rdf:first and rdf:rest, and STONES data is consistency-checked with OWL reasoners. Not aligned to STONEWORK." .
+
+
+[]  rdf:type owl:AllDisjointClasses ;
+    owl:members ( stones:StixObject
+                  stones:ListOrder
+                  stones:ListItem ) .
+
 
 ###  Direct children of stones:StixObject are mutually disjoint
 []  rdf:type owl:AllDisjointClasses ;

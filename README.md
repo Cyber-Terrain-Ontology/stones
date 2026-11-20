@@ -15,7 +15,7 @@ STONES is independent work. It is not affiliated with OASIS or the OASIS Cyber T
 
 ## Status
 
-**v0.2.0 — Active Development** ([changes](CHANGELOG.md))
+**v0.3.0 — Active Development** ([changes](CHANGELOG.md))
 
 The core class hierarchy and namespace (`https://cyberterrain.org/ns/stones#`) are stable and will not change. Coverage tracks the STIX 2.1 specification. Axiomatics and edge-case modeling are under ongoing refinement. Feedback, issues, and contributions are welcome.
 

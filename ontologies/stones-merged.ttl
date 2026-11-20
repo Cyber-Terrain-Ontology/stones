@@ -23,8 +23,8 @@
 	dcterms:title "STONES — STIX ONtology Expression System"@en ;
 	owl:imports <http://www.w3.org/2004/02/skos/core> ;
 	owl:priorVersion <https://cyberterrain.org/ns/stones/0.1.0> ;
-	owl:versionIRI <https://cyberterrain.org/ns/stones/0.2.0> ;
-	owl:versionInfo "0.2.0" ;
+	owl:versionIRI <https://cyberterrain.org/ns/stones/0.3.0> ;
+	owl:versionInfo "0.3.0" ;
 	.
 
 stones:AccountTypeVocabulary
@@ -646,6 +646,22 @@ stones:LanguageContentObject
 	] ;
 	skos:definition "Provides translations of string properties of another STIX object into different languages. Allows internationalisation without modifying the original object." ;
 	skos:prefLabel "Language Content Object"@en ;
+	.
+
+stones:ListItem
+	a owl:Class ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	skos:definition "One member of a ListOrder: its position (stones:listIndex) and the value the list's property has for it (stones:listValue for a literal, stones:listRef for an IRI)." ;
+	skos:prefLabel "List Item"@en ;
+	skos:scopeNote "Index nodes rather than an rdf:List because OWL 2 DL reserves rdf:first and rdf:rest, and STONES data is consistency-checked with OWL reasoners. Not aligned to STONEWORK." ;
+	.
+
+stones:ListOrder
+	a owl:Class ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	skos:definition "The order of one list-valued STIX property on one STIX object, as it was in the STIX JSON. STONES writes a list's members as separate triples, which carry no order; a ListOrder records it, one ListItem per member." ;
+	skos:prefLabel "List Order"@en ;
+	skos:scopeNote "Serialization fidelity, not a STIX concept or a claim about the cyber domain: it exists so a STIX document can be regenerated exactly from its STONES triples. Not aligned to STONEWORK. Written only where the order differs from the members sorted, which is the order a reader gets without one." ;
 	.
 
 stones:Location
@@ -2777,6 +2793,72 @@ stones:latitude
 	skos:definition "Latitude in decimal degrees, range -90 to 90. Required when longitude is present." ;
 	.
 
+stones:listIndex
+	a
+		owl:DatatypeProperty ,
+		owl:FunctionalProperty
+		;
+	rdfs:comment "(not a STIX property: serialization fidelity)" ;
+	rdfs:domain stones:ListItem ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	rdfs:range xsd:nonNegativeInteger ;
+	skos:definition "Zero-based position of this member in the list as it was in the STIX JSON." ;
+	.
+
+stones:listItem
+	a
+		owl:ObjectProperty ,
+		owl:InverseFunctionalProperty
+		;
+	rdfs:comment "(not a STIX property: serialization fidelity)" ;
+	rdfs:domain stones:ListOrder ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	rdfs:range stones:ListItem ;
+	skos:definition "One member of this ListOrder." ;
+	.
+
+stones:listOrder
+	a owl:ObjectProperty ;
+	rdfs:comment "(not a STIX property: serialization fidelity)" ;
+	rdfs:domain stones:StixObject ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	rdfs:range stones:ListOrder ;
+	skos:definition "The recorded order of one of this object's list-valued properties." ;
+	.
+
+stones:listProperty
+	a
+		owl:ObjectProperty ,
+		owl:FunctionalProperty
+		;
+	rdfs:comment "(not a STIX property: serialization fidelity)" ;
+	rdfs:domain stones:ListOrder ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	skos:definition "The STONES property whose order this ListOrder records, e.g. stones:aliases (the property IRI used as an individual: OWL 2 punning)." ;
+	.
+
+stones:listRef
+	a
+		owl:ObjectProperty ,
+		owl:FunctionalProperty
+		;
+	rdfs:comment "(not a STIX property: serialization fidelity)" ;
+	rdfs:domain stones:ListItem ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	skos:definition "The member, when it is an IRI (a reference, vocabulary value, external reference or kill-chain phase): the same IRI the list's property points to." ;
+	.
+
+stones:listValue
+	a
+		owl:DatatypeProperty ,
+		owl:FunctionalProperty
+		;
+	rdfs:comment "(not a STIX property: serialization fidelity)" ;
+	rdfs:domain stones:ListItem ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	skos:definition "The member, when it is a literal: the same literal the list's property has." ;
+	.
+
 stones:longitude
 	a owl:DatatypeProperty ;
 	rdfs:comment "(STIX: longitude)" ;
@@ -3920,6 +4002,19 @@ stones:uid
 	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
 	rdfs:range xsd:integer ;
 	skos:definition "Numeric UNIX user ID (UID)." ;
+	.
+
+stones:unmodeledProperties
+	a
+		owl:DatatypeProperty ,
+		owl:FunctionalProperty
+		;
+	rdfs:comment "(not a STIX property: serialization fidelity)" ;
+	rdfs:domain stones:StixObject ;
+	rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+	rdfs:range xsd:string ;
+	skos:definition "The STIX properties of this object that its STONES triples don't carry exactly, verbatim, as one JSON object (e.g. extensions, granular_markings, custom x_ properties). Kept so the STIX JSON can be regenerated exactly; not queryable as structure." ;
+	skos:scopeNote "An xsd:string rather than rdf:JSON, which is not in the OWL 2 datatype map. Each key here is a candidate for a modeled STONES property." ;
 	.
 
 stones:url
@@ -6885,5 +6980,14 @@ stonex:_yara
 		stones:StixCoreObject
 		stones:StixMetaObject
 		stones:StixBundle
+	) ;
+	.
+
+[]
+	a owl:AllDisjointClasses ;
+	owl:members (
+		stones:StixObject
+		stones:ListOrder
+		stones:ListItem
 	) ;
 	.

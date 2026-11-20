@@ -928,3 +928,43 @@ stones:messageBodyRef rdf:type owl:ObjectProperty ;
     skos:definition "Reference to the artifact SCO containing the HTTP message body." ;
     rdfs:comment "(STIX: http-request-ext.message_body_ref)" ;
     rdfs:range stones:ArtifactObject .
+
+
+#################################################################
+#    Serialization fidelity (not STIX properties; not aligned to STONEWORK)
+#    Written after the STIX transform, only where its triples alone would
+#    not regenerate the STIX JSON exactly.
+#################################################################
+
+###  https://cyberterrain.org/ns/stones#listOrder
+stones:listOrder rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "The recorded order of one of this object's list-valued properties." ;
+    rdfs:comment "(not a STIX property: serialization fidelity)" ;
+    rdfs:domain stones:StixObject ;
+    rdfs:range stones:ListOrder .
+
+
+###  https://cyberterrain.org/ns/stones#listProperty
+stones:listProperty rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "The STONES property whose order this ListOrder records, e.g. stones:aliases (the property IRI used as an individual: OWL 2 punning)." ;
+    rdfs:comment "(not a STIX property: serialization fidelity)" ;
+    rdfs:domain stones:ListOrder .
+
+
+###  https://cyberterrain.org/ns/stones#listItem
+stones:listItem rdf:type owl:ObjectProperty , owl:InverseFunctionalProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "One member of this ListOrder." ;
+    rdfs:comment "(not a STIX property: serialization fidelity)" ;
+    rdfs:domain stones:ListOrder ;
+    rdfs:range stones:ListItem .
+
+
+###  https://cyberterrain.org/ns/stones#listRef
+stones:listRef rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "The member, when it is an IRI (a reference, vocabulary value, external reference or kill-chain phase): the same IRI the list's property points to." ;
+    rdfs:comment "(not a STIX property: serialization fidelity)" ;
+    rdfs:domain stones:ListItem .

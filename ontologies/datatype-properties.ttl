@@ -1894,3 +1894,34 @@ stones:authorityInfoAccess rdf:type owl:DatatypeProperty ;
     rdfs:comment "(STIX: x509-v3-extensions-type.authority_info_access)" ;
     rdfs:domain stones:X509V3Extensions ;
     rdfs:range xsd:string .
+
+
+#################################################################
+#    Serialization fidelity (not STIX properties; not aligned to STONEWORK)
+#################################################################
+
+###  https://cyberterrain.org/ns/stones#listIndex
+stones:listIndex rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "Zero-based position of this member in the list as it was in the STIX JSON." ;
+    rdfs:comment "(not a STIX property: serialization fidelity)" ;
+    rdfs:domain stones:ListItem ;
+    rdfs:range xsd:nonNegativeInteger .
+
+
+###  https://cyberterrain.org/ns/stones#listValue
+stones:listValue rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "The member, when it is a literal: the same literal the list's property has." ;
+    rdfs:comment "(not a STIX property: serialization fidelity)" ;
+    rdfs:domain stones:ListItem .
+
+
+###  https://cyberterrain.org/ns/stones#unmodeledProperties
+stones:unmodeledProperties rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
+    skos:definition "The STIX properties of this object that its STONES triples don't carry exactly, verbatim, as one JSON object (e.g. extensions, granular_markings, custom x_ properties). Kept so the STIX JSON can be regenerated exactly; not queryable as structure." ;
+    skos:scopeNote "An xsd:string rather than rdf:JSON, which is not in the OWL 2 datatype map. Each key here is a candidate for a modeled STONES property." ;
+    rdfs:comment "(not a STIX property: serialization fidelity)" ;
+    rdfs:domain stones:StixObject ;
+    rdfs:range xsd:string .
