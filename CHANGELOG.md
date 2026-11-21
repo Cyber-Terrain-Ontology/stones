@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.3.1 (2026-11-21)
+
+### Fixed
+
+- `created` and `modified` are now required only where STIX 2.1 requires them
+  (#4). `stones:StixCoreObject` required both (`owl:minCardinality 1`), but
+  Cyber-observable Objects are Core Objects and have neither, so a reasoner
+  concluded that every observable had timestamps the data doesn't state, and a
+  closed-world check built from the restrictions would reject every SCO. The
+  restrictions move to the classes STIX requires them on:
+
+  | Class | `created` | `modified` |
+  |---|---|---|
+  | `stones:StixDomainObject` | required | required |
+  | `stones:StixRelationshipObject` | required | required |
+  | `stones:StixCyberobservableObject` | no restriction | no restriction |
+  | `stones:MarkingDefinitionObject` | required | no restriction (marking definitions don't change) |
+  | `stones:LanguageContentObject` | required | required |
+  | `stones:ExtensionDefinitionObject` | required | required |
+
+  `stones:StixCoreObject`'s definition no longer says every Core Object carries
+  the timestamps.
+- `dcterms:title`, `dcterms:description`, `dcterms:creator` and
+  `dcterms:license`, used in the ontology header, are declared as
+  `owl:AnnotationProperty`, so STONES itself is within the OWL 2 DL profile.
+  (The remaining profile warnings come from the imported W3C SKOS file.)
+- `owl:priorVersion` names 0.3.0 (it still named 0.1.0).
+
+Checked with HermiT (consistent, no unsatisfiable classes) and ROBOT's OWL 2 DL
+profile validation.
+
 ## 0.3.0 (2026-11-20)
 
 ### Added

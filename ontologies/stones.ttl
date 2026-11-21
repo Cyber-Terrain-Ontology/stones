@@ -9,9 +9,9 @@
 @base <https://cyberterrain.org/ns/stones#> .
 
 <https://cyberterrain.org/ns/stones#> rdf:type owl:Ontology ;
-                                      owl:versionIRI <https://cyberterrain.org/ns/stones/0.3.0> ;
-                                      owl:versionInfo "0.3.0" ;
-                                      owl:priorVersion <https://cyberterrain.org/ns/stones/0.1.0> ;
+                                      owl:versionIRI <https://cyberterrain.org/ns/stones/0.3.1> ;
+                                      owl:versionInfo "0.3.1" ;
+                                      owl:priorVersion <https://cyberterrain.org/ns/stones/0.3.0> ;
                                       rdfs:label "STONES"@en ;
                                       dcterms:title "STONES — STIX ONtology Expression System"@en ;
                                       dcterms:description "An OWL 2 ontology modelling the STIX 2.1 specification. Provides a class hierarchy for all STIX Domain Objects (SDOs), Cyber Observable Objects (SCOs), Relationship Objects (SROs), Meta Objects, and structured sub-types, together with datatype and object properties covering all standard STIX properties."@en ;
@@ -21,6 +21,16 @@
                                                   <https://cyberterrain.org/ns/datatype-properties#> ,
                                                   <https://cyberterrain.org/ns/object-properties#> ,
                                                   <https://cyberterrain.org/ns/vocabularies#> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+# Declared so that the ontology header stays within OWL 2 DL.
+dcterms:title rdf:type owl:AnnotationProperty .
+dcterms:description rdf:type owl:AnnotationProperty .
+dcterms:creator rdf:type owl:AnnotationProperty .
+dcterms:license rdf:type owl:AnnotationProperty .
 
 #################################################################
 #    Classes
@@ -227,7 +237,13 @@ stones:EmailMimePart rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#ExtensionDefinitionObject
 stones:ExtensionDefinitionObject rdf:type owl:Class ;
-                                rdfs:subClassOf stones:StixMetaObject ;
+                                rdfs:subClassOf stones:StixMetaObject ,
+                                    [ a owl:Restriction ;
+                                      owl:onProperty stones:created ;
+                                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                                    [ a owl:Restriction ;
+                                      owl:onProperty stones:modified ;
+                                      owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                                 owl:equivalentClass [
                                     a owl:Class ;
                                     owl:intersectionOf (
@@ -481,7 +497,13 @@ stones:KillChainPhase rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#LanguageContentObject
 stones:LanguageContentObject rdf:type owl:Class ;
-                            rdfs:subClassOf stones:StixMetaObject ;
+                            rdfs:subClassOf stones:StixMetaObject ,
+                                [ a owl:Restriction ;
+                                  owl:onProperty stones:created ;
+                                  owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                                [ a owl:Restriction ;
+                                  owl:onProperty stones:modified ;
+                                  owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                             owl:equivalentClass [
                                 a owl:Class ;
                                 owl:intersectionOf (
@@ -597,7 +619,10 @@ stones:MalwareAnalysis rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#MarkingDefinitionObject
 stones:MarkingDefinitionObject rdf:type owl:Class ;
-                              rdfs:subClassOf stones:StixMetaObject ;
+                              rdfs:subClassOf stones:StixMetaObject ,
+                                  [ a owl:Restriction ;
+                                    owl:onProperty stones:created ;
+                                    owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                               owl:equivalentClass [
                                   a owl:Class ;
                                   owl:intersectionOf (
@@ -873,16 +898,10 @@ stones:StixBundle rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#StixCoreObject
 stones:StixCoreObject rdf:type owl:Class ;
-                     rdfs:subClassOf stones:StixObject ,
-                         [ a owl:Restriction ;
-                           owl:onProperty stones:created ;
-                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
-                         [ a owl:Restriction ;
-                           owl:onProperty stones:modified ;
-                           owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+                     rdfs:subClassOf stones:StixObject ;
                      rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                      skos:prefLabel "STIX Core Object"@en ;
-                     skos:definition "Abstract class for STIX Core Objects, comprising SDOs, SCOs, and SROs. Core objects carry a type-qualified identifier and created/modified timestamps, and may be referenced by other objects." .
+                     skos:definition "Abstract class for STIX Core Objects, comprising SDOs, SCOs, and SROs. Core objects carry a type-qualified identifier and may be referenced by other objects. SDOs and SROs also require created and modified timestamps; SCOs have neither." .
 
 
 ###  https://cyberterrain.org/ns/stones#StixCyberobservableObject
@@ -895,7 +914,13 @@ stones:StixCyberobservableObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#StixDomainObject
 stones:StixDomainObject rdf:type owl:Class ;
-                       rdfs:subClassOf stones:StixCoreObject ;
+                       rdfs:subClassOf stones:StixCoreObject ,
+                           [ a owl:Restriction ;
+                             owl:onProperty stones:created ;
+                             owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                           [ a owl:Restriction ;
+                             owl:onProperty stones:modified ;
+                             owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                        rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                        skos:prefLabel "STIX Domain Object"@en ;
                        skos:definition "Abstract class for STIX Domain Objects (SDOs), which represent modelled cyber threat intelligence concepts such as malware, campaigns, threat actors, and vulnerabilities." .
@@ -928,7 +953,13 @@ stones:StixObject rdf:type owl:Class ;
 
 ###  https://cyberterrain.org/ns/stones#StixRelationshipObject
 stones:StixRelationshipObject rdf:type owl:Class ;
-                             rdfs:subClassOf stones:StixCoreObject ;
+                             rdfs:subClassOf stones:StixCoreObject ,
+                                 [ a owl:Restriction ;
+                                   owl:onProperty stones:created ;
+                                   owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+                                 [ a owl:Restriction ;
+                                   owl:onProperty stones:modified ;
+                                   owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
                              rdfs:isDefinedBy <https://cyberterrain.org/ns/stones#> ;
                              skos:prefLabel "STIX Relationship Object"@en ;
                              skos:definition "Abstract class for STIX Relationship Objects (SROs), which link Core Objects to express directed relationships and sightings between them." .
